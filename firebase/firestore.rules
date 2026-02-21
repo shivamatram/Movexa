@@ -1,0 +1,199 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ===============================
+    // Helper Functions
+    // ===============================
+
+    function isLoggedIn() {
+      return request.auth != null;
+    }
+
+    function userDoc() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid));
+    }
+
+    function role() {
+      return userDoc().data.role;
+    }
+
+    function isAdmin() {
+      return role() == "ADMIN";
+    }
+
+    function isManager() {
+      return role() == "MANAGER";
+    }
+
+    function isDriver() {
+      return role() == "DRIVER";
+    }
+
+    function isMechanic() {
+      return role() == "MECHANIC";
+    }
+
+    // ===============================
+    // USERS
+    // ===============================
+    match /users/{uid} {
+      allow create: if isLoggedIn() && request.auth.uid == uid;
+      allow read: if isLoggedIn() && (
+          request.auth.uid == uid || isAdmin() || isManager()
+      );
+      allow update: if isLoggedIn() && (
+          request.auth.uid == uid || isAdmin()
+      );
+      allow delete: if isAdmin();
+    }
+
+    // ===============================
+    // VEHICLES
+    // ===============================
+    match /vehicles/{vehicleId} {
+      allow read: if isLoggedIn();
+      allow create, update: if isLoggedIn() && (isAdmin() || isManager());
+      allow delete: if isAdmin();
+    }
+
+    // ===============================
+    // DRIVERS
+    // ===============================
+    match /drivers/{driverId} {
+      allow read: if isLoggedIn();
+      allow create: if isLoggedIn();
+      allow update: if isLoggedIn() && (
+          isAdmin() || isManager() || request.auth.uid == resource.data.userId
+      );
+      allow delete: if isAdmin();
+    }
+
+    // ===============================
+    // TRIPS
+    // ===============================
+    match /trips/{tripId} {
+      allow read: if isLoggedIn();
+      allow create: if isLoggedIn() && (isAdmin() || isManager());
+      allow update: if isLoggedIn() && (
+          isAdmin() ||
+          isManager() ||
+          (isDriver() && resource.data.driverId == request.auth.uid)
+      );
+      allow delete: if isAdmin();
+    }
+
+    // ===============================
+    // TRIP EVENTS
+    // ===============================
+    match /trip_events/{eventId} {
+      allow read: if isLoggedIn();
+      allow create: if isLoggedIn();
+      allow update, delete: if isLoggedIn() && isAdmin();
+    }
+
+    // ===============================
+    // FUEL LOGS
+    // ===============================
+    match /fuel_logs/{fuelId} {
+      allow read: if isLoggedIn();
+      allow create: if isLoggedIn() && isDriver();
+      allow update: if isLoggedIn() && isDriver() && resource.data.driverId == request.auth.uid;
+      allow delete: if isLoggedIn() && isAdmin();
+    }
+
+    // ===============================
+    // SERVICES / REPAIRS / PARTS
+    // ===============================
+    match /services/{id} {
+      allow read: if isLoggedIn();
+      allow write: if isLoggedIn() && (isMechanic() || isAdmin());
+    }
+
+    match /repairs/{id} {
+      allow read: if isLoggedIn();
+      allow write: if isLoggedIn() && (isMechanic() || isAdmin());
+    }
+
+    match /parts_history/{id} {
+      allow read: if isLoggedIn();
+      allow write: if isLoggedIn() && (isMechanic() || isAdmin());
+    }
+
+    // ===============================
+    // DASHBOARD SUMMARIES
+    // ===============================
+    match /dashboard_summary/{docId} {
+      allow read: if isLoggedIn() && (isAdmin() || isManager());
+      allow write: if isLoggedIn() && isAdmin();
+    }
+
+    match /operations_summary/{docId} {
+      allow read: if isLoggedIn() && (isAdmin() || isManager());
+      allow write: if isLoggedIn() && (isAdmin() || isManager());
+    }
+
+    // ===============================
+    // ALERTS
+    // ===============================
+    match /alerts/{alertId} {
+      allow read: if isLoggedIn();
+      allow create: if isLoggedIn();
+      allow update: if isLoggedIn() && (isAdmin() || isManager());
+      allow delete: if isLoggedIn() && isAdmin();
+    }
+
+    // ===============================
+    // ACTIVITY LOGS
+    // ===============================
+    match /activity_logs/{logId} {
+      allow read: if isLoggedIn();
+      allow create: if isLoggedIn();
+      allow delete: if isLoggedIn() && isAdmin();
+    }
+
+    // ===============================
+    // MAINTENANCE
+    // ===============================
+    match /maintenance/{id} {
+      allow read: if isLoggedIn();
+      allow write: if isLoggedIn() && (isMechanic() || isAdmin() || isManager());
+    }
+
+    // ===============================
+    // REPORTS
+    // ===============================
+    match /reports/{id} {
+      allow read: if isLoggedIn() && (isAdmin() || isManager());
+      allow write: if isLoggedIn() && (isAdmin() || isManager());
+    }
+
+    // ===============================
+    // NOTIFICATIONS
+    // ===============================
+    match /notifications/{id} {
+      allow read: if isLoggedIn();
+      allow create: if isLoggedIn();
+      allow update: if isLoggedIn();
+      allow delete: if isLoggedIn() && isAdmin();
+    }
+
+    // ===============================
+    // SETTINGS
+    // ===============================
+    match /settings/{id} {
+      allow read: if isLoggedIn();
+      allow write: if isLoggedIn() && isAdmin();
+    }
+
+    // ===============================
+    // AUDIT LOGS
+    // ===============================
+    match /audit_logs/{id} {
+      allow read: if isLoggedIn() && (isAdmin() || isManager());
+      allow create: if isLoggedIn();
+      allow delete: if false;
+    }
+
+  }
+}
