@@ -158,6 +158,54 @@
     <color name="tracking_pulse_start">#6600897B</color>
     <color name="tracking_pulse_end">#0000897B</color>
 
+    <!-- ═══════════ Alert Module Colors ═══════════ -->
+
+    <!-- Alert Priority Colors -->
+    <color name="alert_critical">#FFD32F2F</color>
+    <color name="alert_critical_bg">#FFFFCDD2</color>
+    <color name="alert_critical_surface">#FFFFF5F5</color>
+    <color name="alert_critical_text">#FFB71C1C</color>
+    <color name="alert_high">#FFF57C00</color>
+    <color name="alert_high_bg">#FFFFE0B2</color>
+    <color name="alert_high_surface">#FFFFF8F0</color>
+    <color name="alert_high_text">#FFE65100</color>
+    <color name="alert_medium">#FFFFC107</color>
+    <color name="alert_medium_bg">#FFFFF8E1</color>
+    <color name="alert_medium_surface">#FFFFFDF5</color>
+    <color name="alert_medium_text">#FFF57F17</color>
+    <color name="alert_low">#FF4CAF50</color>
+    <color name="alert_low_bg">#FFC8E6C9</color>
+    <color name="alert_low_surface">#FFF5FBF5</color>
+    <color name="alert_low_text">#FF2E7D32</color>
+
+    <!-- Alert Type Icon Colors -->
+    <color name="alert_overspeed">#FFE53935</color>
+    <color name="alert_harsh_braking">#FFFF6F00</color>
+    <color name="alert_harsh_acceleration">#FFFF8F00</color>
+    <color name="alert_long_idle">#FF5C6BC0</color>
+    <color name="alert_route_deviation">#FF7B1FA2</color>
+    <color name="alert_accident">#FFD50000</color>
+
+    <!-- Alert Status Colors -->
+    <color name="alert_status_active">#FFE53935</color>
+    <color name="alert_status_active_bg">#FFFFEBEE</color>
+    <color name="alert_status_acknowledged">#FFFFA726</color>
+    <color name="alert_status_acknowledged_bg">#FFFFF3E0</color>
+    <color name="alert_status_resolved">#FF66BB6A</color>
+    <color name="alert_status_resolved_bg">#FFE8F5E9</color>
+    <color name="alert_status_dismissed">#FF9E9E9E</color>
+    <color name="alert_status_dismissed_bg">#FFF5F5F5</color>
+
+    <!-- Alert Card -->
+    <color name="alert_card_swipe_resolve">#FF4CAF50</color>
+    <color name="alert_card_swipe_dismiss">#FF9E9E9E</color>
+    <color name="alert_card_border_critical">#FFEF9A9A</color>
+    <color name="alert_card_border_high">#FFFFCC80</color>
+    <color name="alert_pulse_critical">#40D32F2F</color>
+    <color name="alert_badge_count">#FFD32F2F</color>
+    <color name="alert_resolve_bg">#FFE8F5E9</color>
+    <color name="alert_resolve_text">#FF2E7D32</color>
+
     <!-- Alias for design system -->
     <color name="colorPrimary">@color/primary</color>
     <color name="colorOnPrimary">@color/on_primary</color>

@@ -814,4 +814,135 @@
     <string name="cd_stop_tracking">Stop GPS tracking</string>
     <string name="cd_tracking_filter">Filter vehicles</string>
     <string name="cd_vehicle_panel">Vehicle information panel</string>
+
+    <!-- ═══════════ Driver Behaviour Alerts Module ═══════════ -->
+
+    <!-- Manager Alerts Screen -->
+    <string name="alerts_screen_title">Safety Alerts</string>
+    <string name="alerts_screen_subtitle">Monitor and manage driver behaviour alerts</string>
+    <string name="alerts_tab_active">Active</string>
+    <string name="alerts_tab_resolved">Resolved</string>
+    <string name="alerts_tab_all">All</string>
+    <string name="alerts_active_count">%d Active</string>
+    <string name="alerts_resolved_count">%d Resolved</string>
+    <string name="alerts_critical_count">%d Critical</string>
+    <string name="alerts_total_count">%d Total</string>
+    <string name="alerts_filter_all">All Types</string>
+    <string name="alerts_filter_priority">By Priority</string>
+    <string name="alerts_filter_type">By Type</string>
+    <string name="alerts_filter_vehicle">By Vehicle</string>
+    <string name="alerts_sort_newest">Newest First</string>
+    <string name="alerts_sort_priority">Highest Priority</string>
+    <string name="alerts_loading">Loading alerts…</string>
+    <string name="alerts_refreshing">Refreshing alerts…</string>
+    <string name="alerts_error_loading">Failed to load alerts</string>
+    <string name="alerts_error_retry">Retry</string>
+    <string name="alerts_resolve_success">Alert resolved successfully</string>
+    <string name="alerts_resolve_error">Failed to resolve alert</string>
+    <string name="alerts_dismiss_success">Alert dismissed</string>
+    <string name="alerts_acknowledge_success">Alert acknowledged</string>
+    <string name="alerts_resolve_all">Resolve All</string>
+    <string name="alerts_resolve_all_confirm">Are you sure you want to resolve all %d active alerts?</string>
+    <string name="alerts_swipe_resolve">Swipe to resolve</string>
+    <string name="alerts_undo">Undo</string>
+    <string name="alerts_search_hint">Search alerts…</string>
+    <string name="alerts_delete_resolved">Clear Resolved</string>
+    <string name="alerts_delete_resolved_confirm">Delete all resolved alerts? This cannot be undone.</string>
+
+    <!-- Alert Empty States -->
+    <string name="alerts_empty_active_title">All Clear!</string>
+    <string name="alerts_empty_active_subtitle">No active safety alerts. All drivers are operating normally.</string>
+    <string name="alerts_empty_resolved_title">No Resolved Alerts</string>
+    <string name="alerts_empty_resolved_subtitle">Resolved alerts will appear here when you address active ones.</string>
+    <string name="alerts_empty_search_title">No Matches</string>
+    <string name="alerts_empty_search_subtitle">Try adjusting your search or filter criteria.</string>
+
+    <!-- Alert Card -->
+    <string name="alert_card_vehicle">Vehicle</string>
+    <string name="alert_card_driver">Driver</string>
+    <string name="alert_card_trip">Trip</string>
+    <string name="alert_card_location">Location</string>
+    <string name="alert_card_time">Time</string>
+    <string name="alert_card_speed">Speed</string>
+    <string name="alert_card_auto_generated">Auto-detected</string>
+    <string name="alert_card_view_details">View Details</string>
+    <string name="alert_card_resolve">Resolve</string>
+    <string name="alert_card_acknowledge">Acknowledge</string>
+    <string name="alert_card_dismiss">Dismiss</string>
+    <string name="alert_card_call_driver">Call Driver</string>
+    <string name="alert_card_view_on_map">View on Map</string>
+    <string name="alert_card_reassign_vehicle">Reassign Vehicle</string>
+    <string name="alert_card_resolved_by">Resolved by %s</string>
+    <string name="alert_card_resolved_at">Resolved %s</string>
+    <string name="alert_card_action_required">Action Required</string>
+
+    <!-- Alert Type Names -->
+    <string name="alert_type_overspeed">Overspeed</string>
+    <string name="alert_type_harsh_braking">Harsh Braking</string>
+    <string name="alert_type_harsh_acceleration">Harsh Acceleration</string>
+    <string name="alert_type_long_idle">Long Idle</string>
+    <string name="alert_type_route_deviation">Route Deviation</string>
+    <string name="alert_type_accident_suspected">Accident Suspected</string>
+    <string name="alert_type_vehicle_breakdown">Vehicle Breakdown</string>
+    <string name="alert_type_driver_sos">Driver SOS</string>
+    <string name="alert_type_general">General Alert</string>
+
+    <!-- Alert Priority Names -->
+    <string name="alert_priority_critical_label">Critical</string>
+    <string name="alert_priority_high_label">High</string>
+    <string name="alert_priority_medium_label">Medium</string>
+    <string name="alert_priority_low_label">Low</string>
+
+    <!-- Alert Status Names -->
+    <string name="alert_status_active_label">Active</string>
+    <string name="alert_status_acknowledged_label">Acknowledged</string>
+    <string name="alert_status_resolved_label">Resolved</string>
+    <string name="alert_status_dismissed_label">Dismissed</string>
+
+    <!-- Alert Stats Panel -->
+    <string name="alert_stat_total">Total</string>
+    <string name="alert_stat_active">Active</string>
+    <string name="alert_stat_critical">Critical</string>
+    <string name="alert_stat_today">Today</string>
+    <string name="alert_stat_resolved_today">Resolved Today</string>
+    <string name="alert_stat_avg_resolution">Avg. Resolution</string>
+    <string name="alert_stat_minutes">%d min</string>
+
+    <!-- Alert Time Formatting -->
+    <string name="alert_time_just_now">Just now</string>
+    <string name="alert_time_minutes_ago">%d min ago</string>
+    <string name="alert_time_hours_ago">%d hr ago</string>
+    <string name="alert_time_today">Today %s</string>
+    <string name="alert_time_yesterday">Yesterday %s</string>
+    <string name="alert_time_resolved_ago">Resolved %s</string>
+
+    <!-- Alert Bottom Sheet -->
+    <string name="alert_detail_title">Alert Details</string>
+    <string name="alert_detail_description">Description</string>
+    <string name="alert_detail_metadata">Technical Details</string>
+    <string name="alert_detail_actions">Actions</string>
+    <string name="alert_detail_history">Alert History</string>
+    <string name="alert_detail_location_label">Location</string>
+    <string name="alert_detail_speed_at_time">Speed at Time</string>
+    <string name="alert_detail_speed_format">%s km/h</string>
+    <string name="alert_detail_vehicle">Vehicle</string>
+    <string name="alert_detail_driver">Driver</string>
+    <string name="alert_detail_time">Time</string>
+
+    <!-- Alert Action Labels -->
+    <string name="alert_action_acknowledge">Acknowledge</string>
+    <string name="alert_action_resolve">Resolve</string>
+    <string name="alert_action_dismiss">Dismiss</string>
+
+    <!-- Alert Content Descriptions -->
+    <string name="cd_alert_type_icon">Alert type icon</string>
+    <string name="cd_alert_priority_badge">Alert priority badge</string>
+    <string name="cd_alert_action_resolve">Resolve this alert</string>
+    <string name="cd_alert_action_call">Call driver</string>
+    <string name="cd_alert_action_map">Show alert on map</string>
+    <string name="cd_alert_filter">Filter alerts</string>
+    <string name="cd_alert_search">Search alerts</string>
+    <string name="cd_alert_stats_panel">Alert statistics panel</string>
+    <string name="cd_alert_swipe_hint">Swipe left to resolve, right to dismiss</string>
+    <string name="cd_alert_expand">Expand alert details</string>
 </resources>

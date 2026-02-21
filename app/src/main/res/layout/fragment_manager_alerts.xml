@@ -1,131 +1,529 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background">
+    android:background="@color/background"
+    tools:context=".ui.dashboard.manager.ManagerAlertsFragment">
 
-    <ScrollView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:fillViewport="true"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/surface"
+        app:elevation="0dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="@dimen/screen_margin_horizontal">
+            app:layout_scrollFlags="scroll|enterAlways|snap">
 
-            <!-- Section Header -->
-            <TextView
-                android:id="@+id/tvSectionTitle"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/manager_section_alerts"
-                android:textAppearance="@style/TextAppearance.Movexa.SectionHeader"
-                android:layout_marginBottom="@dimen/spacing_small" />
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="@dimen/screen_margin_horizontal"
+                android:paddingTop="@dimen/spacing_medium"
+                android:paddingBottom="@dimen/spacing_xs">
 
-            <!-- Status Card -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvScreenTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/alerts_screen_title"
+                        android:textSize="@dimen/text_headline"
+                        android:textColor="@color/text_primary"
+                        android:fontFamily="sans-serif-bold" />
+
+                    <TextView
+                        android:id="@+id/tvScreenSubtitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/alerts_screen_subtitle"
+                        android:textSize="@dimen/text_caption"
+                        android:textColor="@color/text_secondary"
+                        android:layout_marginTop="2dp" />
+
+                </LinearLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnSearch"
+                    style="@style/Widget.Material3.Button.IconButton"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    app:icon="@android:drawable/ic_menu_search"
+                    app:iconTint="@color/text_secondary"
+                    app:iconSize="20dp"
+                    android:contentDescription="@string/cd_alert_search"
+                    app:rippleColor="@color/primary_surface" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnMoreOptions"
+                    style="@style/Widget.Material3.Button.IconButton"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    app:icon="@android:drawable/ic_menu_more"
+                    app:iconTint="@color/text_secondary"
+                    app:iconSize="20dp"
+                    android:contentDescription="@string/cd_alert_filter"
+                    app:rippleColor="@color/primary_surface" />
+
+            </LinearLayout>
+
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cardStatus"
+                android:id="@+id/cardSearchBar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/spacing_medium"
+                android:layout_marginHorizontal="@dimen/screen_margin_horizontal"
+                android:layout_marginBottom="@dimen/spacing_small"
+                android:visibility="gone"
                 app:cardCornerRadius="@dimen/radius_large"
-                app:cardElevation="@dimen/elevation_small"
-                app:cardBackgroundColor="@color/surface">
+                app:cardElevation="0dp"
+                app:cardBackgroundColor="@color/surface_variant"
+                app:strokeWidth="0dp"
+                tools:visibility="visible">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="@dimen/card_padding">
+                    android:layout_height="44dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingHorizontal="@dimen/spacing_medium">
 
                     <ImageView
-                        android:id="@+id/ivIcon"
-                        android:layout_width="@dimen/icon_xl"
-                        android:layout_height="@dimen/icon_xl"
-                        android:layout_gravity="center_horizontal"
-                        android:src="@drawable/ic_nav_alerts"
-                        android:contentDescription="@string/cd_app_logo"
-                        app:tint="@color/primary"
-                        android:layout_marginBottom="@dimen/spacing_medium" />
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:src="@android:drawable/ic_menu_search"
+                        app:tint="@color/text_hint"
+                        android:contentDescription="@string/cd_alert_search" />
 
-                    <TextView
-                        android:id="@+id/tvTitle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/manager_alerts_title"
-                        android:textSize="@dimen/text_title"
-                        android:textColor="@color/text_primary"
-                        android:fontFamily="sans-serif-medium"
-                        android:gravity="center"
-                        android:layout_marginBottom="@dimen/spacing_xs" />
-
-                    <TextView
-                        android:id="@+id/tvSubtitle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/manager_alerts_subtitle"
+                    <EditText
+                        android:id="@+id/etSearch"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:hint="@string/alerts_search_hint"
+                        android:inputType="text"
                         android:textSize="@dimen/text_body"
-                        android:textColor="@color/text_secondary"
-                        android:gravity="center" />
+                        android:textColor="@color/text_primary"
+                        android:textColorHint="@color/text_hint"
+                        android:paddingHorizontal="@dimen/spacing_small"
+                        android:imeOptions="actionSearch"
+                        android:singleLine="true"
+                        android:importantForAutofill="no" />
+
+                    <ImageView
+                        android:id="@+id/ivClearSearch"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:src="@android:drawable/ic_menu_close_clear_cancel"
+                        app:tint="@color/text_hint"
+                        android:visibility="gone"
+                        android:contentDescription="@string/cd_alert_search"
+                        tools:visibility="visible" />
 
                 </LinearLayout>
 
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- Empty State Placeholder -->
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cardEmptyState"
+            <LinearLayout
+                android:id="@+id/layoutStatsPanel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/spacing_medium"
-                app:cardCornerRadius="@dimen/radius_large"
-                app:cardElevation="@dimen/elevation_xs"
-                app:strokeColor="@color/outline_variant"
-                app:strokeWidth="1dp"
-                app:cardBackgroundColor="@color/surface_variant">
+                android:orientation="horizontal"
+                android:paddingHorizontal="@dimen/screen_margin_horizontal"
+                android:paddingBottom="@dimen/spacing_small"
+                android:contentDescription="@string/cd_alert_stats_panel">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardStatActive"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="@dimen/card_padding"
-                    android:gravity="center">
+                    android:layout_weight="1"
+                    android:layout_marginEnd="@dimen/spacing_xs"
+                    app:cardCornerRadius="@dimen/radius_medium"
+                    app:cardElevation="@dimen/elevation_xs"
+                    app:cardBackgroundColor="@color/alert_status_active_bg">
 
-                    <TextView
-                        android:id="@+id/tvEmptyTitle"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/empty_state_title"
-                        android:textSize="@dimen/text_subtitle"
-                        android:textColor="@color/text_secondary"
-                        android:fontFamily="sans-serif-medium"
-                        android:gravity="center"
-                        android:layout_marginBottom="@dimen/spacing_xs" />
+                        android:orientation="vertical"
+                        android:padding="@dimen/spacing_small"
+                        android:gravity="center">
 
-                    <TextView
-                        android:id="@+id/tvEmptySubtitle"
+                        <TextView
+                            android:id="@+id/tvStatActiveCount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="22sp"
+                            android:textColor="@color/alert_status_active"
+                            android:fontFamily="sans-serif-bold"
+                            tools:text="12" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/alert_stat_active"
+                            android:textSize="@dimen/text_overline"
+                            android:textColor="@color/alert_status_active"
+                            android:fontFamily="sans-serif-medium"
+                            android:letterSpacing="0.06" />
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardStatCritical"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginHorizontal="@dimen/spacing_xs"
+                    app:cardCornerRadius="@dimen/radius_medium"
+                    app:cardElevation="@dimen/elevation_xs"
+                    app:cardBackgroundColor="@color/alert_critical_surface">
+
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/empty_state_subtitle"
-                        android:textSize="@dimen/text_caption"
-                        android:textColor="@color/text_hint"
-                        android:gravity="center" />
+                        android:orientation="vertical"
+                        android:padding="@dimen/spacing_small"
+                        android:gravity="center">
 
-                </LinearLayout>
+                        <TextView
+                            android:id="@+id/tvStatCriticalCount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="22sp"
+                            android:textColor="@color/alert_critical"
+                            android:fontFamily="sans-serif-bold"
+                            tools:text="3" />
 
-            </com.google.android.material.card.MaterialCardView>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/alert_stat_critical"
+                            android:textSize="@dimen/text_overline"
+                            android:textColor="@color/alert_critical"
+                            android:fontFamily="sans-serif-medium"
+                            android:letterSpacing="0.06" />
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardStatToday"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="@dimen/spacing_xs"
+                    app:cardCornerRadius="@dimen/radius_medium"
+                    app:cardElevation="@dimen/elevation_xs"
+                    app:cardBackgroundColor="@color/primary_surface">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/spacing_small"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/tvStatTodayCount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="22sp"
+                            android:textColor="@color/primary"
+                            android:fontFamily="sans-serif-bold"
+                            tools:text="28" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/alert_stat_today"
+                            android:textSize="@dimen/text_overline"
+                            android:textColor="@color/primary"
+                            android:fontFamily="sans-serif-medium"
+                            android:letterSpacing="0.06" />
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none"
+                android:clipToPadding="false"
+                android:paddingHorizontal="@dimen/screen_margin_horizontal"
+                android:paddingBottom="@dimen/spacing_xs">
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/chipGroupFilter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:singleSelection="true"
+                    app:selectionRequired="true"
+                    app:chipSpacingHorizontal="@dimen/spacing_xs">
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipAll"
+                        style="@style/Widget.Material3.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/alerts_filter_all"
+                        android:checked="true"
+                        app:chipBackgroundColor="@color/chip_background"
+                        app:checkedIconVisible="false" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipCritical"
+                        style="@style/Widget.Material3.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/alert_priority_critical"
+                        app:chipBackgroundColor="@color/chip_background"
+                        app:checkedIconVisible="false" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipHigh"
+                        style="@style/Widget.Material3.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/alert_priority_high"
+                        app:chipBackgroundColor="@color/chip_background"
+                        app:checkedIconVisible="false" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipOverspeed"
+                        style="@style/Widget.Material3.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/alert_type_overspeed"
+                        app:chipBackgroundColor="@color/chip_background"
+                        app:checkedIconVisible="false" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipBraking"
+                        style="@style/Widget.Material3.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/alert_type_harsh_braking"
+                        app:chipBackgroundColor="@color/chip_background"
+                        app:checkedIconVisible="false" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipIdle"
+                        style="@style/Widget.Material3.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/alert_type_long_idle"
+                        app:chipBackgroundColor="@color/chip_background"
+                        app:checkedIconVisible="false" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipAccident"
+                        style="@style/Widget.Material3.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/alert_type_accident_suspected"
+                        app:chipBackgroundColor="@color/chip_background"
+                        app:checkedIconVisible="false" />
+
+                </com.google.android.material.chip.ChipGroup>
+
+            </HorizontalScrollView>
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:tabMode="fixed"
+                app:tabGravity="fill"
+                app:tabIndicatorColor="@color/primary"
+                app:tabSelectedTextColor="@color/primary"
+                app:tabTextColor="@color/text_secondary"
+                app:tabRippleColor="@color/primary_surface"
+                app:tabIndicatorHeight="3dp"
+                app:tabIndicatorFullWidth="false"
+                android:background="@color/surface">
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/alerts_tab_active" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/alerts_tab_resolved" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/alerts_tab_all" />
+
+            </com.google.android.material.tabs.TabLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/divider" />
 
         </LinearLayout>
 
-    </ScrollView>
+    </com.google.android.material.appbar.AppBarLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerAlerts"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:paddingTop="@dimen/spacing_small"
+                android:paddingBottom="80dp"
+                android:paddingHorizontal="@dimen/screen_margin_horizontal"
+                android:scrollbars="vertical"
+                android:overScrollMode="never"
+                tools:listitem="@layout/item_alert_card" />
+
+            <LinearLayout
+                android:id="@+id/layoutLoading"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:visibility="gone"
+                tools:visibility="gone">
+
+                <com.google.android.material.progressindicator.CircularProgressIndicator
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:indeterminate="true"
+                    app:indicatorColor="@color/primary"
+                    app:trackThickness="4dp"
+                    app:indicatorSize="48dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/alerts_loading"
+                    android:textSize="@dimen/text_body"
+                    android:textColor="@color/text_secondary"
+                    android:layout_marginTop="@dimen/spacing_medium" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutEmpty"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="@dimen/spacing_xl"
+                android:visibility="gone"
+                tools:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/ivEmptyIcon"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/ic_nav_alerts"
+                    app:tint="@color/text_disabled"
+                    android:contentDescription="@string/cd_alert_type_icon"
+                    android:alpha="0.5" />
+
+                <TextView
+                    android:id="@+id/tvEmptyTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/alerts_empty_active_title"
+                    android:textSize="@dimen/text_subtitle"
+                    android:textColor="@color/text_primary"
+                    android:fontFamily="sans-serif-medium"
+                    android:gravity="center"
+                    android:layout_marginTop="@dimen/spacing_medium" />
+
+                <TextView
+                    android:id="@+id/tvEmptySubtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/alerts_empty_active_subtitle"
+                    android:textSize="@dimen/text_body"
+                    android:textColor="@color/text_secondary"
+                    android:gravity="center"
+                    android:layout_marginTop="@dimen/spacing_xs"
+                    android:paddingHorizontal="@dimen/spacing_xl" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutError"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="@dimen/spacing_xl"
+                android:visibility="gone"
+                tools:visibility="gone">
+
+                <ImageView
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:src="@android:drawable/ic_dialog_alert"
+                    app:tint="@color/error"
+                    android:contentDescription="@string/cd_alert_type_icon"
+                    android:alpha="0.7" />
+
+                <TextView
+                    android:id="@+id/tvErrorTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/alerts_error_loading"
+                    android:textSize="@dimen/text_subtitle"
+                    android:textColor="@color/text_primary"
+                    android:fontFamily="sans-serif-medium"
+                    android:gravity="center"
+                    android:layout_marginTop="@dimen/spacing_medium" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnRetry"
+                    style="@style/Widget.Material3.Button.TonalButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/alerts_error_retry"
+                    android:layout_marginTop="@dimen/spacing_medium"
+                    app:backgroundTint="@color/primary_surface"
+                    android:textColor="@color/primary" />
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

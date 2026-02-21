@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardAlert"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/spacing_small"
+    app:cardCornerRadius="@dimen/radius_medium"
+    app:cardElevation="@dimen/elevation_small"
+    app:cardBackgroundColor="@color/surface"
+    app:strokeWidth="0dp"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Priority Indicator Strip -->
+        <View
+            android:id="@+id/viewPriorityStrip"
+            android:layout_width="5dp"
+            android:layout_height="match_parent"
+            android:background="@color/alert_critical"
+            tools:background="@color/alert_critical" />
+
+        <!-- Main Content Area -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/spacing_medium">
+
+            <!-- ── Row 1: Type Icon + Title + Priority Badge ── -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <!-- Alert Type Icon (circular background) -->
+                <FrameLayout
+                    android:id="@+id/layoutTypeIcon"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/bg_alert_type_icon">
+
+                    <ImageView
+                        android:id="@+id/ivAlertTypeIcon"
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_alert_overspeed"
+                        android:contentDescription="@string/cd_alert_type_icon"
+                        tools:src="@drawable/ic_alert_overspeed" />
+
+                </FrameLayout>
+
+                <!-- Title + Subtitle Column -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginStart="@dimen/spacing_small">
+
+                    <TextView
+                        android:id="@+id/tvAlertTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/text_body"
+                        android:textColor="@color/text_primary"
+                        android:fontFamily="sans-serif-medium"
+                        android:maxLines="2"
+                        android:ellipsize="end"
+                        tools:text="Overspeed Detected" />
+
+                    <TextView
+                        android:id="@+id/tvAlertType"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/text_overline"
+                        android:textColor="@color/text_hint"
+                        android:fontFamily="sans-serif-medium"
+                        android:letterSpacing="0.04"
+                        android:layout_marginTop="1dp"
+                        tools:text="OVER SPEED" />
+
+                </LinearLayout>
+
+                <!-- Priority Badge -->
+                <TextView
+                    android:id="@+id/tvPriorityBadge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="@dimen/spacing_small"
+                    android:paddingVertical="3dp"
+                    android:textSize="9sp"
+                    android:textColor="@android:color/white"
+                    android:fontFamily="sans-serif-bold"
+                    android:letterSpacing="0.08"
+                    android:background="@drawable/bg_priority_badge"
+                    android:layout_marginStart="@dimen/spacing_xs"
+                    tools:text="CRITICAL" />
+
+            </LinearLayout>
+
+            <!-- ── Row 2: Message ── -->
+            <TextView
+                android:id="@+id/tvAlertMessage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_caption"
+                android:textColor="@color/text_secondary"
+                android:maxLines="3"
+                android:ellipsize="end"
+                android:lineSpacingMultiplier="1.25"
+                android:layout_marginTop="@dimen/spacing_small"
+                tools:text="Vehicle traveling at 125 km/h (limit: 80 km/h) for 8s. Immediate action required." />
+
+            <!-- ── Row 3: Metadata (Vehicle, Driver, Time) ── -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="@dimen/spacing_small">
+
+                <!-- Vehicle Info -->
+                <LinearLayout
+                    android:id="@+id/layoutVehicleInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:visibility="gone"
+                    tools:visibility="visible">
+
+                    <ImageView
+                        android:layout_width="14dp"
+                        android:layout_height="14dp"
+                        android:src="@drawable/ic_nav_fleet"
+                        app:tint="@color/text_hint"
+                        android:contentDescription="@string/alert_detail_vehicle" />
+
+                    <TextView
+                        android:id="@+id/tvVehicleNumber"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/text_overline"
+                        android:textColor="@color/text_secondary"
+                        android:fontFamily="sans-serif-medium"
+                        android:layout_marginStart="3dp"
+                        tools:text="MH-12-AB-1234" />
+
+                </LinearLayout>
+
+                <!-- Divider Dot -->
+                <View
+                    android:id="@+id/viewMetaDot1"
+                    android:layout_width="3dp"
+                    android:layout_height="3dp"
+                    android:background="@color/text_disabled"
+                    android:layout_marginHorizontal="@dimen/spacing_xs"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
+
+                <!-- Driver Info -->
+                <LinearLayout
+                    android:id="@+id/layoutDriverInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:visibility="gone"
+                    tools:visibility="visible">
+
+                    <ImageView
+                        android:layout_width="14dp"
+                        android:layout_height="14dp"
+                        android:src="@drawable/ic_nav_profile"
+                        app:tint="@color/text_hint"
+                        android:contentDescription="@string/alert_detail_driver" />
+
+                    <TextView
+                        android:id="@+id/tvDriverName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/text_overline"
+                        android:textColor="@color/text_secondary"
+                        android:fontFamily="sans-serif-medium"
+                        android:layout_marginStart="3dp"
+                        android:maxWidth="100dp"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        tools:text="DL-1234567890" />
+
+                </LinearLayout>
+
+                <!-- Spacer -->
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1" />
+
+                <!-- Time -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        android:src="@android:drawable/ic_menu_recent_history"
+                        app:tint="@color/text_hint"
+                        android:contentDescription="@string/alert_detail_time" />
+
+                    <TextView
+                        android:id="@+id/tvAlertTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/text_overline"
+                        android:textColor="@color/text_hint"
+                        android:layout_marginStart="3dp"
+                        tools:text="5 min ago" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- ── Row 4: Status Badge + Action Required ── -->
+            <LinearLayout
+                android:id="@+id/layoutStatusRow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="@dimen/spacing_small">
+
+                <!-- Status Badge -->
+                <TextView
+                    android:id="@+id/tvStatusBadge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="@dimen/spacing_small"
+                    android:paddingVertical="2dp"
+                    android:textSize="9sp"
+                    android:fontFamily="sans-serif-medium"
+                    android:letterSpacing="0.06"
+                    android:background="@drawable/bg_alert_status_badge"
+                    tools:text="ACTIVE"
+                    tools:textColor="@color/alert_status_active" />
+
+                <!-- Action Required Indicator -->
+                <TextView
+                    android:id="@+id/tvActionRequired"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/alert_card_action_required"
+                    android:textSize="9sp"
+                    android:textColor="@color/alert_critical"
+                    android:fontFamily="sans-serif-bold"
+                    android:letterSpacing="0.04"
+                    android:layout_marginStart="@dimen/spacing_small"
+                    android:drawablePadding="3dp"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
+
+                <!-- Auto-generated Indicator -->
+                <TextView
+                    android:id="@+id/tvAutoGenerated"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/alert_card_auto_generated"
+                    android:textSize="9sp"
+                    android:textColor="@color/text_hint"
+                    android:fontFamily="sans-serif"
+                    android:letterSpacing="0.04"
+                    android:layout_marginStart="@dimen/spacing_small"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
+
+                <!-- Spacer -->
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1" />
+
+                <!-- Resolved By / Resolved At (for resolved tab) -->
+                <TextView
+                    android:id="@+id/tvResolvedInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="9sp"
+                    android:textColor="@color/text_hint"
+                    android:fontFamily="sans-serif"
+                    android:visibility="gone"
+                    tools:visibility="visible"
+                    tools:text="Resolved 2h ago" />
+
+            </LinearLayout>
+
+            <!-- ── Row 5: Action Buttons (Expandable) ── -->
+            <LinearLayout
+                android:id="@+id/layoutActions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="end|center_vertical"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnAcknowledge"
+                    style="@style/Widget.Material3.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:text="@string/alert_action_acknowledge"
+                    android:textSize="@dimen/text_overline"
+                    android:textColor="@color/primary"
+                    app:rippleColor="@color/primary_surface"
+                    android:minWidth="0dp"
+                    android:paddingHorizontal="@dimen/spacing_small" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnResolve"
+                    style="@style/Widget.Material3.Button.TonalButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:text="@string/alert_action_resolve"
+                    android:textSize="@dimen/text_overline"
+                    app:backgroundTint="@color/alert_resolve_bg"
+                    android:textColor="@color/alert_resolve_text"
+                    android:layout_marginStart="@dimen/spacing_xs"
+                    android:minWidth="0dp"
+                    android:paddingHorizontal="@dimen/spacing_small" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnDismiss"
+                    style="@style/Widget.Material3.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:text="@string/alert_action_dismiss"
+                    android:textSize="@dimen/text_overline"
+                    android:textColor="@color/text_hint"
+                    app:rippleColor="@color/surface_variant"
+                    android:layout_marginStart="@dimen/spacing_xs"
+                    android:minWidth="0dp"
+                    android:paddingHorizontal="@dimen/spacing_small" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

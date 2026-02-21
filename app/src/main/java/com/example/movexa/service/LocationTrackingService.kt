@@ -20,6 +20,7 @@ import com.example.movexa.R
 import com.example.movexa.data.model.TrackingLocation
 import com.example.movexa.data.model.ResultState
 import com.example.movexa.data.repository.impl.TrackingRepositoryImpl
+import com.example.movexa.service.BehaviorAnalysisEngine
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
@@ -122,6 +123,9 @@ class LocationTrackingService : Service() {
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private val serviceScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
 
+    // ─── Behavior Analysis Engine ───────────────────────────────
+    private val behaviorEngine by lazy { BehaviorAnalysisEngine(serviceScope) }
+
     // ─── State ──────────────────────────────────────────────────
     private var companyId: String = ""
     private var vehicleId: String = ""
@@ -149,6 +153,9 @@ class LocationTrackingService : Service() {
 
                 // Update static state for UI
                 _lastLocation.value = trackingLocation
+
+                // Analyze for driver behaviour alerts
+                behaviorEngine.analyze(trackingLocation)
 
                 // Upload to Realtime Database
                 uploadLocation(trackingLocation)
@@ -190,6 +197,7 @@ class LocationTrackingService : Service() {
 
     override fun onDestroy() {
         stopTracking()
+        behaviorEngine.clearAll()
         serviceScope.cancel()
         super.onDestroy()
     }
@@ -241,6 +249,9 @@ class LocationTrackingService : Service() {
             _trackingStartTime.value = System.currentTimeMillis()
             uploadFailCount = 0
 
+            // Initialize behaviour analysis engine for this company
+            behaviorEngine.initialize(companyId)
+
             Log.i(TAG, "Tracking started: company=$companyId vehicle=$vehicleId driver=$driverId trip=$tripId")
         } catch (e: SecurityException) {
             Log.e(TAG, "SecurityException — location permission revoked", e)
@@ -252,6 +263,11 @@ class LocationTrackingService : Service() {
      * Stop location updates and clean up.
      */
     private fun stopTracking() {
+        // Clean up behaviour analysis state for this vehicle
+        if (vehicleId.isNotBlank()) {
+            behaviorEngine.clearVehicleState(vehicleId)
+        }
+
         try {
             fusedLocationClient.removeLocationUpdates(locationCallback)
         } catch (e: Exception) {
