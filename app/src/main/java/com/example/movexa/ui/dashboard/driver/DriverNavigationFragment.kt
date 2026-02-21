@@ -324,7 +324,7 @@ class DriverNavigationFragment : BaseFragment<FragmentDriverNavigationBinding>(
                         getString(R.string.gps_status_inactive)
             }
         }
-        binding.viewGpsStatus.background.setTint(color)
+        binding.viewGpsStatus.background?.setTint(color)
         binding.tvGpsStatus.text = text
     }
 

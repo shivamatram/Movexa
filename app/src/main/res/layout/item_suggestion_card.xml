@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardSuggestion"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/spacing_small"
+    app:cardCornerRadius="@dimen/radius_medium"
+    app:cardElevation="@dimen/elevation_xs"
+    app:cardBackgroundColor="@color/surface">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/spacing_medium">
+
+        <!-- Suggestion Icon -->
+        <ImageView
+            android:id="@+id/ivSuggestionIcon"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:padding="8dp"
+            android:contentDescription="@string/cd_perf_suggestion_icon"
+            android:background="@drawable/bg_suggestion_icon"
+            tools:src="@drawable/ic_alert_type_overspeed" />
+
+        <!-- Text Content -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginStart="@dimen/spacing_medium">
+
+            <!-- Title Row -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/tvSuggestionTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="@dimen/text_body"
+                    android:textColor="@color/text_primary"
+                    android:fontFamily="sans-serif-medium"
+                    tools:text="Reduce Speed" />
+
+                <!-- Severity Indicator -->
+                <View
+                    android:id="@+id/viewSeverityDot"
+                    android:layout_width="8dp"
+                    android:layout_height="8dp"
+                    android:background="@drawable/bg_perf_stat_icon"
+                    android:layout_marginStart="@dimen/spacing_small" />
+
+            </LinearLayout>
+
+            <!-- Message -->
+            <TextView
+                android:id="@+id/tvSuggestionMessage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_caption"
+                android:textColor="@color/text_secondary"
+                android:layout_marginTop="@dimen/spacing_xs"
+                android:lineSpacingMultiplier="1.3"
+                tools:text="You've had 8 overspeed events. Maintaining speed limits improves safety and saves fuel." />
+
+            <!-- Impact Badge -->
+            <TextView
+                android:id="@+id/tvSuggestionImpact"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_overline"
+                android:textColor="@color/violation_penalty_text"
+                android:fontFamily="sans-serif-medium"
+                android:background="@drawable/bg_penalty_badge"
+                android:layout_marginTop="@dimen/spacing_xs"
+                android:visibility="gone"
+                tools:text="Impact: 40 pts"
+                tools:visibility="visible" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

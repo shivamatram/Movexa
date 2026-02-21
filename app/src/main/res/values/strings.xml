@@ -945,4 +945,89 @@
     <string name="cd_alert_stats_panel">Alert statistics panel</string>
     <string name="cd_alert_swipe_hint">Swipe left to resolve, right to dismiss</string>
     <string name="cd_alert_expand">Expand alert details</string>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- Driver Performance Scoring Module                          -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+
+    <!-- Screen Header -->
+    <string name="perf_title">My Performance</string>
+    <string name="perf_subtitle">Your driving safety score and statistics</string>
+    <string name="perf_refresh">Refresh Score</string>
+    <string name="perf_last_updated">Last updated %s</string>
+
+    <!-- Score Card -->
+    <string name="perf_score_label">Safety Score</string>
+    <string name="perf_score_out_of">out of 100</string>
+    <string name="perf_grade_excellent">Excellent</string>
+    <string name="perf_grade_good">Good</string>
+    <string name="perf_grade_average">Average</string>
+    <string name="perf_grade_risky">Needs Improvement</string>
+    <string name="perf_grade_badge">%s Driver</string>
+
+    <!-- Trend -->
+    <string name="perf_trend_up">↑ Improving</string>
+    <string name="perf_trend_down">↓ Declining</string>
+    <string name="perf_trend_stable">→ Stable</string>
+    <string name="perf_trend_label">Trend</string>
+
+    <!-- Statistics Section -->
+    <string name="perf_stats_title">Driving Statistics</string>
+    <string name="perf_stat_trips">Trips</string>
+    <string name="perf_stat_distance">Distance</string>
+    <string name="perf_stat_hours">Hours</string>
+    <string name="perf_stat_mileage">Mileage</string>
+    <string name="perf_stat_trips_value">%d completed</string>
+    <string name="perf_stat_distance_value">%s km</string>
+    <string name="perf_stat_hours_value">%s hrs</string>
+    <string name="perf_stat_mileage_value">%s km/L</string>
+
+    <!-- Score Breakdown -->
+    <string name="perf_breakdown_title">Score Breakdown</string>
+    <string name="perf_breakdown_base">Base Score</string>
+    <string name="perf_breakdown_penalties">Total Penalties</string>
+    <string name="perf_breakdown_bonuses">Total Bonuses</string>
+    <string name="perf_breakdown_trip_bonus">Trip Completion</string>
+    <string name="perf_breakdown_fuel_bonus">Fuel Efficiency</string>
+    <string name="perf_breakdown_penalty_format">-%d pts</string>
+    <string name="perf_breakdown_bonus_format">+%d pts</string>
+    <string name="perf_breakdown_base_format">%d pts</string>
+
+    <!-- Violations Section -->
+    <string name="perf_violations_title">Violations</string>
+    <string name="perf_violations_subtitle">%d total events</string>
+    <string name="perf_violations_none">No violations</string>
+    <string name="perf_violation_overspeed">Overspeed</string>
+    <string name="perf_violation_harsh_braking">Harsh Braking</string>
+    <string name="perf_violation_harsh_accel">Harsh Acceleration</string>
+    <string name="perf_violation_long_idle">Long Idle</string>
+    <string name="perf_violation_route_deviation">Route Deviation</string>
+    <string name="perf_violation_accident">Accident Suspected</string>
+    <string name="perf_violation_count">%d events</string>
+    <string name="perf_violation_penalty">-%d pts each</string>
+    <string name="perf_violation_total_penalty">-%d pts total</string>
+
+    <!-- Suggestions Section -->
+    <string name="perf_suggestions_title">Suggestions</string>
+    <string name="perf_suggestions_subtitle">Tips to improve your score</string>
+    <string name="perf_suggestion_impact">Impact: %d pts</string>
+
+    <!-- Empty / Loading / Error States -->
+    <string name="perf_empty_title">No Data Yet</string>
+    <string name="perf_empty_subtitle">Complete your first trip to start building your performance score.</string>
+    <string name="perf_loading">Calculating your score…</string>
+    <string name="perf_error_title">Unable to Load</string>
+    <string name="perf_error_subtitle">Could not load your performance data. Please try again.</string>
+    <string name="perf_retry">Retry</string>
+    <string name="perf_score_updated">Score updated successfully</string>
+    <string name="perf_score_update_failed">Failed to update score</string>
+
+    <!-- Content Descriptions -->
+    <string name="cd_perf_score_circle">Safety score circle showing %d out of 100</string>
+    <string name="cd_perf_grade_icon">Performance grade indicator</string>
+    <string name="cd_perf_trend_icon">Score trend direction</string>
+    <string name="cd_perf_stat_icon">Statistic icon</string>
+    <string name="cd_perf_violation_icon">Violation type icon</string>
+    <string name="cd_perf_suggestion_icon">Suggestion icon</string>
+    <string name="cd_perf_refresh">Refresh performance score</string>
 </resources>

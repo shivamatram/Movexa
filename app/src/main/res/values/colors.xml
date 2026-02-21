@@ -206,6 +206,66 @@
     <color name="alert_resolve_bg">#FFE8F5E9</color>
     <color name="alert_resolve_text">#FF2E7D32</color>
 
+    <!-- ═══════════ Performance Scoring Module Colors ═══════════ -->
+
+    <!-- Score Grade Colors -->
+    <color name="score_excellent">#FF2E7D32</color>
+    <color name="score_excellent_bg">#FFE8F5E9</color>
+    <color name="score_excellent_surface">#FFF1F8E9</color>
+    <color name="score_excellent_ring">#FF43A047</color>
+    <color name="score_good">#FF00897B</color>
+    <color name="score_good_bg">#FFE0F2F1</color>
+    <color name="score_good_surface">#FFE0F7FA</color>
+    <color name="score_good_ring">#FF00ACC1</color>
+    <color name="score_average">#FFEF6C00</color>
+    <color name="score_average_bg">#FFFFF3E0</color>
+    <color name="score_average_surface">#FFFFF8E1</color>
+    <color name="score_average_ring">#FFFFA726</color>
+    <color name="score_risky">#FFD32F2F</color>
+    <color name="score_risky_bg">#FFFFEBEE</color>
+    <color name="score_risky_surface">#FFFFF5F5</color>
+    <color name="score_risky_ring">#FFE53935</color>
+
+    <!-- Score Circle -->
+    <color name="score_circle_track">#FFE0E0E0</color>
+    <color name="score_circle_text">#FF212121</color>
+    <color name="score_circle_label">#FF757575</color>
+    <color name="score_circle_bg">#FFFAFAFA</color>
+
+    <!-- Score Trend -->
+    <color name="score_trend_up">#FF2E7D32</color>
+    <color name="score_trend_up_bg">#FFE8F5E9</color>
+    <color name="score_trend_down">#FFD32F2F</color>
+    <color name="score_trend_down_bg">#FFFFEBEE</color>
+    <color name="score_trend_stable">#FF757575</color>
+    <color name="score_trend_stable_bg">#FFF5F5F5</color>
+
+    <!-- Performance Stats -->
+    <color name="perf_stat_trips">#FF1565C0</color>
+    <color name="perf_stat_trips_bg">#FFE3F2FD</color>
+    <color name="perf_stat_distance">#FF00897B</color>
+    <color name="perf_stat_distance_bg">#FFE0F2F1</color>
+    <color name="perf_stat_hours">#FF6A1B9A</color>
+    <color name="perf_stat_hours_bg">#FFF3E5F5</color>
+    <color name="perf_stat_mileage">#FFEF6C00</color>
+    <color name="perf_stat_mileage_bg">#FFFFF3E0</color>
+
+    <!-- Violation Card -->
+    <color name="violation_card_bg">#FFFFFFFF</color>
+    <color name="violation_card_border">#FFE0E0E0</color>
+    <color name="violation_penalty_text">#FFD32F2F</color>
+    <color name="violation_penalty_bg">#FFFFEBEE</color>
+
+    <!-- Suggestion Card -->
+    <color name="suggestion_high">#FFD32F2F</color>
+    <color name="suggestion_high_bg">#FFFFEBEE</color>
+    <color name="suggestion_medium">#FFEF6C00</color>
+    <color name="suggestion_medium_bg">#FFFFF3E0</color>
+    <color name="suggestion_low">#FF1565C0</color>
+    <color name="suggestion_low_bg">#FFE3F2FD</color>
+    <color name="suggestion_positive">#FF2E7D32</color>
+    <color name="suggestion_positive_bg">#FFE8F5E9</color>
+
     <!-- Alias for design system -->
     <color name="colorPrimary">@color/primary</color>
     <color name="colorOnPrimary">@color/on_primary</color>

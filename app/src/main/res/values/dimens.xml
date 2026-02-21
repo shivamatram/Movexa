@@ -17,6 +17,7 @@
     <dimen name="radius_large">16dp</dimen>
     <dimen name="radius_xl">24dp</dimen>
     <dimen name="radius_circle">50dp</dimen>
+    <dimen name="radius_pill">100dp</dimen>
 
     <!-- Elevation -->
     <dimen name="elevation_none">0dp</dimen>
