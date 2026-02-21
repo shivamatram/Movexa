@@ -310,6 +310,53 @@
     <color name="fuel_vehicle_bg">#FFE0F2F1</color>
     <color name="fuel_vehicle_icon">#FF00897B</color>
 
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!--  MAINTENANCE & SERVICE SCHEDULING MODULE                   -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+
+    <!-- Maintenance status badges -->
+    <color name="maint_overdue">#FFD32F2F</color>
+    <color name="maint_overdue_bg">#FFFFEBEE</color>
+    <color name="maint_due_soon">#FFEF6C00</color>
+    <color name="maint_due_soon_bg">#FFFFF3E0</color>
+    <color name="maint_upcoming">#FF1565C0</color>
+    <color name="maint_upcoming_bg">#FFE3F2FD</color>
+    <color name="maint_ok">#FF2E7D32</color>
+    <color name="maint_ok_bg">#FFE8F5E9</color>
+    <color name="maint_no_record">#FF9E9E9E</color>
+    <color name="maint_no_record_bg">#FFF5F5F5</color>
+
+    <!-- Vehicle selector card -->
+    <color name="maint_vehicle_card_bg">#FFE8EAF6</color>
+    <color name="maint_vehicle_icon">#FF3F51B5</color>
+    <color name="maint_vehicle_status_service">#FFE65100</color>
+    <color name="maint_vehicle_status_available">#FF2E7D32</color>
+
+    <!-- Section headers -->
+    <color name="maint_section_bg">#FFF5F5F5</color>
+    <color name="maint_section_accent">#FF3F51B5</color>
+
+    <!-- Form elements -->
+    <color name="maint_submit_bg">#FF3F51B5</color>
+    <color name="maint_submit_disabled">#FFB0BEC5</color>
+    <color name="maint_next_service_bg">#FFE8F5E9</color>
+    <color name="maint_next_service_text">#FF2E7D32</color>
+
+    <!-- Item cards -->
+    <color name="maint_item_bg">#FFFFFFFF</color>
+    <color name="maint_item_divider">#FFE0E0E0</color>
+    <color name="maint_item_date">#FF757575</color>
+
+    <!-- Part usage progress -->
+    <color name="maint_progress_safe">#FF4CAF50</color>
+    <color name="maint_progress_warn">#FFFFA000</color>
+    <color name="maint_progress_critical">#FFD32F2F</color>
+    <color name="maint_progress_bg">#FFE0E0E0</color>
+
+    <!-- Action buttons -->
+    <color name="maint_action_service">#FFEF6C00</color>
+    <color name="maint_action_available">#FF2E7D32</color>
+
     <!-- Alias for design system -->
     <color name="colorPrimary">@color/primary</color>
     <color name="colorOnPrimary">@color/on_primary</color>

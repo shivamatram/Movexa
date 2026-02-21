@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/spacing_small"
+    app:cardCornerRadius="@dimen/radius_medium"
+    app:cardElevation="@dimen/elevation_xs"
+    app:cardBackgroundColor="@color/maint_item_bg">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/spacing_medium">
+
+        <!-- Row 1: Issue + Cost -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/tvIssue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="@dimen/text_subtitle"
+                android:textColor="@color/text_primary"
+                android:fontFamily="sans-serif-medium"
+                android:maxLines="2"
+                android:ellipsize="end"
+                tools:text="Engine overheating" />
+
+            <TextView
+                android:id="@+id/tvCost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_subtitle"
+                android:textColor="@color/primary"
+                android:fontFamily="sans-serif-medium"
+                tools:text="₹5,000" />
+
+        </LinearLayout>
+
+        <!-- Row 2: Repair Done -->
+        <TextView
+            android:id="@+id/tvRepairDone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_xs"
+            android:textSize="@dimen/text_body"
+            android:textColor="@color/text_secondary"
+            android:maxLines="2"
+            android:ellipsize="end"
+            tools:text="Replaced thermostat and coolant flush" />
+
+        <!-- Row 3: Odometer + Date -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/spacing_xs">
+
+            <TextView
+                android:id="@+id/tvOdometer"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="@dimen/text_caption"
+                android:textColor="@color/text_secondary"
+                tools:text="at 52,000 km" />
+
+            <TextView
+                android:id="@+id/tvDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_caption"
+                android:textColor="@color/maint_item_date"
+                tools:text="20 Jan 2025" />
+
+        </LinearLayout>
+
+        <!-- Row 4: Parts Replaced (optional) -->
+        <TextView
+            android:id="@+id/tvPartsLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_xs"
+            android:text="Parts replaced:"
+            android:textSize="@dimen/text_caption"
+            android:textColor="@color/text_hint"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/tvParts"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_caption"
+            android:textColor="@color/text_secondary"
+            android:visibility="gone"
+            tools:text="Thermostat, Coolant hose"
+            tools:visibility="visible" />
+
+        <!-- Row 5: Workshop + Warranty (optional) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/spacing_xs">
+
+            <TextView
+                android:id="@+id/tvWorkshop"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="@dimen/text_caption"
+                android:textColor="@color/text_hint"
+                android:visibility="gone"
+                tools:text="QuickFit Garage"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/tvWarranty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_overline"
+                android:textColor="@color/maint_ok"
+                android:fontFamily="sans-serif-medium"
+                android:visibility="gone"
+                tools:text="Under Warranty"
+                tools:visibility="visible" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

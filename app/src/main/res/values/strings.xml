@@ -1115,4 +1115,124 @@
     <string name="cd_fuel_mileage_icon">Mileage indicator</string>
     <string name="cd_fuel_log_icon">Fuel log entry</string>
     <string name="cd_fuel_submit">Submit fuel log</string>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!--  MAINTENANCE & SERVICE SCHEDULING MODULE                   -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+
+    <!-- Service Fragment -->
+    <string name="maint_service_header">Log Service</string>
+    <string name="maint_service_desc">Record scheduled maintenance and generate next service reminders.</string>
+    <string name="maint_select_vehicle">Select Vehicle</string>
+    <string name="maint_select_vehicle_hint">Choose a fleet vehicle</string>
+    <string name="maint_vehicle_status">Status: %s</string>
+    <string name="maint_vehicle_odometer">Odometer: %,d km</string>
+    <string name="maint_service_type">Service Type</string>
+    <string name="maint_service_type_hint">Select service type</string>
+    <string name="maint_odometer">Current Odometer (km)</string>
+    <string name="maint_odometer_hint">Enter current reading</string>
+    <string name="maint_cost">Service Cost (₹)</string>
+    <string name="maint_cost_hint">Enter cost</string>
+    <string name="maint_description">Description / Notes</string>
+    <string name="maint_description_hint">Service details…</string>
+    <string name="maint_workshop">Workshop Name</string>
+    <string name="maint_workshop_hint">Service center name</string>
+    <string name="maint_mark_completed">Mark as Completed</string>
+    <string name="maint_next_service">Next Service Due</string>
+    <string name="maint_next_service_value">%,d km</string>
+    <string name="maint_default_interval">Default interval: %,d km</string>
+    <string name="maint_submit_service">Submit Service Record</string>
+    <string name="maint_recent_services">Recent Services</string>
+    <string name="maint_no_recent_services">No service records yet</string>
+    <string name="maint_service_at">at %,d km</string>
+    <string name="maint_next_due">Next: %,d km</string>
+
+    <!-- Maintenance Status Badges -->
+    <string name="maint_status_overdue">OVERDUE</string>
+    <string name="maint_status_due_soon">DUE SOON</string>
+    <string name="maint_status_upcoming">UPCOMING</string>
+    <string name="maint_status_ok">OK</string>
+    <string name="maint_status_no_record">NO RECORD</string>
+    <string name="maint_remaining_km">%,d km remaining</string>
+    <string name="maint_overdue_km">%,d km overdue</string>
+    <string name="maint_maintenance_overview">Maintenance Overview</string>
+
+    <!-- Repair Fragment -->
+    <string name="maint_repair_header">Log Repair</string>
+    <string name="maint_repair_desc">Record unexpected breakdowns, repair actions, and costs.</string>
+    <string name="maint_issue">Issue / Problem</string>
+    <string name="maint_issue_hint">Describe the issue…</string>
+    <string name="maint_repair_done">Repair Performed</string>
+    <string name="maint_repair_done_hint">What was fixed…</string>
+    <string name="maint_repair_cost">Repair Cost (₹)</string>
+    <string name="maint_repair_cost_hint">Enter repair cost</string>
+    <string name="maint_repair_odometer">Odometer at Repair (km)</string>
+    <string name="maint_repair_odometer_hint">Enter odometer reading</string>
+    <string name="maint_parts_replaced">Parts Replaced (comma-separated)</string>
+    <string name="maint_parts_replaced_hint">e.g. Brake pad, Filter</string>
+    <string name="maint_repair_notes">Additional Notes</string>
+    <string name="maint_repair_notes_hint">Any extra details…</string>
+    <string name="maint_mark_available">Mark Vehicle Available</string>
+    <string name="maint_submit_repair">Submit Repair Record</string>
+    <string name="maint_recent_repairs">Recent Repairs</string>
+    <string name="maint_no_recent_repairs">No repair records yet</string>
+    <string name="maint_repair_cost_display">₹%,.0f</string>
+
+    <!-- Parts Fragment -->
+    <string name="maint_part_header">Replace Part</string>
+    <string name="maint_part_desc">Track part replacements and generate future replacement reminders.</string>
+    <string name="maint_part_name">Part Name</string>
+    <string name="maint_part_name_hint">e.g. Brake Pad, Air Filter</string>
+    <string name="maint_part_number">Part Number (optional)</string>
+    <string name="maint_part_number_hint">Manufacturer part #</string>
+    <string name="maint_part_changed_km">Installed at Odometer (km)</string>
+    <string name="maint_part_changed_km_hint">Odometer when installed</string>
+    <string name="maint_part_life_km">Expected Life (km)</string>
+    <string name="maint_part_life_km_hint">e.g. 20000</string>
+    <string name="maint_part_cost">Part Cost (₹)</string>
+    <string name="maint_part_cost_hint">Enter part cost</string>
+    <string name="maint_part_brand">Brand (optional)</string>
+    <string name="maint_part_brand_hint">Part brand name</string>
+    <string name="maint_part_supplier">Supplier (optional)</string>
+    <string name="maint_part_supplier_hint">Supplier name</string>
+    <string name="maint_part_warranty_km">Warranty (km, optional)</string>
+    <string name="maint_part_warranty_km_hint">Warranty coverage in km</string>
+    <string name="maint_part_notes">Notes (optional)</string>
+    <string name="maint_part_notes_hint">Additional info…</string>
+    <string name="maint_next_replacement">Next replacement: %,d km</string>
+    <string name="maint_submit_part">Submit Part Record</string>
+    <string name="maint_recent_parts">Recent Parts</string>
+    <string name="maint_no_recent_parts">No part records yet</string>
+    <string name="maint_part_life_display">Life: %,d km</string>
+    <string name="maint_part_usage">%,.0f%% used</string>
+    <string name="maint_part_remaining">%,d km left</string>
+    <string name="maint_part_expired">EXPIRED</string>
+    <string name="maint_parts_overview">Parts Health</string>
+
+    <!-- Shared -->
+    <string name="maint_loading">Loading fleet data…</string>
+    <string name="maint_error_title">Something went wrong</string>
+    <string name="maint_error_retry">Retry</string>
+    <string name="maint_no_vehicle_selected">Select a vehicle to get started</string>
+    <string name="maint_confirm_submit_title">Confirm Submission</string>
+    <string name="maint_confirm_service_msg">Submit %1$s service for %2$s at %3$,d km?</string>
+    <string name="maint_confirm_repair_msg">Submit repair record for %1$s?\n\nIssue: %2$s\nCost: ₹%3$,.0f</string>
+    <string name="maint_confirm_part_msg">Record %1$s replacement for %2$s?\n\nInstalled at: %3$,d km\nExpected life: %4$,d km</string>
+    <string name="maint_confirm_yes">Submit</string>
+    <string name="maint_confirm_no">Cancel</string>
+    <string name="maint_vehicle_in_service">In Service</string>
+    <string name="maint_vehicle_available">Available</string>
+    <string name="maint_set_in_service">Set In Service</string>
+    <string name="maint_set_available">Set Available</string>
+
+    <!-- Content Descriptions -->
+    <string name="cd_maint_vehicle_icon">Vehicle icon</string>
+    <string name="cd_maint_status_icon">Maintenance status icon</string>
+    <string name="cd_maint_service_icon">Service type icon</string>
+    <string name="cd_maint_repair_icon">Repair icon</string>
+    <string name="cd_maint_part_icon">Part icon</string>
+    <string name="cd_maint_priority">Priority indicator</string>
+    <string name="cd_maint_submit">Submit record</string>
+    <string name="cd_maint_error">Error state</string>
+    <string name="cd_maint_loading">Loading</string>
 </resources>

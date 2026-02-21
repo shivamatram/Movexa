@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/spacing_small"
+    app:cardCornerRadius="@dimen/radius_medium"
+    app:cardElevation="@dimen/elevation_xs"
+    app:cardBackgroundColor="@color/maint_item_bg">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/spacing_medium">
+
+        <!-- Row 1: Part Name + Cost -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/tvPartName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="@dimen/text_subtitle"
+                android:textColor="@color/text_primary"
+                android:fontFamily="sans-serif-medium"
+                tools:text="Brake Pad" />
+
+            <TextView
+                android:id="@+id/tvCost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_subtitle"
+                android:textColor="@color/primary"
+                android:fontFamily="sans-serif-medium"
+                tools:text="₹1,200" />
+
+        </LinearLayout>
+
+        <!-- Row 2: Installed at + Expected Life -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/spacing_xs">
+
+            <TextView
+                android:id="@+id/tvInstalledAt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="@dimen/text_caption"
+                android:textColor="@color/text_secondary"
+                tools:text="at 40,000 km" />
+
+            <TextView
+                android:id="@+id/tvExpectedLife"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_caption"
+                android:textColor="@color/text_secondary"
+                tools:text="Life: 20,000 km" />
+
+        </LinearLayout>
+
+        <!-- Row 3: Progress bar -->
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/progressUsage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_small"
+            app:trackThickness="8dp"
+            app:trackCornerRadius="4dp"
+            app:trackColor="@color/maint_progress_bg"
+            app:indicatorColor="@color/maint_progress_safe"
+            tools:progress="65" />
+
+        <!-- Row 4: Usage % + Remaining -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/spacing_xxs">
+
+            <TextView
+                android:id="@+id/tvUsagePercent"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="@dimen/text_caption"
+                android:textColor="@color/text_secondary"
+                tools:text="65% used" />
+
+            <TextView
+                android:id="@+id/tvRemaining"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_caption"
+                android:textColor="@color/maint_next_service_text"
+                tools:text="7,000 km left" />
+
+        </LinearLayout>
+
+        <!-- Row 5: Date + Brand -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/spacing_xs">
+
+            <TextView
+                android:id="@+id/tvDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="@dimen/text_caption"
+                android:textColor="@color/maint_item_date"
+                tools:text="10 Jan 2025" />
+
+            <TextView
+                android:id="@+id/tvBrand"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_caption"
+                android:textColor="@color/text_hint"
+                android:visibility="gone"
+                tools:text="Bosch"
+                tools:visibility="visible" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

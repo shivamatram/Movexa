@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/spacing_small"
+    app:cardCornerRadius="@dimen/radius_medium"
+    app:cardElevation="@dimen/elevation_xs"
+    app:cardBackgroundColor="@color/maint_item_bg">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Status indicator bar -->
+        <View
+            android:id="@+id/viewStatusIndicator"
+            android:layout_width="4dp"
+            android:layout_height="match_parent"
+            android:background="@color/maint_ok" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/spacing_medium">
+
+            <!-- Row 1: Service Type + Cost -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/tvServiceType"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="@dimen/text_subtitle"
+                    android:textColor="@color/text_primary"
+                    android:fontFamily="sans-serif-medium"
+                    tools:text="Oil Change" />
+
+                <TextView
+                    android:id="@+id/tvCost"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_subtitle"
+                    android:textColor="@color/primary"
+                    android:fontFamily="sans-serif-medium"
+                    tools:text="₹2,500" />
+
+            </LinearLayout>
+
+            <!-- Row 2: Odometer + Next Due -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/spacing_xs">
+
+                <TextView
+                    android:id="@+id/tvOdometer"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="@dimen/text_caption"
+                    android:textColor="@color/text_secondary"
+                    tools:text="at 45,000 km" />
+
+                <TextView
+                    android:id="@+id/tvNextDue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_caption"
+                    android:textColor="@color/maint_next_service_text"
+                    tools:text="Next: 50,000 km" />
+
+            </LinearLayout>
+
+            <!-- Row 3: Date + Workshop -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/spacing_xs">
+
+                <TextView
+                    android:id="@+id/tvDate"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="@dimen/text_caption"
+                    android:textColor="@color/maint_item_date"
+                    tools:text="15 Jan 2025" />
+
+                <TextView
+                    android:id="@+id/tvWorkshop"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_caption"
+                    android:textColor="@color/text_hint"
+                    android:visibility="gone"
+                    tools:text="QuickFit Garage"
+                    tools:visibility="visible" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

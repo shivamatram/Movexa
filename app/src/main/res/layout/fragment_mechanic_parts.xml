@@ -7,10 +7,76 @@
     android:layout_height="match_parent"
     android:background="@color/background">
 
+    <!-- ═══ LOADING STATE ═══ -->
+    <LinearLayout
+        android:id="@+id/layoutLoading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:visibility="gone"
+        tools:visibility="gone">
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            app:indicatorColor="@color/primary"
+            app:trackColor="@color/primary_container" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:text="@string/maint_loading"
+            android:textSize="@dimen/text_body"
+            android:textColor="@color/text_secondary" />
+    </LinearLayout>
+
+    <!-- ═══ ERROR STATE ═══ -->
+    <LinearLayout
+        android:id="@+id/layoutError"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="@dimen/screen_margin_horizontal"
+        android:visibility="gone"
+        tools:visibility="gone">
+
+        <ImageView
+            android:layout_width="@dimen/icon_xl"
+            android:layout_height="@dimen/icon_xl"
+            android:src="@drawable/ic_maint_warning"
+            android:contentDescription="@string/cd_maint_error"
+            app:tint="@color/error" />
+
+        <TextView
+            android:id="@+id/tvErrorMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:text="@string/maint_error_title"
+            android:textSize="@dimen/text_subtitle"
+            android:textColor="@color/text_primary"
+            android:gravity="center" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnRetry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:text="@string/maint_error_retry"
+            style="@style/Widget.Movexa.Button.Secondary" />
+    </LinearLayout>
+
+    <!-- ═══ READY / MAIN CONTENT ═══ -->
     <ScrollView
+        android:id="@+id/scrollContent"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fillViewport="true"
+        android:visibility="visible"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,68 +88,93 @@
             android:orientation="vertical"
             android:padding="@dimen/screen_margin_horizontal">
 
-            <!-- Section Header -->
+            <!-- Header -->
             <TextView
-                android:id="@+id/tvSectionTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/mechanic_section_parts"
+                android:text="@string/maint_part_header"
                 android:textAppearance="@style/TextAppearance.Movexa.SectionHeader"
-                android:layout_marginBottom="@dimen/spacing_small" />
+                android:layout_marginBottom="@dimen/spacing_xxs" />
 
-            <!-- Status Card -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/maint_part_desc"
+                android:textSize="@dimen/text_caption"
+                android:textColor="@color/text_secondary"
+                android:layout_marginBottom="@dimen/spacing_medium" />
+
+            <!-- ═══ VEHICLE SELECTOR ═══ -->
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cardStatus"
+                android:id="@+id/cardVehicleSelector"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/spacing_medium"
                 app:cardCornerRadius="@dimen/radius_large"
                 app:cardElevation="@dimen/elevation_small"
-                app:cardBackgroundColor="@color/surface">
+                app:cardBackgroundColor="@color/maint_vehicle_card_bg">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="@dimen/card_padding">
+                    android:padding="@dimen/spacing_medium">
 
-                    <ImageView
-                        android:id="@+id/ivIcon"
-                        android:layout_width="@dimen/icon_xl"
-                        android:layout_height="@dimen/icon_xl"
-                        android:layout_gravity="center_horizontal"
-                        android:src="@drawable/ic_nav_parts"
-                        android:contentDescription="@string/cd_app_logo"
-                        app:tint="@color/primary"
-                        android:layout_marginBottom="@dimen/spacing_medium" />
-
-                    <TextView
-                        android:id="@+id/tvTitle"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tilVehicle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/mechanic_parts_title"
-                        android:textSize="@dimen/text_title"
-                        android:textColor="@color/text_primary"
-                        android:fontFamily="sans-serif-medium"
-                        android:gravity="center"
-                        android:layout_marginBottom="@dimen/spacing_xs" />
+                        android:hint="@string/maint_select_vehicle"
+                        style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                        app:boxCornerRadiusTopStart="@dimen/radius_small"
+                        app:boxCornerRadiusTopEnd="@dimen/radius_small"
+                        app:boxCornerRadiusBottomStart="@dimen/radius_small"
+                        app:boxCornerRadiusBottomEnd="@dimen/radius_small">
 
-                    <TextView
-                        android:id="@+id/tvSubtitle"
+                        <AutoCompleteTextView
+                            android:id="@+id/actvVehicle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="none"
+                            tools:text="MH 12 AB 1234 (TRUCK)" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <!-- Vehicle Info Row -->
+                    <LinearLayout
+                        android:id="@+id/layoutVehicleInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/mechanic_parts_subtitle"
-                        android:textSize="@dimen/text_body"
-                        android:textColor="@color/text_secondary"
-                        android:gravity="center" />
+                        android:orientation="horizontal"
+                        android:layout_marginTop="@dimen/spacing_small"
+                        android:visibility="gone"
+                        tools:visibility="visible">
+
+                        <TextView
+                            android:id="@+id/tvVehicleStatus"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textSize="@dimen/text_caption"
+                            android:textColor="@color/maint_vehicle_status_available"
+                            tools:text="Status: AVAILABLE" />
+
+                        <TextView
+                            android:id="@+id/tvVehicleOdometer"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/text_caption"
+                            android:textColor="@color/text_secondary"
+                            tools:text="Odometer: 45,000 km" />
+
+                    </LinearLayout>
 
                 </LinearLayout>
-
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- Empty State Placeholder -->
+            <!-- ═══ NO VEHICLE SELECTED ═══ -->
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cardEmptyState"
+                android:id="@+id/cardNoVehicle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/spacing_medium"
@@ -91,41 +182,302 @@
                 app:cardElevation="@dimen/elevation_xs"
                 app:strokeColor="@color/outline_variant"
                 app:strokeWidth="1dp"
-                app:cardBackgroundColor="@color/surface_variant">
+                app:cardBackgroundColor="@color/surface_variant"
+                android:visibility="visible">
 
-                <LinearLayout
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="@dimen/card_padding"
-                    android:gravity="center">
-
-                    <TextView
-                        android:id="@+id/tvEmptyTitle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/empty_state_title"
-                        android:textSize="@dimen/text_subtitle"
-                        android:textColor="@color/text_secondary"
-                        android:fontFamily="sans-serif-medium"
-                        android:gravity="center"
-                        android:layout_marginBottom="@dimen/spacing_xs" />
-
-                    <TextView
-                        android:id="@+id/tvEmptySubtitle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/empty_state_subtitle"
-                        android:textSize="@dimen/text_caption"
-                        android:textColor="@color/text_hint"
-                        android:gravity="center" />
-
-                </LinearLayout>
+                    android:padding="@dimen/spacing_xxl"
+                    android:text="@string/maint_no_vehicle_selected"
+                    android:textSize="@dimen/text_body"
+                    android:textColor="@color/text_hint"
+                    android:gravity="center" />
 
             </com.google.android.material.card.MaterialCardView>
 
-        </LinearLayout>
+            <!-- ═══ PART FORM ═══ -->
+            <LinearLayout
+                android:id="@+id/layoutPartForm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+                tools:visibility="visible">
 
+                <!-- Part Name -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilPartName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/maint_part_name"
+                    android:layout_marginBottom="@dimen/spacing_medium"
+                    style="@style/Widget.Movexa.TextInputLayout">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etPartName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Part Number -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilPartNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/maint_part_number"
+                    android:layout_marginBottom="@dimen/spacing_medium"
+                    style="@style/Widget.Movexa.TextInputLayout">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etPartNumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Installed at Odometer -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilChangedKm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/maint_part_changed_km"
+                    android:layout_marginBottom="@dimen/spacing_medium"
+                    style="@style/Widget.Movexa.TextInputLayout">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etChangedKm"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Expected Life -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilLifeKm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/maint_part_life_km"
+                    android:layout_marginBottom="@dimen/spacing_medium"
+                    style="@style/Widget.Movexa.TextInputLayout">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etLifeKm"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Next Replacement Preview -->
+                <LinearLayout
+                    android:id="@+id/layoutNextReplacement"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:background="@drawable/bg_next_service"
+                    android:padding="@dimen/spacing_small"
+                    android:layout_marginBottom="@dimen/spacing_medium"
+                    android:gravity="center_vertical"
+                    android:visibility="gone"
+                    tools:visibility="visible">
+
+                    <ImageView
+                        android:layout_width="@dimen/icon_medium"
+                        android:layout_height="@dimen/icon_medium"
+                        android:src="@drawable/ic_maint_check"
+                        android:contentDescription="@string/cd_maint_status_icon"
+                        app:tint="@color/maint_next_service_text"
+                        android:layout_marginEnd="@dimen/spacing_small" />
+
+                    <TextView
+                        android:id="@+id/tvNextReplacementValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/text_body"
+                        android:textColor="@color/maint_next_service_text"
+                        android:fontFamily="sans-serif-medium"
+                        tools:text="Next replacement: 65,000 km" />
+
+                </LinearLayout>
+
+                <!-- Cost -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilPartCost"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/maint_part_cost"
+                    android:layout_marginBottom="@dimen/spacing_medium"
+                    style="@style/Widget.Movexa.TextInputLayout">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etPartCost"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Brand -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilBrand"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/maint_part_brand"
+                    android:layout_marginBottom="@dimen/spacing_medium"
+                    style="@style/Widget.Movexa.TextInputLayout">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etBrand"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Supplier -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilSupplier"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/maint_part_supplier"
+                    android:layout_marginBottom="@dimen/spacing_medium"
+                    style="@style/Widget.Movexa.TextInputLayout">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etSupplier"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Warranty -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilWarrantyKm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/maint_part_warranty_km"
+                    android:layout_marginBottom="@dimen/spacing_medium"
+                    style="@style/Widget.Movexa.TextInputLayout">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etWarrantyKm"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Notes -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilNotes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/maint_part_notes"
+                    android:layout_marginBottom="@dimen/spacing_medium"
+                    style="@style/Widget.Movexa.TextInputLayout">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etNotes"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textMultiLine"
+                        android:minLines="2" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Validation Error -->
+                <TextView
+                    android:id="@+id/tvValidationError"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/spacing_small"
+                    android:textSize="@dimen/text_caption"
+                    android:textColor="@color/error"
+                    android:visibility="gone"
+                    tools:text="Please enter part name"
+                    tools:visibility="visible" />
+
+                <!-- Submit -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnSubmitPart"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/button_height"
+                    android:text="@string/maint_submit_part"
+                    android:contentDescription="@string/cd_maint_submit"
+                    style="@style/Widget.Movexa.Button.Primary"
+                    app:backgroundTint="@color/maint_submit_bg"
+                    android:layout_marginBottom="@dimen/spacing_large" />
+
+            </LinearLayout>
+
+            <!-- ═══ PARTS HEALTH OVERVIEW ═══ -->
+            <LinearLayout
+                android:id="@+id/layoutPartsOverview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/maint_parts_overview"
+                    android:textAppearance="@style/TextAppearance.Movexa.SectionHeader"
+                    android:layout_marginBottom="@dimen/spacing_small" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvPartsHealth"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="false"
+                    android:layout_marginBottom="@dimen/spacing_medium" />
+
+            </LinearLayout>
+
+            <!-- ═══ RECENT PARTS ═══ -->
+            <LinearLayout
+                android:id="@+id/layoutRecentParts"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/maint_recent_parts"
+                    android:textAppearance="@style/TextAppearance.Movexa.SectionHeader"
+                    android:layout_marginBottom="@dimen/spacing_small" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvRecentParts"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="false"
+                    android:layout_marginBottom="@dimen/spacing_large" />
+
+                <TextView
+                    android:id="@+id/tvNoRecentParts"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/maint_no_recent_parts"
+                    android:textSize="@dimen/text_body"
+                    android:textColor="@color/text_hint"
+                    android:gravity="center"
+                    android:padding="@dimen/spacing_large"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+        </LinearLayout>
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
