@@ -50,6 +50,94 @@
     <string name="btn_sign_out">Sign Out</string>
     <string name="signed_out">Signed out successfully.</string>
 
+    <!-- Bottom Navigation Labels -->
+    <string name="nav_fleet">Fleet</string>
+    <string name="nav_tracking">Tracking</string>
+    <string name="nav_alerts">Alerts</string>
+    <string name="nav_home">Home</string>
+    <string name="nav_navigation">Navigation</string>
+    <string name="nav_fuel">Fuel</string>
+    <string name="nav_performance">Performance</string>
+    <string name="nav_service">Service</string>
+    <string name="nav_repairs">Repairs</string>
+    <string name="nav_parts">Parts</string>
+    <string name="nav_finance">Finance</string>
+
+    <!-- Admin Screens -->
+    <string name="admin_fleet_title">Fleet Management</string>
+    <string name="admin_fleet_subtitle">Manage all vehicles in your fleet.</string>
+    <string name="admin_trips_title">Trip Management</string>
+    <string name="admin_trips_subtitle">Monitor and manage all trips.</string>
+    <string name="admin_finance_title">Finance</string>
+    <string name="admin_finance_subtitle">View financial reports and expenses.</string>
+    <string name="admin_profile_title">Admin Profile</string>
+    <string name="admin_profile_subtitle">Manage your account settings.</string>
+
+    <!-- Manager Screens -->
+    <string name="manager_fleet_title">Fleet Overview</string>
+    <string name="manager_fleet_subtitle">Monitor vehicles assigned to your team.</string>
+    <string name="manager_trips_title">Trip Overview</string>
+    <string name="manager_trips_subtitle">Monitor and assign trips for your team.</string>
+    <string name="manager_tracking_title">Live Tracking</string>
+    <string name="manager_tracking_subtitle">Track vehicle locations in real time.</string>
+    <string name="manager_alerts_title">Alerts</string>
+    <string name="manager_alerts_subtitle">View and manage fleet alerts.</string>
+    <string name="manager_profile_title">Manager Profile</string>
+    <string name="manager_profile_subtitle">Manage your account settings.</string>
+
+    <!-- Driver Screens -->
+    <string name="driver_trips_title">My Trips</string>
+    <string name="driver_trips_subtitle">View your assigned and upcoming trips.</string>
+    <string name="driver_navigation_title">Navigation</string>
+    <string name="driver_navigation_subtitle">Get turn-by-turn route directions.</string>
+    <string name="driver_fuel_title">Fuel Log</string>
+    <string name="driver_fuel_subtitle">Record and track fuel consumption.</string>
+    <string name="driver_performance_title">Performance</string>
+    <string name="driver_performance_subtitle">View your driving performance metrics.</string>
+    <string name="driver_profile_tab_title">Driver Profile</string>
+    <string name="driver_profile_tab_subtitle">Manage your profile and documents.</string>
+
+    <!-- Mechanic Screens -->
+    <string name="mechanic_service_title">Service Tasks</string>
+    <string name="mechanic_service_subtitle">View scheduled service tasks.</string>
+    <string name="mechanic_repairs_title">Repairs</string>
+    <string name="mechanic_repairs_subtitle">View and manage repair work orders.</string>
+    <string name="mechanic_parts_title">Parts Inventory</string>
+    <string name="mechanic_parts_subtitle">Browse parts inventory and requests.</string>
+    <string name="mechanic_profile_title">Mechanic Profile</string>
+    <string name="mechanic_profile_subtitle">Manage your account settings.</string>
+
+    <!-- Dashboard Common -->
+    <string name="section_overview">Overview</string>
+    <string name="section_quick_actions">Quick Actions</string>
+    <string name="section_recent_activity">Recent Activity</string>
+    <string name="section_profile">Profile</string>
+    <string name="empty_state_title">Nothing here yet</string>
+    <string name="empty_state_subtitle">Content will appear here once data is available.</string>
+    <string name="status_active">Active</string>
+    <string name="status_pending">Pending</string>
+    <string name="status_completed">Completed</string>
+
+    <!-- Section Headers (used in placeholder layouts) -->
+    <string name="admin_section_overview">Overview</string>
+    <string name="admin_section_fleet">Fleet</string>
+    <string name="admin_section_trips">Trips</string>
+    <string name="admin_section_finance">Finance</string>
+    <string name="manager_section_overview">Overview</string>
+    <string name="manager_section_fleet">Fleet</string>
+    <string name="manager_section_trips">Trips</string>
+    <string name="manager_section_tracking">Tracking</string>
+    <string name="manager_section_alerts">Alerts</string>
+    <string name="driver_section_home">Home</string>
+    <string name="driver_section_trips">Trips</string>
+    <string name="driver_section_navigation">Navigation</string>
+    <string name="driver_section_fuel">Fuel</string>
+    <string name="driver_section_performance">Performance</string>
+    <string name="mechanic_section_overview">Overview</string>
+    <string name="mechanic_section_service">Service</string>
+    <string name="mechanic_section_repairs">Repairs</string>
+    <string name="mechanic_section_parts">Parts</string>
+
     <!-- Validation Errors -->
     <string name="error_field_required">This field is required</string>
     <string name="error_invalid_email">Please enter a valid email address</string>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_driver"
+    app:startDestination="@id/driverHomeFragment">
+
+    <!-- ════════════════════════════════════════════════════════
+         Driver Tab Destinations
+         Home | Trips | Navigation | Fuel | Performance | Profile
+         ════════════════════════════════════════════════════════ -->
+
+    <fragment
+        android:id="@+id/driverHomeFragment"
+        android:name="com.example.movexa.ui.dashboard.driver.DriverHomeFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_driver_home" />
+
+    <fragment
+        android:id="@+id/driverTripsFragment"
+        android:name="com.example.movexa.ui.dashboard.driver.DriverTripsFragment"
+        android:label="Trips"
+        tools:layout="@layout/fragment_driver_trips" />
+
+    <fragment
+        android:id="@+id/driverNavigationFragment"
+        android:name="com.example.movexa.ui.dashboard.driver.DriverNavigationFragment"
+        android:label="Navigation"
+        tools:layout="@layout/fragment_driver_navigation" />
+
+    <fragment
+        android:id="@+id/driverFuelFragment"
+        android:name="com.example.movexa.ui.dashboard.driver.DriverFuelFragment"
+        android:label="Fuel"
+        tools:layout="@layout/fragment_driver_fuel" />
+
+    <fragment
+        android:id="@+id/driverPerformanceFragment"
+        android:name="com.example.movexa.ui.dashboard.driver.DriverPerformanceFragment"
+        android:label="Performance"
+        tools:layout="@layout/fragment_driver_performance" />
+
+    <fragment
+        android:id="@+id/driverProfileFragment"
+        android:name="com.example.movexa.ui.dashboard.driver.DriverProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_driver_profile" />
+
+</navigation>

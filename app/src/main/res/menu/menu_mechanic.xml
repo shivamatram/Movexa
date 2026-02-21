@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Mechanic: Dashboard | Service | Repairs | Parts | Profile (5 items) -->
+
+    <item
+        android:id="@+id/mechanicDashboardFragment"
+        android:icon="@drawable/ic_nav_dashboard"
+        android:title="@string/nav_dashboard" />
+
+    <item
+        android:id="@+id/mechanicServiceFragment"
+        android:icon="@drawable/ic_nav_service"
+        android:title="@string/nav_service" />
+
+    <item
+        android:id="@+id/mechanicRepairsFragment"
+        android:icon="@drawable/ic_nav_repairs"
+        android:title="@string/nav_repairs" />
+
+    <item
+        android:id="@+id/mechanicPartsFragment"
+        android:icon="@drawable/ic_nav_parts"
+        android:title="@string/nav_parts" />
+
+    <item
+        android:id="@+id/mechanicProfileFragment"
+        android:icon="@drawable/ic_nav_profile"
+        android:title="@string/nav_profile" />
+
+</menu>

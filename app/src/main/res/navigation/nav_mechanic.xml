@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_mechanic"
+    app:startDestination="@id/mechanicDashboardFragment">
+
+    <!-- ════════════════════════════════════════════════════════
+         Mechanic Tab Destinations
+         Dashboard | Service | Repairs | Parts | Profile
+         ════════════════════════════════════════════════════════ -->
+
+    <fragment
+        android:id="@+id/mechanicDashboardFragment"
+        android:name="com.example.movexa.ui.dashboard.mechanic.MechanicDashboardFragment"
+        android:label="Dashboard"
+        tools:layout="@layout/fragment_mechanic_dashboard" />
+
+    <fragment
+        android:id="@+id/mechanicServiceFragment"
+        android:name="com.example.movexa.ui.dashboard.mechanic.MechanicServiceFragment"
+        android:label="Service"
+        tools:layout="@layout/fragment_mechanic_service" />
+
+    <fragment
+        android:id="@+id/mechanicRepairsFragment"
+        android:name="com.example.movexa.ui.dashboard.mechanic.MechanicRepairsFragment"
+        android:label="Repairs"
+        tools:layout="@layout/fragment_mechanic_repairs" />
+
+    <fragment
+        android:id="@+id/mechanicPartsFragment"
+        android:name="com.example.movexa.ui.dashboard.mechanic.MechanicPartsFragment"
+        android:label="Parts"
+        tools:layout="@layout/fragment_mechanic_parts" />
+
+    <fragment
+        android:id="@+id/mechanicProfileFragment"
+        android:name="com.example.movexa.ui.dashboard.mechanic.MechanicProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_mechanic_profile" />
+
+</navigation>

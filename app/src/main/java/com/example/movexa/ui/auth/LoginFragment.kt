@@ -2,6 +2,7 @@ package com.example.movexa.ui.auth
 
 import androidx.fragment.app.activityViewModels
 import com.example.movexa.R
+import com.example.movexa.navigation.RoleNavigator
 import com.example.movexa.data.model.ResultState
 import com.example.movexa.data.model.User
 import com.example.movexa.data.model.UserRole
@@ -21,7 +22,7 @@ import com.example.movexa.utils.trimmedText
  *   - ADMIN → AdminMainContainerFragment
  *   - MANAGER → ManagerMainContainerFragment
  *   - MECHANIC → MechanicMainContainerFragment
- *   - DRIVER → if verified: DriverHomeFragment, else DriverProfileFragment
+ *   - DRIVER → DriverMainContainerFragment (verification handled internally)
  *
  * Uses shared AuthViewModel scoped to the Activity for cross-fragment state.
  */
@@ -141,27 +142,13 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(
     }
 
     /**
-     * Navigate to the appropriate dashboard based on user role and verification.
+     * Navigate to the appropriate dashboard container based on user role.
      *
-     * Routing rules:
-     * - ADMIN → adminMainContainerFragment
-     * - MANAGER → managerMainContainerFragment
-     * - MECHANIC → mechanicMainContainerFragment
-     * - DRIVER → verified: driverHomeFragment / unverified: driverProfileFragment
+     * All roles now route to their respective container fragments.
+     * Driver verification status is handled within the DriverMainContainerFragment.
      */
     private fun navigateByRole(user: User) {
-        val actionId = when (user.role) {
-            UserRole.ADMIN -> R.id.action_login_to_admin
-            UserRole.MANAGER -> R.id.action_login_to_manager
-            UserRole.MECHANIC -> R.id.action_login_to_mechanic
-            UserRole.DRIVER -> {
-                if (user.isVerified) {
-                    R.id.action_login_to_driverHome
-                } else {
-                    R.id.action_login_to_driverProfile
-                }
-            }
-        }
+        val actionId = RoleNavigator.getDashboardActionId(user.role)
         navigateTo(actionId)
     }
 

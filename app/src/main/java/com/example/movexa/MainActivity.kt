@@ -91,12 +91,12 @@ class MainActivity : AppCompatActivity() {
                 hideBottomNav()
             }
 
-            // Dashboard containers — show toolbar, hide bottom nav (placeholder)
+            // Dashboard containers — show toolbar, hide main bottom nav
+            // (each container has its own child bottom navigation)
             R.id.adminMainContainerFragment,
             R.id.managerMainContainerFragment,
             R.id.mechanicMainContainerFragment,
-            R.id.driverHomeFragment,
-            R.id.driverProfileFragment -> {
+            R.id.driverMainContainerFragment -> {
                 showToolbar()
                 hideBottomNav()
             }

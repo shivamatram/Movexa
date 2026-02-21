@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Driver: Home | Trips | Navigation | Fuel | Performance | Profile (6 items) -->
+
+    <item
+        android:id="@+id/driverHomeFragment"
+        android:icon="@drawable/ic_nav_home"
+        android:title="@string/nav_home" />
+
+    <item
+        android:id="@+id/driverTripsFragment"
+        android:icon="@drawable/ic_nav_trips"
+        android:title="@string/nav_trips" />
+
+    <item
+        android:id="@+id/driverNavigationFragment"
+        android:icon="@drawable/ic_nav_navigation"
+        android:title="@string/nav_navigation" />
+
+    <item
+        android:id="@+id/driverFuelFragment"
+        android:icon="@drawable/ic_nav_fuel"
+        android:title="@string/nav_fuel" />
+
+    <item
+        android:id="@+id/driverPerformanceFragment"
+        android:icon="@drawable/ic_nav_performance"
+        android:title="@string/nav_performance" />
+
+    <item
+        android:id="@+id/driverProfileFragment"
+        android:icon="@drawable/ic_nav_profile"
+        android:title="@string/nav_profile" />
+
+</menu>

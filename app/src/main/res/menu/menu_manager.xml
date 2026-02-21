@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Manager: Dashboard | Fleet | Trips | Tracking | Alerts | Profile (6 items) -->
+
+    <item
+        android:id="@+id/managerDashboardFragment"
+        android:icon="@drawable/ic_nav_dashboard"
+        android:title="@string/nav_dashboard" />
+
+    <item
+        android:id="@+id/managerFleetFragment"
+        android:icon="@drawable/ic_nav_fleet"
+        android:title="@string/nav_fleet" />
+
+    <item
+        android:id="@+id/managerTripsFragment"
+        android:icon="@drawable/ic_nav_trips"
+        android:title="@string/nav_trips" />
+
+    <item
+        android:id="@+id/managerTrackingFragment"
+        android:icon="@drawable/ic_nav_tracking"
+        android:title="@string/nav_tracking" />
+
+    <item
+        android:id="@+id/managerAlertsFragment"
+        android:icon="@drawable/ic_nav_alerts"
+        android:title="@string/nav_alerts" />
+
+    <item
+        android:id="@+id/managerProfileFragment"
+        android:icon="@drawable/ic_nav_profile"
+        android:title="@string/nav_profile" />
+
+</menu>

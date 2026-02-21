@@ -100,16 +100,8 @@
             app:exitAnim="@anim/fade_out" />
 
         <action
-            android:id="@+id/action_login_to_driverHome"
-            app:destination="@id/driverHomeFragment"
-            app:popUpTo="@id/loginFragment"
-            app:popUpToInclusive="true"
-            app:enterAnim="@anim/fade_in"
-            app:exitAnim="@anim/fade_out" />
-
-        <action
-            android:id="@+id/action_login_to_driverProfile"
-            app:destination="@id/driverProfileFragment"
+            android:id="@+id/action_login_to_driver"
+            app:destination="@id/driverMainContainerFragment"
             app:popUpTo="@id/loginFragment"
             app:popUpToInclusive="true"
             app:enterAnim="@anim/fade_in"
@@ -157,18 +149,11 @@
         android:label="Mechanic Dashboard"
         tools:layout="@layout/fragment_mechanic_container" />
 
-    <!-- Driver Home (verified) -->
+    <!-- Driver Dashboard -->
     <fragment
-        android:id="@+id/driverHomeFragment"
-        android:name="com.example.movexa.ui.dashboard.DriverHomeFragment"
-        android:label="Driver Home"
-        tools:layout="@layout/fragment_driver_home" />
-
-    <!-- Driver Profile (unverified — pending verification) -->
-    <fragment
-        android:id="@+id/driverProfileFragment"
-        android:name="com.example.movexa.ui.dashboard.DriverProfileFragment"
-        android:label="Driver Profile"
-        tools:layout="@layout/fragment_driver_profile" />
+        android:id="@+id/driverMainContainerFragment"
+        android:name="com.example.movexa.ui.dashboard.DriverMainContainerFragment"
+        android:label="Driver Dashboard"
+        tools:layout="@layout/fragment_driver_container" />
 
 </navigation>

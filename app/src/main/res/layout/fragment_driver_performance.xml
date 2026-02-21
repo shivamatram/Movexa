@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/screen_margin_horizontal">
+
+            <!-- Section Header -->
+            <TextView
+                android:id="@+id/tvSectionTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/driver_section_performance"
+                android:textAppearance="@style/TextAppearance.Movexa.SectionHeader"
+                android:layout_marginBottom="@dimen/spacing_small" />
+
+            <!-- Status Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_medium"
+                app:cardCornerRadius="@dimen/radius_large"
+                app:cardElevation="@dimen/elevation_small"
+                app:cardBackgroundColor="@color/surface">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/card_padding">
+
+                    <ImageView
+                        android:id="@+id/ivIcon"
+                        android:layout_width="@dimen/icon_xl"
+                        android:layout_height="@dimen/icon_xl"
+                        android:layout_gravity="center_horizontal"
+                        android:src="@drawable/ic_nav_performance"
+                        android:contentDescription="@string/cd_app_logo"
+                        app:tint="@color/primary"
+                        android:layout_marginBottom="@dimen/spacing_medium" />
+
+                    <TextView
+                        android:id="@+id/tvTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/driver_performance_title"
+                        android:textSize="@dimen/text_title"
+                        android:textColor="@color/text_primary"
+                        android:fontFamily="sans-serif-medium"
+                        android:gravity="center"
+                        android:layout_marginBottom="@dimen/spacing_xs" />
+
+                    <TextView
+                        android:id="@+id/tvSubtitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/driver_performance_subtitle"
+                        android:textSize="@dimen/text_body"
+                        android:textColor="@color/text_secondary"
+                        android:gravity="center" />
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Empty State Placeholder -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardEmptyState"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_medium"
+                app:cardCornerRadius="@dimen/radius_large"
+                app:cardElevation="@dimen/elevation_xs"
+                app:strokeColor="@color/outline_variant"
+                app:strokeWidth="1dp"
+                app:cardBackgroundColor="@color/surface_variant">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/card_padding"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/tvEmptyTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/empty_state_title"
+                        android:textSize="@dimen/text_subtitle"
+                        android:textColor="@color/text_secondary"
+                        android:fontFamily="sans-serif-medium"
+                        android:gravity="center"
+                        android:layout_marginBottom="@dimen/spacing_xs" />
+
+                    <TextView
+                        android:id="@+id/tvEmptySubtitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/empty_state_subtitle"
+                        android:textSize="@dimen/text_caption"
+                        android:textColor="@color/text_hint"
+                        android:gravity="center" />
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

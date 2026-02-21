@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Admin: Dashboard | Fleet | Trips | Finance | Profile (5 items) -->
+
+    <item
+        android:id="@+id/adminDashboardFragment"
+        android:icon="@drawable/ic_nav_dashboard"
+        android:title="@string/nav_dashboard" />
+
+    <item
+        android:id="@+id/adminFleetFragment"
+        android:icon="@drawable/ic_nav_fleet"
+        android:title="@string/nav_fleet" />
+
+    <item
+        android:id="@+id/adminTripsFragment"
+        android:icon="@drawable/ic_nav_trips"
+        android:title="@string/nav_trips" />
+
+    <item
+        android:id="@+id/adminFinanceFragment"
+        android:icon="@drawable/ic_nav_finance"
+        android:title="@string/nav_finance" />
+
+    <item
+        android:id="@+id/adminProfileFragment"
+        android:icon="@drawable/ic_nav_profile"
+        android:title="@string/nav_profile" />
+
+</menu>

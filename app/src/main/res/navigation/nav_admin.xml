@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_admin"
+    app:startDestination="@id/adminDashboardFragment">
+
+    <!-- ════════════════════════════════════════════════════════
+         Admin Tab Destinations
+         Dashboard | Fleet | Trips | Finance | Profile
+         ════════════════════════════════════════════════════════ -->
+
+    <fragment
+        android:id="@+id/adminDashboardFragment"
+        android:name="com.example.movexa.ui.dashboard.admin.AdminDashboardFragment"
+        android:label="Dashboard"
+        tools:layout="@layout/fragment_admin_dashboard" />
+
+    <fragment
+        android:id="@+id/adminFleetFragment"
+        android:name="com.example.movexa.ui.dashboard.admin.AdminFleetFragment"
+        android:label="Fleet"
+        tools:layout="@layout/fragment_admin_fleet" />
+
+    <fragment
+        android:id="@+id/adminTripsFragment"
+        android:name="com.example.movexa.ui.dashboard.admin.AdminTripsFragment"
+        android:label="Trips"
+        tools:layout="@layout/fragment_admin_trips" />
+
+    <fragment
+        android:id="@+id/adminFinanceFragment"
+        android:name="com.example.movexa.ui.dashboard.admin.AdminFinanceFragment"
+        android:label="Finance"
+        tools:layout="@layout/fragment_admin_finance" />
+
+    <fragment
+        android:id="@+id/adminProfileFragment"
+        android:name="com.example.movexa.ui.dashboard.admin.AdminProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_admin_profile" />
+
+</navigation>

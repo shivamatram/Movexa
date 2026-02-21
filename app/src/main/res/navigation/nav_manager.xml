@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_manager"
+    app:startDestination="@id/managerDashboardFragment">
+
+    <!-- ════════════════════════════════════════════════════════
+         Manager Tab Destinations
+         Dashboard | Fleet | Trips | Tracking | Alerts | Profile
+         ════════════════════════════════════════════════════════ -->
+
+    <fragment
+        android:id="@+id/managerDashboardFragment"
+        android:name="com.example.movexa.ui.dashboard.manager.ManagerDashboardFragment"
+        android:label="Dashboard"
+        tools:layout="@layout/fragment_manager_dashboard" />
+
+    <fragment
+        android:id="@+id/managerFleetFragment"
+        android:name="com.example.movexa.ui.dashboard.manager.ManagerFleetFragment"
+        android:label="Fleet"
+        tools:layout="@layout/fragment_manager_fleet" />
+
+    <fragment
+        android:id="@+id/managerTripsFragment"
+        android:name="com.example.movexa.ui.dashboard.manager.ManagerTripsFragment"
+        android:label="Trips"
+        tools:layout="@layout/fragment_manager_trips" />
+
+    <fragment
+        android:id="@+id/managerTrackingFragment"
+        android:name="com.example.movexa.ui.dashboard.manager.ManagerTrackingFragment"
+        android:label="Tracking"
+        tools:layout="@layout/fragment_manager_tracking" />
+
+    <fragment
+        android:id="@+id/managerAlertsFragment"
+        android:name="com.example.movexa.ui.dashboard.manager.ManagerAlertsFragment"
+        android:label="Alerts"
+        tools:layout="@layout/fragment_manager_alerts" />
+
+    <fragment
+        android:id="@+id/managerProfileFragment"
+        android:name="com.example.movexa.ui.dashboard.manager.ManagerProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_manager_profile" />
+
+</navigation>
