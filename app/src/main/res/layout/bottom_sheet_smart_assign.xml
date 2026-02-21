@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/surface"
+    android:padding="@dimen/screen_margin_horizontal">
+
+    <!-- Handle bar -->
+    <View
+        android:layout_width="40dp"
+        android:layout_height="4dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="@dimen/spacing_medium"
+        android:background="@drawable/bg_bottom_sheet_handle" />
+
+    <!-- Title -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/smart_assign_title"
+        android:textSize="@dimen/text_title"
+        android:textColor="@color/text_primary"
+        android:fontFamily="sans-serif-medium"
+        android:layout_marginBottom="@dimen/spacing_xs" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/smart_assign_subtitle"
+        android:textSize="@dimen/text_body"
+        android:textColor="@color/text_secondary"
+        android:layout_marginBottom="@dimen/spacing_medium" />
+
+    <!-- Trip summary -->
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/spacing_medium"
+        app:cardCornerRadius="@dimen/radius_small"
+        app:cardElevation="0dp"
+        app:cardBackgroundColor="@color/background">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/spacing_medium">
+
+            <TextView
+                android:id="@+id/tvAssignTripRoute"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_body"
+                android:textColor="@color/text_primary"
+                android:drawableStart="@drawable/ic_route"
+                android:drawablePadding="@dimen/spacing_small"
+                tools:text="Mumbai → Pune" />
+
+            <TextView
+                android:id="@+id/tvAssignTripDistance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_caption"
+                android:textColor="@color/text_secondary"
+                android:layout_marginTop="@dimen/spacing_xxs"
+                android:layout_marginStart="30dp"
+                tools:text="Est. 350 km" />
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Available options list -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/spacing_small"
+        android:textSize="@dimen/text_caption"
+        android:textColor="@color/text_hint"
+        android:fontFamily="sans-serif-medium"
+        android:textAllCaps="true"
+        android:text="@string/smart_assign_eligible_label" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvEligibleOptions"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clipToPadding="false"
+        android:paddingBottom="@dimen/spacing_small"
+        android:overScrollMode="always"
+        tools:listitem="@layout/item_smart_assign_option"
+        tools:itemCount="3" />
+
+    <!-- No eligible state -->
+    <LinearLayout
+        android:id="@+id/layoutNoEligible"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:paddingVertical="@dimen/spacing_xl"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_warning"
+            android:contentDescription="@string/cd_warning"
+            app:tint="@color/warning"
+            android:alpha="0.6" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:text="@string/smart_assign_no_eligible"
+            android:textSize="@dimen/text_body"
+            android:textColor="@color/text_secondary"
+            android:gravity="center" />
+
+    </LinearLayout>
+
+    <!-- Loading -->
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/progressAssign"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:visibility="gone"
+        app:indicatorColor="@color/primary"
+        app:trackColor="@color/primary_surface" />
+
+    <!-- Assign button -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnAssignSelected"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_medium"
+        android:layout_marginBottom="@dimen/spacing_small"
+        android:text="@string/trip_action_assign"
+        android:enabled="false"
+        style="@style/Widget.MaterialComponents.Button" />
+
+</LinearLayout>

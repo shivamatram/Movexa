@@ -104,6 +104,27 @@
     <color name="star_filled">#FFFFC107</color>
     <color name="star_empty">#FFE0E0E0</color>
 
+    <!-- Trip Status Colors -->
+    <color name="trip_created">#FF9E9E9E</color>
+    <color name="trip_created_bg">#FFF5F5F5</color>
+    <color name="trip_assigned">#FF2196F3</color>
+    <color name="trip_assigned_bg">#FFE3F2FD</color>
+    <color name="trip_accepted">#FF00897B</color>
+    <color name="trip_accepted_bg">#FFE0F2F1</color>
+    <color name="trip_rejected">#FFF44336</color>
+    <color name="trip_rejected_bg">#FFFFEBEE</color>
+    <color name="trip_started">#FFFF9800</color>
+    <color name="trip_started_bg">#FFFFF3E0</color>
+    <color name="trip_completed">#FF4CAF50</color>
+    <color name="trip_completed_bg">#FFE8F5E9</color>
+    <color name="trip_cancelled">#FF795548</color>
+    <color name="trip_cancelled_bg">#FFEFEBE9</color>
+
+    <!-- Timeline Colors -->
+    <color name="timeline_line">#FFE0E0E0</color>
+    <color name="timeline_line_active">#FF00897B</color>
+    <color name="timeline_dot_inactive">#FFBDBDBD</color>
+
     <!-- Alias for design system -->
     <color name="colorPrimary">@color/primary</color>
     <color name="colorOnPrimary">@color/on_primary</color>

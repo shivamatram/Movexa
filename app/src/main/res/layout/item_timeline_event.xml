@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingVertical="@dimen/spacing_xs">
+
+    <!-- Timeline connector (dot + line) -->
+    <LinearLayout
+        android:layout_width="32dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <!-- Top line (hidden for first item) -->
+        <View
+            android:id="@+id/lineTop"
+            android:layout_width="2dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@color/timeline_line" />
+
+        <!-- Dot -->
+        <View
+            android:id="@+id/dotEvent"
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:background="@drawable/bg_timeline_dot" />
+
+        <!-- Bottom line (hidden for last item) -->
+        <View
+            android:id="@+id/lineBottom"
+            android:layout_width="2dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@color/timeline_line" />
+
+    </LinearLayout>
+
+    <!-- Event content -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:paddingStart="@dimen/spacing_small"
+        android:paddingEnd="@dimen/spacing_xs"
+        android:paddingVertical="@dimen/spacing_xs">
+
+        <TextView
+            android:id="@+id/tvEventTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_body"
+            android:textColor="@color/text_primary"
+            android:fontFamily="sans-serif-medium"
+            tools:text="Trip Started" />
+
+        <TextView
+            android:id="@+id/tvEventDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_caption"
+            android:textColor="@color/text_secondary"
+            android:layout_marginTop="1dp"
+            android:visibility="gone"
+            tools:text="Driver started the trip from pickup location"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/tvEventTimestamp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="11sp"
+            android:textColor="@color/text_hint"
+            android:layout_marginTop="2dp"
+            tools:text="Jan 15, 2025 10:30 AM" />
+
+    </LinearLayout>
+
+</LinearLayout>

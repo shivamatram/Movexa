@@ -145,6 +145,8 @@
     <string name="error_password_mismatch">Passwords do not match</string>
     <string name="error_invalid_phone">Please enter a valid phone number</string>
     <string name="error_name_too_short">Name must be at least 2 characters</string>
+    <string name="error_address_too_short">Address must be at least 5 characters</string>
+    <string name="error_invalid_number">Please enter a valid number</string>
 
     <!-- Common -->
     <string name="loading">Loading…</string>
@@ -471,4 +473,196 @@
     <string name="action_retry">Retry</string>
     <string name="action_change_status">Change Status</string>
     <string name="action_confirm">Confirm</string>
+
+    <!-- ═══════════ Trip Dispatch Module ═══════════ -->
+
+    <!-- Trip Tabs -->
+    <string name="tab_unassigned">Unassigned</string>
+    <string name="tab_ongoing">Ongoing</string>
+    <string name="tab_completed">Completed</string>
+    <string name="tab_new_requests">New Requests</string>
+    <string name="tab_history">History</string>
+
+    <!-- Trip Management Titles -->
+    <string name="trip_management_title">Trip Management</string>
+    <string name="trip_management_subtitle">Create, assign and monitor trips</string>
+    <string name="trip_overview_subtitle">View and manage your trips</string>
+    <string name="driver_trips_module_title">My Trips</string>
+    <string name="driver_trips_module_subtitle">View your trip requests and history</string>
+
+    <!-- Trip Creation -->
+    <string name="trip_create_title">Create New Trip</string>
+    <string name="trip_pickup_address">Pickup Address</string>
+    <string name="trip_pickup_location">Pickup Location</string>
+    <string name="trip_pickup_hint">Enter pickup address</string>
+    <string name="trip_drop_address">Drop-off Address</string>
+    <string name="trip_drop_location">Drop Location</string>
+    <string name="trip_drop_hint">Enter drop-off address</string>
+    <string name="trip_load_description">Load Description</string>
+    <string name="trip_load_hint">Describe the cargo or passenger details</string>
+    <string name="trip_notes">Notes (Optional)</string>
+    <string name="trip_notes_hint">Any additional instructions</string>
+    <string name="trip_estimated_distance">Estimated Distance</string>
+    <string name="trip_distance_hint">Distance in km</string>
+    <string name="trip_created_success">Trip created successfully</string>
+    <string name="trip_create_failed">Failed to create trip</string>
+
+    <!-- Trip Status Labels -->
+    <string name="trip_status_created">Created</string>
+    <string name="trip_status_assigned">Assigned</string>
+    <string name="trip_status_accepted">Accepted</string>
+    <string name="trip_status_rejected">Rejected</string>
+    <string name="trip_status_started">Started</string>
+    <string name="trip_status_completed">Completed</string>
+    <string name="trip_status_cancelled">Cancelled</string>
+
+    <!-- Trip Card -->
+    <string name="trip_tracking_id">Tracking: %s</string>
+    <string name="trip_pickup_label">PICKUP</string>
+    <string name="trip_drop_label">DROP</string>
+    <string name="trip_load_label">Load</string>
+    <string name="trip_distance_label">Distance</string>
+    <string name="trip_duration_label">Duration</string>
+    <string name="trip_created_at">Created %s</string>
+    <string name="trip_distance_format">%.1f km</string>
+    <string name="trip_duration_format">%d min</string>
+    <string name="trip_no_distance">—</string>
+    <string name="trip_no_driver">No driver assigned</string>
+    <string name="trip_no_vehicle">No vehicle assigned</string>
+    <string name="trip_driver_label">Driver</string>
+    <string name="trip_vehicle_label">Vehicle</string>
+
+    <!-- Trip Actions -->
+    <string name="trip_action_assign">Assign Driver</string>
+    <string name="trip_action_accept">Accept Trip</string>
+    <string name="trip_action_reject">Reject Trip</string>
+    <string name="trip_action_start">Start Trip</string>
+    <string name="trip_action_complete">Complete Trip</string>
+    <string name="trip_action_cancel">Cancel Trip</string>
+    <string name="trip_action_view_details">View Details</string>
+    <string name="trip_action_reassign">Reassign</string>
+
+    <!-- Smart Assignment -->
+    <string name="smart_assign_title">Smart Assignment</string>
+    <string name="smart_assign_subtitle">Select an eligible vehicle &amp; driver</string>
+    <string name="smart_assign_no_eligible">No eligible vehicles found</string>
+    <string name="smart_assign_no_eligible_subtitle">All vehicles are busy, or no verified drivers are available</string>
+    <string name="smart_assign_distance">~%.1f km away</string>
+    <string name="smart_assign_vehicle_info">%1$s • %2$s</string>
+    <string name="smart_assign_driver_info">Driver: %s</string>
+    <string name="smart_assign_rating">★ %.1f</string>
+    <string name="smart_assign_trips_done">%d trips</string>
+    <string name="smart_assign_confirming">Assigning trip…</string>
+
+    <!-- Trip Counts -->
+    <string name="trip_count_unassigned">%d unassigned</string>
+    <string name="trip_count_ongoing">%d ongoing</string>
+    <string name="trip_count_completed">%d completed</string>
+    <string name="trip_count_new_requests">%d new requests</string>
+    <string name="trip_count_total">%d trips</string>
+
+    <!-- Trip Empty States -->
+    <string name="trip_empty_unassigned">No Unassigned Trips</string>
+    <string name="trip_empty_unassigned_subtitle">Create a new trip to get started</string>
+    <string name="trip_empty_ongoing">No Ongoing Trips</string>
+    <string name="trip_empty_ongoing_subtitle">Trips in progress will appear here</string>
+    <string name="trip_empty_completed">No Completed Trips</string>
+    <string name="trip_empty_completed_subtitle">Completed trips will appear here</string>
+    <string name="trip_empty_new_requests">No New Requests</string>
+    <string name="trip_empty_new_requests_subtitle">New trip assignments will appear here</string>
+    <string name="trip_empty_history">No Trip History</string>
+    <string name="trip_empty_history_subtitle">Your completed trips will show here</string>
+
+    <!-- Trip Confirmations -->
+    <string name="confirm_accept_trip">Accept Trip?</string>
+    <string name="confirm_accept_trip_msg">You will be assigned to this trip and expected to start soon.</string>
+    <string name="confirm_reject_trip">Reject Trip?</string>
+    <string name="confirm_reject_trip_msg">This trip will be returned to the manager for reassignment.</string>
+    <string name="confirm_start_trip">Start Trip?</string>
+    <string name="confirm_start_trip_msg">Confirm you are at the pickup location and ready to go.</string>
+    <string name="confirm_complete_trip">Complete Trip?</string>
+    <string name="confirm_complete_trip_msg">Confirm you have reached the drop-off location.</string>
+    <string name="confirm_cancel_trip">Cancel Trip?</string>
+    <string name="confirm_cancel_trip_msg">This action cannot be undone.</string>
+
+    <!-- Trip Result Messages -->
+    <string name="trip_assigned_success">Trip assigned successfully</string>
+    <string name="trip_accepted_success">Trip accepted</string>
+    <string name="trip_rejected_success">Trip rejected — returned to unassigned</string>
+    <string name="trip_started_success">Trip started</string>
+    <string name="trip_completed_success">Trip completed</string>
+    <string name="trip_cancelled_success">Trip cancelled</string>
+
+    <!-- Trip Details -->
+    <string name="trip_details_title">Trip Details</string>
+    <string name="trip_details_timeline">Timeline</string>
+    <string name="trip_details_info">Trip Information</string>
+    <string name="trip_details_route">Route</string>
+    <string name="trip_details_map_placeholder">Map preview will be available with GPS integration</string>
+    <string name="trip_details_actual_distance">Actual Distance</string>
+    <string name="trip_details_actual_duration">Actual Duration</string>
+    <string name="trip_details_estimated_distance">Est. Distance</string>
+    <string name="trip_details_tracking_id">Tracking ID</string>
+    <string name="trip_details_assigned_by">Assigned By</string>
+    <string name="trip_details_created_at">Created</string>
+    <string name="trip_details_started_at">Started</string>
+    <string name="trip_details_completed_at">Completed</string>
+
+    <!-- Trip Timeline Events -->
+    <string name="timeline_trip_created">Trip created</string>
+    <string name="timeline_driver_assigned">Driver assigned</string>
+    <string name="timeline_trip_accepted">Trip accepted by driver</string>
+    <string name="timeline_trip_rejected">Trip rejected by driver</string>
+    <string name="timeline_trip_started">Trip started</string>
+    <string name="timeline_trip_completed">Trip completed</string>
+    <string name="timeline_trip_cancelled">Trip cancelled</string>
+
+    <!-- Trip Error Messages -->
+    <string name="error_loading_trips">Failed to load trips</string>
+    <string name="error_trip_assign_failed">Failed to assign trip</string>
+    <string name="error_trip_status_failed">Failed to update trip status</string>
+    <string name="error_no_driver_id">Driver information not found. Please re-login.</string>
+
+    <!-- Trip Content Descriptions -->
+    <string name="cd_create_trip">Create new trip</string>
+    <string name="cd_trip_status">Trip status</string>
+    <string name="cd_trip_pickup">Pickup location</string>
+    <string name="cd_trip_drop">Drop-off location</string>
+    <string name="cd_trip_timeline">Trip event timeline</string>
+    <string name="cd_map_preview">Map preview</string>
+    <string name="cd_trip_options">Trip options menu</string>
+    <string name="cd_back_arrow">Go back</string>
+    <string name="cd_search_icon">Search</string>
+    <string name="cd_trip_menu">Trip menu</string>
+    <string name="cd_distance">Distance</string>
+    <string name="cd_duration">Duration</string>
+    <string name="cd_vehicle">Vehicle</string>
+    <string name="cd_driver_info">Driver info</string>
+    <string name="cd_assigned_by">Assigned by</string>
+    <string name="cd_empty_trips">No trips</string>
+    <string name="cd_warning">Warning</string>
+    <string name="cd_error">Error</string>
+
+    <!-- Trip Additional -->
+    <string name="trip_create_subtitle">Enter trip details to dispatch a new shipment</string>
+    <string name="trip_route_info">Route Information</string>
+    <string name="trip_info_section">Trip Information</string>
+    <string name="trip_timeline_section">Trip Timeline</string>
+    <string name="trip_empty_timeline">No events recorded yet</string>
+    <string name="trip_distance">Distance</string>
+    <string name="trip_duration">Duration</string>
+    <string name="trip_start_time">Start Time</string>
+    <string name="trip_end_time">End Time</string>
+    <string name="trip_assigned_by">Assigned By</string>
+    <string name="trip_map_placeholder">Map preview coming soon</string>
+    <string name="smart_assign_eligible_label">Eligible Vehicles</string>
+    <string name="smart_assign_vehicle">Vehicle</string>
+    <string name="smart_assign_driver">Driver</string>
+
+    <!-- Trip Search -->
+    <string name="trip_search_hint">Search by tracking ID or address…</string>
+
+    <!-- Complete Trip Form -->
+    <string name="trip_actual_distance_hint">Actual distance (km)</string>
+    <string name="trip_cancel_reason_hint">Reason for cancellation</string>
 </resources>
