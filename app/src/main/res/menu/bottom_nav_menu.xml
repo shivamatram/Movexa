@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- Default bottom nav menu (placeholder for role-based dynamic loading) -->
+    <item
+        android:id="@+id/nav_dashboard"
+        android:icon="@android:drawable/ic_menu_today"
+        android:title="@string/nav_dashboard"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/nav_vehicles"
+        android:icon="@android:drawable/ic_menu_directions"
+        android:title="@string/nav_vehicles"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/nav_map"
+        android:icon="@android:drawable/ic_menu_mapmode"
+        android:title="@string/nav_map"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/nav_reports"
+        android:icon="@android:drawable/ic_menu_report_image"
+        android:title="@string/nav_reports"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/nav_settings"
+        android:icon="@android:drawable/ic_menu_preferences"
+        android:title="@string/nav_settings"
+        app:showAsAction="ifRoom" />
+
+</menu>

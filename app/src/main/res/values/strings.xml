@@ -1,3 +1,90 @@
 <resources>
     <string name="app_name">Movexa</string>
+    <string name="app_tagline">Smart • Safe • Optimized</string>
+
+    <!-- Splash -->
+    <string name="splash_title">Movexa</string>
+    <string name="splash_subtitle">Fleet Management System</string>
+
+    <!-- Auth -->
+    <string name="login_title">Welcome Back</string>
+    <string name="login_subtitle">Sign in to continue managing your fleet</string>
+    <string name="signup_title">Create Account</string>
+    <string name="signup_subtitle">Join Movexa fleet management</string>
+    <string name="email_hint">Email address</string>
+    <string name="password_hint">Password</string>
+    <string name="confirm_password_hint">Confirm password</string>
+    <string name="full_name_hint">Full name</string>
+    <string name="phone_hint">Phone number</string>
+    <string name="btn_login">Sign In</string>
+    <string name="btn_signup">Create Account</string>
+    <string name="btn_forgot_password">Forgot Password?</string>
+    <string name="no_account">Don\'t have an account?</string>
+    <string name="have_account">Already have an account?</string>
+    <string name="btn_sign_up_link">Sign Up</string>
+    <string name="btn_sign_in_link">Sign In</string>
+    <string name="role_hint">Select your role</string>
+    <string name="role_admin">Admin</string>
+    <string name="role_manager">Manager</string>
+    <string name="role_driver">Driver</string>
+    <string name="role_mechanic">Mechanic</string>
+    <string name="error_role_required">Please select a role</string>
+
+    <!-- Forgot Password -->
+    <string name="forgot_password_title">Reset Password</string>
+    <string name="forgot_password_subtitle">Enter your email and we\'ll send you a link to reset your password.</string>
+    <string name="btn_send_reset_link">Send Reset Link</string>
+    <string name="reset_email_sent">Password reset email sent. Check your inbox.</string>
+
+    <!-- Dashboard Placeholders -->
+    <string name="admin_dashboard_title">Admin Dashboard</string>
+    <string name="admin_dashboard_subtitle">Welcome, Admin. Manage your fleet operations here.</string>
+    <string name="manager_dashboard_title">Manager Dashboard</string>
+    <string name="manager_dashboard_subtitle">Welcome, Manager. Monitor your team and vehicles.</string>
+    <string name="mechanic_dashboard_title">Mechanic Dashboard</string>
+    <string name="mechanic_dashboard_subtitle">Welcome, Mechanic. View your assigned tasks.</string>
+    <string name="driver_home_title">Driver Home</string>
+    <string name="driver_home_subtitle">Welcome, Driver. View your assigned trips.</string>
+    <string name="driver_profile_title">Complete Your Profile</string>
+    <string name="driver_profile_subtitle">Please complete your profile to get started. Verification is pending.</string>
+    <string name="btn_sign_out">Sign Out</string>
+    <string name="signed_out">Signed out successfully.</string>
+
+    <!-- Validation Errors -->
+    <string name="error_field_required">This field is required</string>
+    <string name="error_invalid_email">Please enter a valid email address</string>
+    <string name="error_password_short">Password must be at least 6 characters</string>
+    <string name="error_password_mismatch">Passwords do not match</string>
+    <string name="error_invalid_phone">Please enter a valid phone number</string>
+    <string name="error_name_too_short">Name must be at least 2 characters</string>
+
+    <!-- Common -->
+    <string name="loading">Loading…</string>
+    <string name="error_generic">Something went wrong. Please try again.</string>
+    <string name="error_network">No internet connection.</string>
+    <string name="btn_retry">Retry</string>
+    <string name="btn_cancel">Cancel</string>
+    <string name="btn_ok">OK</string>
+    <string name="btn_save">Save</string>
+    <string name="btn_delete">Delete</string>
+    <string name="btn_edit">Edit</string>
+    <string name="btn_close">Close</string>
+    <string name="btn_continue">Continue</string>
+
+    <!-- Navigation -->
+    <string name="nav_dashboard">Dashboard</string>
+    <string name="nav_vehicles">Vehicles</string>
+    <string name="nav_trips">Trips</string>
+    <string name="nav_reports">Reports</string>
+    <string name="nav_settings">Settings</string>
+    <string name="nav_profile">Profile</string>
+    <string name="nav_notifications">Notifications</string>
+    <string name="nav_map">Map</string>
+
+    <!-- Content Descriptions -->
+    <string name="cd_app_logo">Movexa Logo</string>
+    <string name="cd_back">Navigate back</string>
+    <string name="cd_menu">Open menu</string>
+    <string name="cd_close">Close</string>
+    <string name="cd_loading">Loading indicator</string>
 </resources>

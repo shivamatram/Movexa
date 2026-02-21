@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/splashLogoFragment">
+
+    <!-- ════════════════════════════════════════════════════════
+         Global Actions
+         ════════════════════════════════════════════════════════ -->
+
+    <!-- Global action to navigate back to login (used by sign-out) -->
+    <action
+        android:id="@+id/action_global_login"
+        app:destination="@id/loginFragment"
+        app:popUpTo="@id/nav_graph"
+        app:popUpToInclusive="true"
+        app:enterAnim="@anim/fade_in"
+        app:exitAnim="@anim/fade_out" />
+
+    <!-- ════════════════════════════════════════════════════════
+         Splash Screens
+         ════════════════════════════════════════════════════════ -->
+
+    <!-- Splash Logo -->
+    <fragment
+        android:id="@+id/splashLogoFragment"
+        android:name="com.example.movexa.ui.splash.SplashLogoFragment"
+        android:label="SplashLogo"
+        tools:layout="@layout/fragment_splash_logo">
+
+        <action
+            android:id="@+id/action_splashLogo_to_splashBrand"
+            app:destination="@id/splashBrandFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popUpTo="@id/splashLogoFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <!-- Splash Brand -->
+    <fragment
+        android:id="@+id/splashBrandFragment"
+        android:name="com.example.movexa.ui.splash.SplashBrandFragment"
+        android:label="SplashBrand"
+        tools:layout="@layout/fragment_splash_brand">
+
+        <action
+            android:id="@+id/action_splashBrand_to_login"
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popUpTo="@id/splashBrandFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <!-- ════════════════════════════════════════════════════════
+         Authentication Screens
+         ════════════════════════════════════════════════════════ -->
+
+    <!-- Login -->
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.movexa.ui.auth.LoginFragment"
+        android:label="Login"
+        tools:layout="@layout/fragment_login">
+
+        <action
+            android:id="@+id/action_login_to_signup"
+            app:destination="@id/signupFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+        <!-- Role-based routing actions from login -->
+        <action
+            android:id="@+id/action_login_to_admin"
+            app:destination="@id/adminMainContainerFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out" />
+
+        <action
+            android:id="@+id/action_login_to_manager"
+            app:destination="@id/managerMainContainerFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out" />
+
+        <action
+            android:id="@+id/action_login_to_mechanic"
+            app:destination="@id/mechanicMainContainerFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out" />
+
+        <action
+            android:id="@+id/action_login_to_driverHome"
+            app:destination="@id/driverHomeFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out" />
+
+        <action
+            android:id="@+id/action_login_to_driverProfile"
+            app:destination="@id/driverProfileFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out" />
+    </fragment>
+
+    <!-- Signup -->
+    <fragment
+        android:id="@+id/signupFragment"
+        android:name="com.example.movexa.ui.auth.SignupFragment"
+        android:label="Sign Up"
+        tools:layout="@layout/fragment_signup">
+
+        <action
+            android:id="@+id/action_signup_to_login"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right" />
+    </fragment>
+
+    <!-- ════════════════════════════════════════════════════════
+         Dashboard / Container Screens (Placeholders)
+         ════════════════════════════════════════════════════════ -->
+
+    <!-- Admin Dashboard -->
+    <fragment
+        android:id="@+id/adminMainContainerFragment"
+        android:name="com.example.movexa.ui.dashboard.AdminMainContainerFragment"
+        android:label="Admin Dashboard"
+        tools:layout="@layout/fragment_admin_container" />
+
+    <!-- Manager Dashboard -->
+    <fragment
+        android:id="@+id/managerMainContainerFragment"
+        android:name="com.example.movexa.ui.dashboard.ManagerMainContainerFragment"
+        android:label="Manager Dashboard"
+        tools:layout="@layout/fragment_manager_container" />
+
+    <!-- Mechanic Dashboard -->
+    <fragment
+        android:id="@+id/mechanicMainContainerFragment"
+        android:name="com.example.movexa.ui.dashboard.MechanicMainContainerFragment"
+        android:label="Mechanic Dashboard"
+        tools:layout="@layout/fragment_mechanic_container" />
+
+    <!-- Driver Home (verified) -->
+    <fragment
+        android:id="@+id/driverHomeFragment"
+        android:name="com.example.movexa.ui.dashboard.DriverHomeFragment"
+        android:label="Driver Home"
+        tools:layout="@layout/fragment_driver_home" />
+
+    <!-- Driver Profile (unverified — pending verification) -->
+    <fragment
+        android:id="@+id/driverProfileFragment"
+        android:name="com.example.movexa.ui.dashboard.DriverProfileFragment"
+        android:label="Driver Profile"
+        tools:layout="@layout/fragment_driver_profile" />
+
+</navigation>

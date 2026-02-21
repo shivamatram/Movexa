@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- RoundedCardView -->
+    <declare-styleable name="RoundedCardView">
+        <attr name="rcv_cornerRadius" format="dimension" />
+        <attr name="rcv_elevation" format="dimension" />
+        <attr name="rcv_strokeWidth" format="dimension" />
+        <attr name="rcv_strokeColor" format="color" />
+    </declare-styleable>
+
+    <!-- PrimaryButton -->
+    <declare-styleable name="PrimaryButton">
+        <attr name="pb_text" format="string" />
+        <attr name="pb_icon" format="reference" />
+        <attr name="pb_loading" format="boolean" />
+        <attr name="pb_style" format="enum">
+            <enum name="filled" value="0" />
+            <enum name="outlined" value="1" />
+            <enum name="text" value="2" />
+        </attr>
+    </declare-styleable>
+
+    <!-- InputField -->
+    <declare-styleable name="InputField">
+        <attr name="if_hint" format="string" />
+        <attr name="if_inputType" format="enum">
+            <enum name="text" value="0" />
+            <enum name="email" value="1" />
+            <enum name="password" value="2" />
+            <enum name="phone" value="3" />
+            <enum name="number" value="4" />
+        </attr>
+        <attr name="if_startIcon" format="reference" />
+        <attr name="if_endIcon" format="reference" />
+        <attr name="if_errorEnabled" format="boolean" />
+    </declare-styleable>
+
+    <!-- SectionHeader -->
+    <declare-styleable name="SectionHeader">
+        <attr name="sh_title" format="string" />
+        <attr name="sh_actionText" format="string" />
+        <attr name="sh_showAction" format="boolean" />
+        <attr name="sh_showDivider" format="boolean" />
+    </declare-styleable>
+</resources>
