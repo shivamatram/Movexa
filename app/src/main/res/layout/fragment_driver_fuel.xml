@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,36 +7,430 @@
     android:layout_height="match_parent"
     android:background="@color/background">
 
-    <ScrollView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+    <!-- ======================== LOADING STATE ======================== -->
+    <LinearLayout
+        android:id="@+id/layoutLoading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone"
+        tools:visibility="gone">
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            app:indicatorColor="@color/primary"
+            app:trackThickness="4dp"
+            app:indicatorSize="48dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fuel_loading"
+            android:textSize="@dimen/text_body"
+            android:textColor="@color/text_secondary"
+            android:layout_marginTop="@dimen/spacing_medium" />
+    </LinearLayout>
+
+    <!-- ======================== ERROR STATE ======================== -->
+    <LinearLayout
+        android:id="@+id/layoutError"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="@dimen/spacing_xl"
+        android:visibility="gone"
+        tools:visibility="gone">
+
+        <ImageView
+            android:layout_width="@dimen/icon_xl"
+            android:layout_height="@dimen/icon_xl"
+            android:src="@drawable/ic_warning"
+            android:contentDescription="@string/cd_fuel_error"
+            app:tint="@color/error"
+            android:layout_marginBottom="@dimen/spacing_medium" />
+
+        <TextView
+            android:id="@+id/tvErrorTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/fuel_error_title"
+            android:textSize="@dimen/text_title"
+            android:textColor="@color/text_primary"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:layout_marginBottom="@dimen/spacing_small" />
+
+        <TextView
+            android:id="@+id/tvErrorMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_body"
+            android:textColor="@color/text_secondary"
+            android:gravity="center"
+            android:layout_marginBottom="@dimen/spacing_large"
+            tools:text="Failed to load driver data" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnRetry"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/button_height_small"
+            android:text="@string/fuel_error_retry"
+            app:cornerRadius="@dimen/radius_medium" />
+    </LinearLayout>
+
+    <!-- ======================== NO VEHICLE STATE ======================== -->
+    <LinearLayout
+        android:id="@+id/layoutNoVehicle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="@dimen/spacing_xl"
+        android:visibility="gone"
+        tools:visibility="gone">
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/ic_nav_fleet"
+            android:contentDescription="@string/cd_fuel_no_vehicle"
+            app:tint="@color/text_hint"
+            android:layout_marginBottom="@dimen/spacing_medium" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/fuel_no_vehicle"
+            android:textSize="@dimen/text_title"
+            android:textColor="@color/text_primary"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:layout_marginBottom="@dimen/spacing_small" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/fuel_no_vehicle_msg"
+            android:textSize="@dimen/text_body"
+            android:textColor="@color/text_secondary"
+            android:gravity="center" />
+    </LinearLayout>
+
+    <!-- ======================== MAIN CONTENT (READY STATE) ======================== -->
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollContent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:fillViewport="true"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        android:clipToPadding="false"
+        android:visibility="gone"
+        tools:visibility="visible">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="@dimen/screen_margin_horizontal">
+            android:paddingHorizontal="@dimen/screen_margin_horizontal"
+            android:paddingTop="@dimen/spacing_medium"
+            android:paddingBottom="@dimen/spacing_xxl">
 
-            <!-- Section Header -->
+            <!-- ==================== SCREEN HEADER ==================== -->
             <TextView
-                android:id="@+id/tvSectionTitle"
+                android:id="@+id/tvScreenTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/driver_section_fuel"
-                android:textAppearance="@style/TextAppearance.Movexa.SectionHeader"
-                android:layout_marginBottom="@dimen/spacing_small" />
+                android:text="@string/fuel_title"
+                android:textSize="@dimen/text_headline"
+                android:textColor="@color/text_primary"
+                android:fontFamily="sans-serif-bold"
+                android:layout_marginBottom="@dimen/spacing_xxs" />
 
-            <!-- Status Card -->
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cardStatus"
+            <TextView
+                android:id="@+id/tvScreenSubtitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/spacing_medium"
+                android:text="@string/fuel_subtitle"
+                android:textSize="@dimen/text_body"
+                android:textColor="@color/text_secondary"
+                android:layout_marginBottom="@dimen/spacing_large" />
+
+            <!-- ==================== VEHICLE INFO CARD ==================== -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardVehicleInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_large"
+                app:cardCornerRadius="@dimen/radius_large"
+                app:cardElevation="@dimen/elevation_small"
+                app:cardBackgroundColor="@color/fuel_vehicle_bg">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:padding="@dimen/card_padding">
+
+                    <!-- Vehicle Icon -->
+                    <FrameLayout
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:background="@drawable/bg_fuel_vehicle_icon"
+                        android:layout_marginEnd="@dimen/spacing_medium">
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_medium"
+                            android:layout_height="@dimen/icon_medium"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_nav_fleet"
+                            android:contentDescription="@string/cd_fuel_vehicle"
+                            app:tint="@color/fuel_vehicle_icon" />
+                    </FrameLayout>
+
+                    <!-- Vehicle Details -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvVehicleLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/fuel_vehicle_label"
+                            android:textSize="@dimen/text_overline"
+                            android:textColor="@color/text_hint"
+                            android:textAllCaps="true"
+                            android:letterSpacing="0.08" />
+
+                        <TextView
+                            android:id="@+id/tvVehicleNumber"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/text_subtitle"
+                            android:textColor="@color/text_primary"
+                            android:fontFamily="sans-serif-medium"
+                            tools:text="MH 12 AB 1234" />
+
+                        <TextView
+                            android:id="@+id/tvVehicleType"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/text_caption"
+                            android:textColor="@color/text_secondary"
+                            tools:text="Truck • Diesel" />
+                    </LinearLayout>
+
+                    <!-- Last Odometer -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="end">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/fuel_odometer_label"
+                            android:textSize="@dimen/text_overline"
+                            android:textColor="@color/text_hint"
+                            android:textAllCaps="true"
+                            android:letterSpacing="0.08" />
+
+                        <TextView
+                            android:id="@+id/tvLastOdometer"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/text_subtitle"
+                            android:textColor="@color/primary"
+                            android:fontFamily="sans-serif-medium"
+                            tools:text="45,230 km" />
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- ==================== FUEL ENTRY FORM CARD ==================== -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardFuelForm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_large"
+                app:cardCornerRadius="@dimen/radius_large"
+                app:cardElevation="@dimen/elevation_small"
+                app:cardBackgroundColor="@color/surface"
+                app:strokeColor="@color/fuel_card_border"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/card_padding">
+
+                    <!-- Form Header -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="@dimen/spacing_medium">
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_medium"
+                            android:layout_height="@dimen/icon_medium"
+                            android:src="@drawable/ic_nav_fuel"
+                            android:contentDescription="@string/cd_fuel_form"
+                            app:tint="@color/primary"
+                            android:layout_marginEnd="@dimen/spacing_small" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/fuel_title"
+                            android:textSize="@dimen/text_subtitle"
+                            android:textColor="@color/text_primary"
+                            android:fontFamily="sans-serif-medium" />
+                    </LinearLayout>
+
+                    <!-- Fuel Quantity Input -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tilQuantity"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/fuel_quantity_hint"
+                        app:prefixText="⛽"
+                        app:suffixText="L"
+                        app:startIconDrawable="@drawable/ic_nav_fuel"
+                        app:startIconTint="@color/text_hint"
+                        app:errorEnabled="true"
+                        android:layout_marginBottom="@dimen/spacing_small">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etQuantity"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="numberDecimal"
+                            android:maxLength="8"
+                            android:imeOptions="actionNext"
+                            tools:text="50.5" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <!-- Fuel Cost Input -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tilCost"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/fuel_cost_hint"
+                        app:prefixText="₹"
+                        app:errorEnabled="true"
+                        android:layout_marginBottom="@dimen/spacing_small">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etCost"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="numberDecimal"
+                            android:maxLength="10"
+                            android:imeOptions="actionNext"
+                            tools:text="4750.00" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <!-- Cost per Litre Display -->
+                    <TextView
+                        android:id="@+id/tvCostPerLitre"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/text_caption"
+                        android:textColor="@color/text_hint"
+                        android:gravity="end"
+                        android:layout_marginTop="-4dp"
+                        android:layout_marginBottom="@dimen/spacing_small"
+                        android:visibility="gone"
+                        tools:visibility="visible"
+                        tools:text="₹94.05/L" />
+
+                    <!-- Current Odometer Input -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tilOdometer"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/fuel_odometer_hint"
+                        app:suffixText="km"
+                        app:errorEnabled="true"
+                        android:layout_marginBottom="@dimen/spacing_small">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etOdometer"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="number"
+                            android:maxLength="10"
+                            android:imeOptions="actionNext"
+                            tools:text="45680" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <!-- Station Name Input -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tilStation"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/fuel_station_hint"
+                        app:errorEnabled="false"
+                        android:layout_marginBottom="@dimen/spacing_small">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etStation"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textCapWords"
+                            android:maxLength="100"
+                            android:imeOptions="actionNext"
+                            tools:text="HP Petrol Pump, MG Road" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <!-- Notes Input -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tilNotes"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/fuel_notes_hint"
+                        app:errorEnabled="false"
+                        app:counterEnabled="true"
+                        app:counterMaxLength="250"
+                        android:layout_marginBottom="@dimen/spacing_medium">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etNotes"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textMultiLine|textCapSentences"
+                            android:minLines="2"
+                            android:maxLines="4"
+                            android:maxLength="250"
+                            android:imeOptions="actionDone"
+                            android:gravity="top"
+                            tools:text="Full tank refill before highway trip" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- ==================== RECEIPT IMAGE SECTION ==================== -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardReceipt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_large"
                 app:cardCornerRadius="@dimen/radius_large"
                 app:cardElevation="@dimen/elevation_small"
                 app:cardBackgroundColor="@color/surface">
@@ -47,85 +441,400 @@
                     android:orientation="vertical"
                     android:padding="@dimen/card_padding">
 
-                    <ImageView
-                        android:id="@+id/ivIcon"
-                        android:layout_width="@dimen/icon_xl"
-                        android:layout_height="@dimen/icon_xl"
-                        android:layout_gravity="center_horizontal"
-                        android:src="@drawable/ic_nav_fuel"
-                        android:contentDescription="@string/cd_app_logo"
-                        app:tint="@color/primary"
-                        android:layout_marginBottom="@dimen/spacing_medium" />
-
+                    <!-- Receipt Section Header -->
                     <TextView
-                        android:id="@+id/tvTitle"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/driver_fuel_title"
-                        android:textSize="@dimen/text_title"
+                        android:text="@string/fuel_receipt_label"
+                        android:textSize="@dimen/text_subtitle"
                         android:textColor="@color/text_primary"
                         android:fontFamily="sans-serif-medium"
-                        android:gravity="center"
                         android:layout_marginBottom="@dimen/spacing_xs" />
 
                     <TextView
-                        android:id="@+id/tvSubtitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/fuel_receipt_hint"
+                        android:textSize="@dimen/text_caption"
+                        android:textColor="@color/text_hint"
+                        android:layout_marginBottom="@dimen/spacing_medium" />
+
+                    <!-- Receipt Placeholder (shown when no image) -->
+                    <FrameLayout
+                        android:id="@+id/layoutReceiptPlaceholder"
+                        android:layout_width="match_parent"
+                        android:layout_height="180dp"
+                        android:background="@drawable/bg_fuel_receipt_placeholder"
+                        android:layout_marginBottom="@dimen/spacing_medium"
+                        android:visibility="visible">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="@dimen/icon_large"
+                                android:layout_height="@dimen/icon_large"
+                                android:src="@drawable/ic_camera"
+                                android:contentDescription="@string/cd_fuel_receipt"
+                                app:tint="@color/fuel_receipt_border"
+                                android:layout_marginBottom="@dimen/spacing_small" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/fuel_receipt_hint"
+                                android:textSize="@dimen/text_caption"
+                                android:textColor="@color/text_hint" />
+                        </LinearLayout>
+                    </FrameLayout>
+
+                    <!-- Receipt Image (shown when image selected) -->
+                    <FrameLayout
+                        android:id="@+id/layoutReceiptImage"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/driver_fuel_subtitle"
-                        android:textSize="@dimen/text_body"
-                        android:textColor="@color/text_secondary"
-                        android:gravity="center" />
+                        android:layout_marginBottom="@dimen/spacing_medium"
+                        android:visibility="gone"
+                        tools:visibility="gone">
+
+                        <ImageView
+                            android:id="@+id/ivReceiptPreview"
+                            android:layout_width="match_parent"
+                            android:layout_height="220dp"
+                            android:scaleType="centerCrop"
+                            android:contentDescription="@string/cd_fuel_receipt"
+                            android:background="@drawable/bg_fuel_receipt_placeholder"
+                            android:padding="2dp" />
+
+                        <!-- Remove button overlay -->
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnRemoveReceipt"
+                            style="@style/Widget.MaterialComponents.Button.Icon"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:layout_gravity="top|end"
+                            android:layout_margin="@dimen/spacing_small"
+                            android:insetTop="0dp"
+                            android:insetBottom="0dp"
+                            android:padding="0dp"
+                            app:backgroundTint="@color/fuel_receipt_overlay"
+                            app:icon="@drawable/ic_close"
+                            app:iconSize="18dp"
+                            app:iconTint="@color/white"
+                            app:cornerRadius="@dimen/radius_circle"
+                            android:contentDescription="@string/fuel_receipt_remove" />
+                    </FrameLayout>
+
+                    <!-- Upload Progress Bar -->
+                    <com.google.android.material.progressindicator.LinearProgressIndicator
+                        android:id="@+id/progressUpload"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        app:indicatorColor="@color/fuel_upload_progress"
+                        app:trackColor="@color/surface_variant"
+                        app:trackThickness="6dp"
+                        app:trackCornerRadius="3dp"
+                        android:layout_marginBottom="@dimen/spacing_small"
+                        tools:visibility="gone"
+                        tools:progress="60" />
+
+                    <TextView
+                        android:id="@+id/tvUploadStatus"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/text_caption"
+                        android:textColor="@color/text_hint"
+                        android:gravity="center"
+                        android:visibility="gone"
+                        tools:visibility="gone"
+                        tools:text="Uploading receipt… 60%" />
+
+                    <!-- Camera / Gallery Buttons -->
+                    <LinearLayout
+                        android:id="@+id/layoutReceiptButtons"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnCamera"
+                            style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/button_height_small"
+                            android:layout_weight="1"
+                            android:text="@string/fuel_receipt_camera"
+                            app:icon="@drawable/ic_camera"
+                            app:iconSize="18dp"
+                            app:cornerRadius="@dimen/radius_medium"
+                            app:strokeColor="@color/primary"
+                            android:textSize="@dimen/text_caption"
+                            android:layout_marginEnd="@dimen/spacing_small" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnGallery"
+                            style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/button_height_small"
+                            android:layout_weight="1"
+                            android:text="@string/fuel_receipt_gallery"
+                            app:icon="@drawable/ic_gallery"
+                            app:iconSize="18dp"
+                            app:cornerRadius="@dimen/radius_medium"
+                            app:strokeColor="@color/primary"
+                            android:textSize="@dimen/text_caption" />
+                    </LinearLayout>
 
                 </LinearLayout>
-
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- Empty State Placeholder -->
+            <!-- ==================== LIVE MILEAGE PREVIEW ==================== -->
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cardEmptyState"
+                android:id="@+id/cardMileagePreview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/spacing_medium"
+                android:layout_marginBottom="@dimen/spacing_large"
                 app:cardCornerRadius="@dimen/radius_large"
-                app:cardElevation="@dimen/elevation_xs"
-                app:strokeColor="@color/outline_variant"
-                app:strokeWidth="1dp"
-                app:cardBackgroundColor="@color/surface_variant">
+                app:cardElevation="@dimen/elevation_small"
+                app:cardBackgroundColor="@color/surface"
+                android:visibility="gone"
+                tools:visibility="visible">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="@dimen/card_padding"
-                    android:gravity="center">
+                    android:padding="@dimen/card_padding">
 
-                    <TextView
-                        android:id="@+id/tvEmptyTitle"
+                    <!-- Mileage Header Row -->
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/empty_state_title"
-                        android:textSize="@dimen/text_subtitle"
-                        android:textColor="@color/text_secondary"
-                        android:fontFamily="sans-serif-medium"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="@dimen/spacing_medium">
+
+                        <FrameLayout
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/bg_mileage_icon">
+
+                            <ImageView
+                                android:layout_width="@dimen/icon_medium"
+                                android:layout_height="@dimen/icon_medium"
+                                android:layout_gravity="center"
+                                android:src="@drawable/ic_mileage"
+                                android:contentDescription="@string/cd_fuel_mileage"
+                                app:tint="@color/mileage_good" />
+                        </FrameLayout>
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/fuel_mileage_preview"
+                            android:textSize="@dimen/text_subtitle"
+                            android:textColor="@color/text_primary"
+                            android:fontFamily="sans-serif-medium"
+                            android:layout_marginStart="@dimen/spacing_small" />
+
+                        <!-- Quality Badge -->
+                        <TextView
+                            android:id="@+id/tvMileageQuality"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bg_mileage_quality_badge"
+                            android:paddingHorizontal="@dimen/spacing_small"
+                            android:paddingVertical="@dimen/spacing_xxs"
+                            android:textSize="@dimen/text_overline"
+                            android:textColor="@color/mileage_good"
+                            android:fontFamily="sans-serif-medium"
+                            android:textAllCaps="true"
+                            tools:text="GOOD" />
+                    </LinearLayout>
+
+                    <!-- Large Mileage Display -->
+                    <LinearLayout
+                        android:id="@+id/layoutMileageCalculated"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
                         android:gravity="center"
-                        android:layout_marginBottom="@dimen/spacing_xs" />
+                        android:padding="@dimen/spacing_small">
 
-                    <TextView
-                        android:id="@+id/tvEmptySubtitle"
+                        <TextView
+                            android:id="@+id/tvMileageValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/text_display"
+                            android:textColor="@color/mileage_good"
+                            android:fontFamily="sans-serif-bold"
+                            tools:text="12.5" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/fuel_rate_display"
+                            android:textSize="@dimen/text_caption"
+                            android:textColor="@color/text_hint"
+                            android:layout_marginTop="@dimen/spacing_xxs" />
+
+                        <!-- Distance Travelled Row -->
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:layout_marginTop="@dimen/spacing_small">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/fuel_mileage_distance"
+                                android:textSize="@dimen/text_caption"
+                                android:textColor="@color/text_secondary" />
+
+                            <TextView
+                                android:id="@+id/tvDistanceTravelled"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="@dimen/text_caption"
+                                android:textColor="@color/text_primary"
+                                android:fontFamily="sans-serif-medium"
+                                android:layout_marginStart="@dimen/spacing_xs"
+                                tools:text="450 km" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- First Entry Message -->
+                    <LinearLayout
+                        android:id="@+id/layoutMileageFirstEntry"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/empty_state_subtitle"
-                        android:textSize="@dimen/text_caption"
-                        android:textColor="@color/text_hint"
-                        android:gravity="center" />
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="@dimen/spacing_medium"
+                        android:visibility="gone"
+                        tools:visibility="gone">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/fuel_mileage_first_entry"
+                            android:textSize="@dimen/text_body"
+                            android:textColor="@color/text_secondary"
+                            android:gravity="center" />
+                    </LinearLayout>
+
+                    <!-- Not Available Message -->
+                    <LinearLayout
+                        android:id="@+id/layoutMileageNotAvailable"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="@dimen/spacing_medium"
+                        android:visibility="gone"
+                        tools:visibility="gone">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/fuel_mileage_not_available"
+                            android:textSize="@dimen/text_body"
+                            android:textColor="@color/text_hint"
+                            android:gravity="center" />
+                    </LinearLayout>
 
                 </LinearLayout>
-
             </com.google.android.material.card.MaterialCardView>
 
+            <!-- ==================== SUBMIT BUTTON ==================== -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSubmit"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/button_height"
+                android:text="@string/fuel_submit"
+                android:textSize="@dimen/text_subtitle"
+                android:fontFamily="sans-serif-medium"
+                app:backgroundTint="@color/primary"
+                app:cornerRadius="@dimen/radius_medium"
+                android:layout_marginBottom="@dimen/spacing_xl"
+                android:enabled="true" />
+
+            <!-- ==================== RECENT FUEL LOGS SECTION ==================== -->
+            <LinearLayout
+                android:id="@+id/layoutRecentLogs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <!-- Section Header -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="@dimen/spacing_medium">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/fuel_recent_title"
+                        android:textSize="@dimen/text_subtitle"
+                        android:textColor="@color/text_primary"
+                        android:fontFamily="sans-serif-medium" />
+
+                    <TextView
+                        android:id="@+id/tvRecentSubtitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/text_caption"
+                        android:textColor="@color/text_hint"
+                        tools:text="Last 10 entries" />
+                </LinearLayout>
+
+                <!-- Fuel Logs RecyclerView -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvRecentLogs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="false"
+                    android:clipToPadding="false"
+                    android:overScrollMode="never"
+                    tools:itemCount="3"
+                    tools:listitem="@layout/item_fuel_log" />
+
+                <!-- Empty Recent Logs -->
+                <LinearLayout
+                    android:id="@+id/layoutNoRecentLogs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="@dimen/spacing_xl"
+                    android:visibility="gone"
+                    tools:visibility="gone">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/fuel_no_recent_logs"
+                        android:textSize="@dimen/text_body"
+                        android:textColor="@color/text_hint"
+                        android:gravity="center" />
+                </LinearLayout>
+            </LinearLayout>
+
         </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
-    </ScrollView>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

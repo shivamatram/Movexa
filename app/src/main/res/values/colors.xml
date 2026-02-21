@@ -266,6 +266,50 @@
     <color name="suggestion_positive">#FF2E7D32</color>
     <color name="suggestion_positive_bg">#FFE8F5E9</color>
 
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!--  FUEL MANAGEMENT MODULE                                -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+
+    <!-- Fuel form card -->
+    <color name="fuel_card_bg">#FFFFFFFF</color>
+    <color name="fuel_card_border">#FFE0E0E0</color>
+
+    <!-- Mileage quality colors -->
+    <color name="mileage_excellent">#FF2E7D32</color>
+    <color name="mileage_excellent_bg">#FFE8F5E9</color>
+    <color name="mileage_good">#FF43A047</color>
+    <color name="mileage_good_bg">#FFE8F5E9</color>
+    <color name="mileage_average">#FFFFA000</color>
+    <color name="mileage_average_bg">#FFFFF8E1</color>
+    <color name="mileage_below_average">#FFEF6C00</color>
+    <color name="mileage_below_average_bg">#FFFFF3E0</color>
+    <color name="mileage_poor">#FFD32F2F</color>
+    <color name="mileage_poor_bg">#FFFFEBEE</color>
+    <color name="mileage_suspicious">#FFB71C1C</color>
+    <color name="mileage_suspicious_bg">#FFFFCDD2</color>
+
+    <!-- Fuel receipt image -->
+    <color name="fuel_receipt_border">#FFB0BEC5</color>
+    <color name="fuel_receipt_bg">#FFF5F5F5</color>
+    <color name="fuel_receipt_overlay">#80000000</color>
+
+    <!-- Fuel submission states -->
+    <color name="fuel_submit_bg">#FF00897B</color>
+    <color name="fuel_submit_disabled">#FFB0BEC5</color>
+    <color name="fuel_upload_progress">#FF1565C0</color>
+
+    <!-- Fuel log history -->
+    <color name="fuel_log_card_bg">#FFFFFFFF</color>
+    <color name="fuel_log_mileage_good">#FF2E7D32</color>
+    <color name="fuel_log_mileage_avg">#FFFFA000</color>
+    <color name="fuel_log_mileage_poor">#FFD32F2F</color>
+    <color name="fuel_log_date">#FF757575</color>
+    <color name="fuel_log_divider">#FFE0E0E0</color>
+
+    <!-- Vehicle info card -->
+    <color name="fuel_vehicle_bg">#FFE0F2F1</color>
+    <color name="fuel_vehicle_icon">#FF00897B</color>
+
     <!-- Alias for design system -->
     <color name="colorPrimary">@color/primary</color>
     <color name="colorOnPrimary">@color/on_primary</color>

@@ -1030,4 +1030,89 @@
     <string name="cd_perf_violation_icon">Violation type icon</string>
     <string name="cd_perf_suggestion_icon">Suggestion icon</string>
     <string name="cd_perf_refresh">Refresh performance score</string>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!--  FUEL MANAGEMENT MODULE                                -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+
+    <!-- Screen header -->
+    <string name="fuel_title">Log Fuel</string>
+    <string name="fuel_subtitle">Record fuel fill-up for your vehicle</string>
+
+    <!-- Vehicle info card -->
+    <string name="fuel_vehicle_label">Vehicle</string>
+    <string name="fuel_vehicle_number">%s</string>
+    <string name="fuel_vehicle_type" formatted="false">%s • %s</string>
+    <string name="fuel_vehicle_odometer">Last Odometer: %,d km</string>
+    <string name="fuel_no_vehicle">No vehicle assigned</string>
+    <string name="fuel_no_vehicle_msg">Contact your fleet manager to get a vehicle assigned before logging fuel.</string>
+
+    <!-- Form fields -->
+    <string name="fuel_quantity_label">Fuel Quantity (Litres)</string>
+    <string name="fuel_quantity_hint">e.g. 45.5</string>
+    <string name="fuel_cost_label">Total Cost (₹)</string>
+    <string name="fuel_cost_hint">e.g. 4550</string>
+    <string name="fuel_odometer_label">Current Odometer (km)</string>
+    <string name="fuel_odometer_hint">e.g. 125000</string>
+    <string name="fuel_station_label">Fuel Station (Optional)</string>
+    <string name="fuel_station_hint">e.g. Indian Oil, Bypass Road</string>
+    <string name="fuel_notes_label">Notes (Optional)</string>
+    <string name="fuel_notes_hint">Any additional details</string>
+
+    <!-- Receipt image -->
+    <string name="fuel_receipt_label">Upload Fuel Receipt</string>
+    <string name="fuel_receipt_hint">Take a photo or choose from gallery</string>
+    <string name="fuel_receipt_camera">Camera</string>
+    <string name="fuel_receipt_gallery">Gallery</string>
+    <string name="fuel_receipt_remove">Remove</string>
+    <string name="fuel_receipt_uploading">Uploading receipt…</string>
+
+    <!-- Mileage preview -->
+    <string name="fuel_mileage_preview">Mileage Preview</string>
+    <string name="fuel_mileage_value">%.1f km/L</string>
+    <string name="fuel_mileage_distance">Distance: %,d km</string>
+    <string name="fuel_mileage_quality">%s</string>
+    <string name="fuel_mileage_first_entry">First Entry</string>
+    <string name="fuel_mileage_not_available">Enter odometer and quantity to see mileage</string>
+
+    <!-- Submit -->
+    <string name="fuel_submit">Submit Fuel Log</string>
+    <string name="fuel_submitting">Submitting…</string>
+    <string name="fuel_submit_success">Fuel log submitted successfully!</string>
+    <string name="fuel_submit_error">Failed to submit fuel log</string>
+    <string name="fuel_validating">Validating…</string>
+    <string name="fuel_uploading">Uploading receipt…</string>
+
+    <!-- Recent logs -->
+    <string name="fuel_recent_title">Recent Fuel Logs</string>
+    <string name="fuel_recent_subtitle">Last {count} entries</string>
+    <string name="fuel_log_quantity">%.1f L</string>
+    <string name="fuel_log_cost">₹%.0f</string>
+    <string name="fuel_log_mileage">%.1f km/L</string>
+    <string name="fuel_log_odometer">%,d km</string>
+    <string name="fuel_log_distance">%,d km driven</string>
+    <string name="fuel_log_no_mileage">First entry</string>
+    <string name="fuel_log_date">%s</string>
+    <string name="fuel_no_recent_logs">No fuel logs yet</string>
+
+    <!-- Loading / Error / Empty states -->
+    <string name="fuel_loading">Loading vehicle info…</string>
+    <string name="fuel_error_title">Something went wrong</string>
+    <string name="fuel_error_retry">Retry</string>
+    <string name="fuel_rate_display">Rate: ₹%.2f/L</string>
+
+    <!-- Content Descriptions -->
+    <string name="cd_fuel_error">Error loading fuel data</string>
+    <string name="cd_fuel_no_vehicle">No vehicle assigned</string>
+    <string name="cd_fuel_vehicle">Assigned vehicle</string>
+    <string name="cd_fuel_form">Fuel entry form</string>
+    <string name="cd_fuel_receipt">Fuel receipt photo</string>
+    <string name="cd_fuel_mileage">Mileage indicator</string>
+    <string name="cd_fuel_vehicle_icon">Vehicle icon</string>
+    <string name="cd_fuel_receipt_image">Fuel receipt image</string>
+    <string name="cd_fuel_add_receipt">Add fuel receipt photo</string>
+    <string name="cd_fuel_remove_receipt">Remove receipt photo</string>
+    <string name="cd_fuel_mileage_icon">Mileage indicator</string>
+    <string name="cd_fuel_log_icon">Fuel log entry</string>
+    <string name="cd_fuel_submit">Submit fuel log</string>
 </resources>

@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/spacing_small"
+    app:cardCornerRadius="@dimen/radius_medium"
+    app:cardElevation="@dimen/elevation_xs"
+    app:cardBackgroundColor="@color/fuel_log_card_bg"
+    app:strokeColor="@color/fuel_log_divider"
+    app:strokeWidth="1dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/card_padding">
+
+        <!-- Top Row: Date + Mileage Badge -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="@dimen/spacing_small">
+
+            <!-- Date -->
+            <TextView
+                android:id="@+id/tvLogDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="@dimen/text_caption"
+                android:textColor="@color/fuel_log_date"
+                android:fontFamily="sans-serif-medium"
+                tools:text="23 Jan 2025, 10:45 AM" />
+
+            <!-- Mileage Badge -->
+            <TextView
+                android:id="@+id/tvLogMileageBadge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_mileage_quality_badge"
+                android:paddingHorizontal="@dimen/spacing_small"
+                android:paddingVertical="@dimen/spacing_xxs"
+                android:textSize="@dimen/text_overline"
+                android:fontFamily="sans-serif-medium"
+                android:textAllCaps="true"
+                tools:text="12.5 km/L"
+                tools:textColor="@color/mileage_good" />
+        </LinearLayout>
+
+        <!-- Middle Row: Station Name -->
+        <TextView
+            android:id="@+id/tvLogStation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_body"
+            android:textColor="@color/text_primary"
+            android:fontFamily="sans-serif-medium"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:layout_marginBottom="@dimen/spacing_small"
+            android:visibility="gone"
+            tools:visibility="visible"
+            tools:text="HP Petrol Pump, MG Road" />
+
+        <!-- Divider -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/fuel_log_divider"
+            android:layout_marginBottom="@dimen/spacing_small" />
+
+        <!-- Bottom Row: Stats Grid (Quantity, Cost, Odometer) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:baselineAligned="false">
+
+            <!-- Quantity Column -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/fuel_log_quantity"
+                    android:textSize="@dimen/text_overline"
+                    android:textColor="@color/text_hint"
+                    android:textAllCaps="true"
+                    android:letterSpacing="0.06" />
+
+                <TextView
+                    android:id="@+id/tvLogQuantity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_body"
+                    android:textColor="@color/text_primary"
+                    android:fontFamily="sans-serif-medium"
+                    tools:text="50.5 L" />
+            </LinearLayout>
+
+            <!-- Cost Column -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/fuel_log_cost"
+                    android:textSize="@dimen/text_overline"
+                    android:textColor="@color/text_hint"
+                    android:textAllCaps="true"
+                    android:letterSpacing="0.06" />
+
+                <TextView
+                    android:id="@+id/tvLogCost"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_body"
+                    android:textColor="@color/text_primary"
+                    android:fontFamily="sans-serif-medium"
+                    tools:text="₹4,750" />
+            </LinearLayout>
+
+            <!-- Odometer Column -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/fuel_log_odometer"
+                    android:textSize="@dimen/text_overline"
+                    android:textColor="@color/text_hint"
+                    android:textAllCaps="true"
+                    android:letterSpacing="0.06" />
+
+                <TextView
+                    android:id="@+id/tvLogOdometer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_body"
+                    android:textColor="@color/text_primary"
+                    android:fontFamily="sans-serif-medium"
+                    tools:text="45,680 km" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>
