@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "857141239966",
+    "project_id": "movexa-4cd99f4f",
+    "storage_bucket": "movexa-4cd99f4f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:857141239966:android:aa61173a330f0fff1f9b8f",
+        "android_client_info": {
+          "package_name": "com.example.movexa"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD3JqOGcBCfdWkOTF25YazCZrJAP8aDZyA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
