@@ -262,8 +262,213 @@
     <string name="stat_month_revenue">Month: %s</string>
     <string name="stat_critical_count">%d critical</string>
     <string name="stat_all_clear">All clear</string>
-    <string name="fleet_ratio_format">%d / %d</string>
+    <string name="fleet_ratio_format">%1$d / %2$d</string>
     <string name="dashboard_last_updated_never">Not updated yet</string>
     <string name="stat_open_alerts_label">Open Alerts</string>
     <string name="stat_open_alerts_subtitle">%d critical</string>
+
+    <!-- ═══════════ Fleet Management Module ═══════════ -->
+
+    <!-- Fleet Tabs -->
+    <string name="tab_vehicles">Vehicles</string>
+    <string name="tab_drivers">Drivers</string>
+    <string name="tab_managers">Managers</string>
+
+    <!-- Vehicle Management -->
+    <string name="fleet_add_vehicle">Add Vehicle</string>
+    <string name="fleet_edit_vehicle">Edit Vehicle</string>
+    <string name="fleet_vehicle_number">Vehicle Number</string>
+    <string name="fleet_vehicle_number_hint">e.g. MH-12-AB-1234</string>
+    <string name="fleet_vehicle_type">Vehicle Type</string>
+    <string name="fleet_vehicle_type_hint">Select vehicle type</string>
+    <string name="fleet_vehicle_capacity">Capacity</string>
+    <string name="fleet_vehicle_capacity_hint">Passenger or load capacity</string>
+    <string name="fleet_vehicle_make">Make</string>
+    <string name="fleet_vehicle_make_hint">e.g. Tata, Mahindra</string>
+    <string name="fleet_vehicle_model">Model</string>
+    <string name="fleet_vehicle_model_hint">e.g. Nexon, Bolero</string>
+    <string name="fleet_vehicle_year">Year</string>
+    <string name="fleet_vehicle_year_hint">Manufacturing year</string>
+    <string name="fleet_vehicle_fuel">Fuel Type</string>
+    <string name="fleet_vehicle_fuel_hint">e.g. Diesel, Petrol, CNG</string>
+    <string name="fleet_vehicle_added">Vehicle added successfully</string>
+    <string name="fleet_vehicle_updated">Vehicle updated successfully</string>
+    <string name="fleet_vehicle_deleted">Vehicle deleted</string>
+    <string name="fleet_vehicle_duplicate">A vehicle with this number already exists</string>
+    <string name="fleet_vehicle_status_changed">Vehicle status changed to %s</string>
+    <string name="fleet_no_vehicles">No vehicles found</string>
+    <string name="fleet_no_vehicles_subtitle">Add your first vehicle to get started</string>
+    <string name="fleet_search_vehicles">Search vehicles…</string>
+    <string name="fleet_vehicle_count">%d vehicles</string>
+
+    <!-- Vehicle Status -->
+    <string name="status_available">Available</string>
+    <string name="status_on_trip">On Trip</string>
+    <string name="status_in_service">In Service</string>
+    <string name="status_inactive">Inactive</string>
+
+    <!-- Vehicle Card -->
+    <string name="vehicle_assigned_to">Assigned to: %s</string>
+    <string name="vehicle_unassigned">Unassigned</string>
+    <string name="vehicle_capacity_format">Capacity: %d</string>
+    <string name="vehicle_info_format">%1$s %2$s • %3$d</string>
+
+    <!-- Driver Management -->
+    <string name="fleet_verify_driver">Verify Driver</string>
+    <string name="fleet_reject_driver">Reject Driver</string>
+    <string name="fleet_block_driver">Block Driver</string>
+    <string name="fleet_unblock_driver">Unblock Driver</string>
+    <string name="fleet_assign_vehicle">Assign Vehicle</string>
+    <string name="fleet_remove_assignment">Remove Assignment</string>
+    <string name="fleet_driver_verified">Driver verified successfully</string>
+    <string name="fleet_driver_rejected">Driver rejected</string>
+    <string name="fleet_driver_blocked">Driver blocked</string>
+    <string name="fleet_driver_unblocked">Driver unblocked</string>
+    <string name="fleet_no_drivers">No drivers found</string>
+    <string name="fleet_no_drivers_subtitle">Drivers will appear here once they register</string>
+    <string name="fleet_search_drivers">Search drivers…</string>
+    <string name="fleet_driver_count">%d drivers</string>
+
+    <!-- Driver Groups -->
+    <string name="group_pending_verification">Pending Verification</string>
+    <string name="group_active_drivers">Active Drivers</string>
+    <string name="group_blocked_drivers">Blocked Drivers</string>
+
+    <!-- Driver Card -->
+    <string name="driver_license">License: %s</string>
+    <string name="driver_trips_count">%d trips</string>
+    <string name="driver_vehicle_assigned">Vehicle: %s</string>
+    <string name="driver_no_vehicle">No vehicle assigned</string>
+    <string name="driver_rating_format">★ %.1f</string>
+
+    <!-- Manager Management -->
+    <string name="fleet_no_managers">No managers found</string>
+    <string name="fleet_no_managers_subtitle">Managers will appear once registered</string>
+    <string name="fleet_search_managers">Search managers…</string>
+    <string name="fleet_manager_count">%d managers</string>
+
+    <!-- Assignment -->
+    <string name="assign_driver_title">Assign Driver</string>
+    <string name="assign_driver_subtitle">Select a driver for this vehicle</string>
+    <string name="assign_vehicle_title">Assign Vehicle</string>
+    <string name="assign_vehicle_subtitle">Select a vehicle for this driver</string>
+    <string name="assign_no_eligible_drivers">No eligible drivers available</string>
+    <string name="assign_no_available_vehicles">No available vehicles</string>
+    <string name="assignment_success">Assignment updated successfully</string>
+    <string name="assignment_removed">Assignment removed</string>
+    <string name="assignment_failed">Failed to update assignment</string>
+    <string name="assign_driver_already">Vehicle already has a driver assigned</string>
+
+    <!-- Confirmation Dialogs -->
+    <string name="confirm_delete_vehicle">Delete Vehicle?</string>
+    <string name="confirm_delete_vehicle_msg">This action cannot be undone. The vehicle will be permanently removed.</string>
+    <string name="confirm_status_change">Change Status?</string>
+    <string name="confirm_status_change_msg">Change vehicle status to %s?</string>
+    <string name="confirm_verify_driver">Verify Driver?</string>
+    <string name="confirm_verify_driver_msg">This will allow %s to receive trip assignments.</string>
+    <string name="confirm_reject_driver">Reject Driver?</string>
+    <string name="confirm_reject_driver_msg">Reject driver verification for %s?</string>
+    <string name="confirm_block_driver">Block Driver?</string>
+    <string name="confirm_block_driver_msg">Block %s? They will not be able to receive trips.</string>
+    <string name="confirm_unblock_driver">Unblock Driver?</string>
+    <string name="confirm_unblock_driver_msg">Unblock %s? They will be able to receive trips again.</string>
+    <string name="confirm_remove_assignment">Remove Assignment?</string>
+    <string name="confirm_remove_assignment_msg">Remove vehicle assignment from this driver?</string>
+
+    <!-- Filter Chips -->
+    <string name="filter_all">All</string>
+    <string name="filter_available">Available</string>
+    <string name="filter_on_trip">On Trip</string>
+    <string name="filter_service">Service</string>
+    <string name="filter_inactive">Inactive</string>
+    <string name="filter_pending">Pending</string>
+    <string name="filter_verified">Verified</string>
+    <string name="filter_blocked">Blocked</string>
+
+    <!-- Validation -->
+    <string name="error_vehicle_number_required">Vehicle number is required</string>
+    <string name="error_vehicle_type_required">Please select a vehicle type</string>
+    <string name="error_vehicle_capacity_required">Capacity is required</string>
+    <string name="error_vehicle_capacity_invalid">Capacity must be a positive number</string>
+
+    <!-- Content Descriptions - Fleet -->
+    <string name="cd_add_vehicle">Add new vehicle</string>
+    <string name="cd_add_driver">Add new driver</string>
+    <string name="cd_search">Search</string>
+    <string name="cd_filter">Filter</string>
+    <string name="cd_vehicle_menu">Vehicle options</string>
+    <string name="cd_driver_menu">Driver options</string>
+    <string name="cd_status_indicator">Status indicator</string>
+    <string name="cd_vehicle_icon">Vehicle icon</string>
+    <string name="cd_driver_icon">Driver icon</string>
+    <string name="cd_manager_icon">Manager icon</string>
+    <string name="cd_error_icon">Error icon</string>
+    <string name="cd_vehicle_options">Vehicle options menu</string>
+    <string name="cd_driver_options">Driver options menu</string>
+    <string name="cd_driver_avatar">Driver avatar</string>
+    <string name="cd_manager_avatar">Manager avatar</string>
+    <string name="cd_verified_badge">Verified badge</string>
+
+    <!-- Fleet Management Titles -->
+    <string name="fleet_management_title">Fleet Management</string>
+    <string name="fleet_management_subtitle">Manage vehicles, drivers and managers</string>
+    <string name="fleet_overview_subtitle">View and manage your fleet</string>
+
+    <!-- Vehicle Card Labels -->
+    <string name="vehicle_label_capacity">Capacity</string>
+    <string name="vehicle_label_driver">Driver</string>
+    <string name="vehicle_label_docs">Docs</string>
+    <string name="vehicle_docs_valid">Valid</string>
+    <string name="vehicle_docs_invalid">Invalid</string>
+    <string name="vehicle_assign_driver">Assign</string>
+
+    <!-- Driver Card Labels -->
+    <string name="driver_label_rating">Rating</string>
+    <string name="driver_label_trips">Trips</string>
+    <string name="driver_label_vehicle">Vehicle</string>
+    <string name="driver_action_verify">Verify</string>
+    <string name="driver_action_block">Block</string>
+    <string name="driver_action_unblock">Unblock</string>
+    <string name="driver_action_assign_vehicle">Assign Vehicle</string>
+
+    <!-- Vehicle Form -->
+    <string name="vehicle_add_title">Add Vehicle</string>
+    <string name="vehicle_edit_title">Edit Vehicle</string>
+    <string name="vehicle_number_hint">Vehicle Number</string>
+    <string name="vehicle_type_hint">Vehicle Type</string>
+    <string name="vehicle_capacity_hint">Seating Capacity</string>
+    <string name="vehicle_make_hint">Make</string>
+    <string name="vehicle_model_hint">Model</string>
+    <string name="vehicle_year_hint">Year</string>
+    <string name="vehicle_fuel_hint">Fuel Type</string>
+
+    <!-- Assignment Bottom Sheet -->
+    <string name="assignment_title">Assign</string>
+    <string name="assignment_select_driver">Select an available driver</string>
+    <string name="assignment_select_vehicle">Select an available vehicle</string>
+    <string name="assignment_no_available">No options available</string>
+    <string name="assignment_current">Currently Assigned</string>
+    <string name="assignment_unassign">Unassign</string>
+    <string name="assignment_confirm">Confirm</string>
+
+    <!-- Additional Filters -->
+    <string name="filter_active">Active</string>
+    <string name="filter_in_service">In Service</string>
+    <string name="filter_unassigned">Unassigned</string>
+
+    <!-- Errors -->
+    <string name="error_loading_vehicles">Failed to load vehicles</string>
+    <string name="error_loading_drivers">Failed to load drivers</string>
+    <string name="error_loading_managers">Failed to load managers</string>
+    <string name="error_loading_fleet">Failed to load fleet data</string>
+    <string name="error_no_company_id">Unable to determine company. Please re-login.</string>
+
+    <!-- Actions -->
+    <string name="action_edit">Edit</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_save">Save</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_retry">Retry</string>
+    <string name="action_change_status">Change Status</string>
+    <string name="action_confirm">Confirm</string>
 </resources>

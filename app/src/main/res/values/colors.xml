@@ -65,4 +65,46 @@
     <!-- Overlay -->
     <color name="scrim">#33000000</color>
     <color name="overlay_dark">#80000000</color>
+
+    <!-- Fleet Status Colors -->
+    <color name="status_available">#FF4CAF50</color>
+    <color name="status_available_bg">#FFE8F5E9</color>
+    <color name="status_on_trip">#FF2196F3</color>
+    <color name="status_on_trip_bg">#FFE3F2FD</color>
+    <color name="status_service">#FFFF9800</color>
+    <color name="status_service_bg">#FFFFF3E0</color>
+    <color name="status_inactive">#FF9E9E9E</color>
+    <color name="status_inactive_bg">#FFF5F5F5</color>
+
+    <!-- Verification Status Colors -->
+    <color name="status_pending">#FFFF9800</color>
+    <color name="status_pending_bg">#FFFFF3E0</color>
+    <color name="status_approved">#FF4CAF50</color>
+    <color name="status_approved_bg">#FFE8F5E9</color>
+    <color name="status_rejected">#FFF44336</color>
+    <color name="status_rejected_bg">#FFFFEBEE</color>
+    <color name="status_under_review">#FF2196F3</color>
+    <color name="status_under_review_bg">#FFE3F2FD</color>
+    <color name="status_expired">#FF795548</color>
+    <color name="status_expired_bg">#FFEFEBE9</color>
+    <color name="status_blocked">#FFD32F2F</color>
+    <color name="status_blocked_bg">#FFFFCDD2</color>
+
+    <!-- Chip Colors -->
+    <color name="chip_background">#FFF0F0F0</color>
+    <color name="chip_text">#FF616161</color>
+    <color name="chip_selected_text">#FFFFFFFF</color>
+
+    <!-- Card Colors -->
+    <color name="card_background">#FFFFFFFF</color>
+    <color name="card_border">#FFE0E0E0</color>
+    <color name="divider_color">#FFE0E0E0</color>
+
+    <!-- Rating -->
+    <color name="star_filled">#FFFFC107</color>
+    <color name="star_empty">#FFE0E0E0</color>
+
+    <!-- Alias for design system -->
+    <color name="colorPrimary">@color/primary</color>
+    <color name="colorOnPrimary">@color/on_primary</color>
 </resources>

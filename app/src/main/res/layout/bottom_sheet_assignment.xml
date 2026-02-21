@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="@dimen/spacing_large"
+    android:background="@color/surface"
+    style="@style/Widget.Material3.BottomSheet">
+
+    <!-- Drag Handle -->
+    <View
+        android:layout_width="40dp"
+        android:layout_height="4dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/outline_variant"
+        android:layout_marginBottom="@dimen/spacing_medium" />
+
+    <!-- Title -->
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/assignment_title"
+        android:textSize="@dimen/text_title"
+        android:textColor="@color/text_primary"
+        android:fontFamily="sans-serif-medium"
+        android:layout_marginBottom="@dimen/spacing_xs" />
+
+    <!-- Subtitle -->
+    <TextView
+        android:id="@+id/tvSubtitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/assignment_select_driver"
+        android:textSize="@dimen/text_body"
+        android:textColor="@color/text_secondary"
+        android:layout_marginBottom="@dimen/spacing_medium" />
+
+    <!-- Loading State -->
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/progressLoading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:visibility="gone" />
+
+    <!-- Assignment Options List -->
+    <LinearLayout
+        android:id="@+id/layoutOptions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginBottom="@dimen/spacing_medium" />
+
+    <!-- Empty State -->
+    <TextView
+        android:id="@+id/tvEmpty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/assignment_no_available"
+        android:textSize="@dimen/text_body"
+        android:textColor="@color/text_hint"
+        android:gravity="center"
+        android:padding="@dimen/spacing_large"
+        android:visibility="gone" />
+
+    <!-- Current Assignment Info (for unassign) -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardCurrentAssignment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/spacing_medium"
+        android:visibility="gone"
+        app:cardCornerRadius="@dimen/radius_small"
+        app:cardElevation="0dp"
+        app:cardBackgroundColor="@color/info_container">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="@dimen/spacing_medium"
+            android:gravity="center_vertical">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/assignment_current"
+                    android:textSize="@dimen/text_caption"
+                    android:textColor="@color/info" />
+
+                <TextView
+                    android:id="@+id/tvCurrentAssignment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_body"
+                    android:textColor="@color/text_primary"
+                    android:fontFamily="sans-serif-medium"
+                    tools:text="MH 02 AB 1234" />
+
+            </LinearLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnUnassign"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="@string/assignment_unassign"
+                android:textSize="@dimen/text_caption"
+                style="@style/Widget.Material3.Button.TextButton"
+                app:icon="@drawable/ic_link_off"
+                app:iconSize="16dp"
+                app:cornerRadius="@dimen/radius_small" />
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Action Buttons -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="end">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/button_height_small"
+            android:text="@string/action_cancel"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:layout_marginEnd="@dimen/spacing_small" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnConfirmAssignment"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/button_height_small"
+            android:text="@string/assignment_confirm"
+            android:enabled="false"
+            app:cornerRadius="@dimen/radius_small" />
+
+    </LinearLayout>
+
+</LinearLayout>

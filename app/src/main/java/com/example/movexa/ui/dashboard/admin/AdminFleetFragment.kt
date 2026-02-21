@@ -1,27 +1,95 @@
 package com.example.movexa.ui.dashboard.admin
 
+import androidx.fragment.app.Fragment
+import com.example.movexa.R
 import com.example.movexa.databinding.FragmentAdminFleetBinding
 import com.example.movexa.ui.base.BaseFragment
+import com.example.movexa.ui.fleet.DriversTabFragment
+import com.example.movexa.ui.fleet.ManagersTabFragment
+import com.example.movexa.ui.fleet.VehiclesTabFragment
+import com.google.android.material.tabs.TabLayout
 
 /**
- * Fleet Management tab placeholder for the Admin dashboard.
+ * Fleet Management host for the Admin dashboard.
  *
- * This fragment serves as the fleet management section for administrators.
- * Business logic will be implemented in future modules.
+ * Contains a TabLayout with 3 tabs: Vehicles, Drivers, Managers.
+ * Each tab loads a child fragment via childFragmentManager.
+ * Admin has full CRUD permissions on vehicles, verification/blocking on drivers,
+ * and read-only view of managers.
  */
 class AdminFleetFragment : BaseFragment<FragmentAdminFleetBinding>(
     FragmentAdminFleetBinding::inflate
 ) {
 
+    // ── Tab Fragments ───────────────────────────────────────────
+    private val vehiclesTab by lazy { VehiclesTabFragment.newInstance(isAdmin = true) }
+    private val driversTab by lazy { DriversTabFragment.newInstance(isAdmin = true) }
+    private val managersTab by lazy { ManagersTabFragment.newInstance() }
+
+    private var currentTab: Fragment? = null
+
+    // ── Lifecycle ───────────────────────────────────────────────
+
     override fun initViews() {
-        // Placeholder — UI setup will be implemented in future modules
+        // Add tabs
+        binding.tabLayout.apply {
+            addTab(newTab().setText(R.string.tab_vehicles))
+            addTab(newTab().setText(R.string.tab_drivers))
+            addTab(newTab().setText(R.string.tab_managers))
+        }
+
+        // Show initial tab
+        switchToTab(vehiclesTab, TAG_VEHICLES)
     }
 
     override fun setupListeners() {
-        // Placeholder — click handlers will be implemented in future modules
+        binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab) {
+                when (tab.position) {
+                    0 -> switchToTab(vehiclesTab, TAG_VEHICLES)
+                    1 -> switchToTab(driversTab, TAG_DRIVERS)
+                    2 -> switchToTab(managersTab, TAG_MANAGERS)
+                }
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab) {}
+            override fun onTabReselected(tab: TabLayout.Tab) {}
+        })
     }
 
     override fun observeData() {
-        // Placeholder — data observation will be implemented in future modules
+        // Data observation is handled by each child fragment's ViewModel
+    }
+
+    // ── Tab Switching ───────────────────────────────────────────
+
+    /**
+     * Switch the tab content container to show the given fragment.
+     * Uses childFragmentManager to keep fragments alive while tabs are switched.
+     */
+    private fun switchToTab(fragment: Fragment, tag: String) {
+        if (currentTab === fragment) return
+
+        val transaction = childFragmentManager.beginTransaction()
+
+        // Hide current fragment
+        currentTab?.let { transaction.hide(it) }
+
+        // Show or add new fragment
+        val existing = childFragmentManager.findFragmentByTag(tag)
+        if (existing != null) {
+            transaction.show(existing)
+        } else {
+            transaction.add(R.id.fleetTabContainer, fragment, tag)
+        }
+
+        transaction.commitNowAllowingStateLoss()
+        currentTab = fragment
+    }
+
+    companion object {
+        private const val TAG_VEHICLES = "tab_vehicles"
+        private const val TAG_DRIVERS = "tab_drivers"
+        private const val TAG_MANAGERS = "tab_managers"
     }
 }
