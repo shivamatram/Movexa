@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingVertical="@dimen/spacing_small"
+    android:gravity="center_vertical">
+
+    <!-- Priority Indicator Strip -->
+    <View
+        android:id="@+id/viewPriorityIndicator"
+        android:layout_width="4dp"
+        android:layout_height="40dp"
+        android:background="@color/error" />
+
+    <!-- Content -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_marginStart="@dimen/spacing_small">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <!-- Alert Title -->
+            <TextView
+                android:id="@+id/tvAlertTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="@dimen/text_body"
+                android:textColor="@color/text_primary"
+                android:fontFamily="sans-serif-medium"
+                android:maxLines="1"
+                android:ellipsize="end"
+                tools:text="Vehicle Breakdown" />
+
+            <!-- Priority Badge -->
+            <TextView
+                android:id="@+id/tvPriorityBadge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/spacing_xs"
+                android:paddingVertical="@dimen/spacing_xxs"
+                android:textSize="9sp"
+                android:textColor="@android:color/white"
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="0.06"
+                android:background="@drawable/bg_priority_badge"
+                tools:text="CRITICAL" />
+
+        </LinearLayout>
+
+        <!-- Alert Message -->
+        <TextView
+            android:id="@+id/tvAlertMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_caption"
+            android:textColor="@color/text_secondary"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:layout_marginTop="@dimen/spacing_xxs"
+            tools:text="Engine overheating on vehicle MH-12-AB-1234" />
+
+        <!-- Time -->
+        <TextView
+            android:id="@+id/tvAlertTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_overline"
+            android:textColor="@color/text_hint"
+            android:layout_marginTop="@dimen/spacing_xxs"
+            tools:text="5 min ago" />
+
+    </LinearLayout>
+
+</LinearLayout>

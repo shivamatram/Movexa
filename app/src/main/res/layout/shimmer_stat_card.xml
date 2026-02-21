@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Shimmer placeholder card for loading states -->
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="@dimen/radius_medium"
+    app:cardElevation="@dimen/elevation_small"
+    app:cardBackgroundColor="@color/surface">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/spacing_medium">
+
+        <!-- Icon + Label placeholder -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="@dimen/spacing_small">
+
+            <View
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:background="@drawable/shimmer_circle" />
+
+            <View
+                android:layout_width="80dp"
+                android:layout_height="12dp"
+                android:background="@color/shimmer_base"
+                android:layout_marginStart="@dimen/spacing_small" />
+
+        </LinearLayout>
+
+        <!-- Value placeholder -->
+        <View
+            android:layout_width="60dp"
+            android:layout_height="28dp"
+            android:background="@color/shimmer_base"
+            android:layout_marginBottom="@dimen/spacing_xxs" />
+
+        <!-- Subtitle placeholder -->
+        <View
+            android:layout_width="100dp"
+            android:layout_height="10dp"
+            android:background="@color/shimmer_highlight" />
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

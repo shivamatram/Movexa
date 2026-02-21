@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingVertical="@dimen/spacing_small"
+    android:gravity="center_vertical">
+
+    <!-- Activity Type Icon -->
+    <FrameLayout
+        android:id="@+id/iconContainer"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:background="@drawable/bg_activity_icon">
+
+        <ImageView
+            android:id="@+id/ivActivityIcon"
+            android:layout_width="14dp"
+            android:layout_height="14dp"
+            android:layout_gravity="center"
+            android:contentDescription="@string/cd_activity_icon"
+            tools:src="@drawable/ic_dashboard_vehicle" />
+
+    </FrameLayout>
+
+    <!-- Content -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_marginStart="@dimen/spacing_small">
+
+        <TextView
+            android:id="@+id/tvActivityMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_body"
+            android:textColor="@color/text_primary"
+            android:maxLines="2"
+            android:ellipsize="end"
+            tools:text="Vehicle MH-12-AB-1234 started trip" />
+
+        <TextView
+            android:id="@+id/tvActivityTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_overline"
+            android:textColor="@color/text_hint"
+            android:layout_marginTop="@dimen/spacing_xxs"
+            tools:text="2 min ago" />
+
+    </LinearLayout>
+
+</LinearLayout>
