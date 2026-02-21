@@ -113,7 +113,15 @@ object FirebaseProvider {
     object Collections {
         const val USERS = "users"
         const val VEHICLES = "vehicles"
+        const val DRIVERS = "drivers"
         const val TRIPS = "trips"
+        const val TRIP_EVENTS = "trip_events"
+        const val FUEL_LOGS = "fuel_logs"
+        const val SERVICES = "services"
+        const val REPAIRS = "repairs"
+        const val PARTS_HISTORY = "parts_history"
+        const val ALERTS = "alerts"
+        const val ACTIVITY_LOGS = "activity_logs"
         const val MAINTENANCE = "maintenance"
         const val REPORTS = "reports"
         const val NOTIFICATIONS = "notifications"
@@ -125,6 +133,7 @@ object FirebaseProvider {
      * Realtime Database paths.
      */
     object RealtimePaths {
+        const val TRACKING_LOCATIONS = "tracking_locations"
         const val VEHICLE_LOCATIONS = "vehicle_locations"
         const val DRIVER_STATUS = "driver_status"
         const val LIVE_TRIPS = "live_trips"
@@ -138,6 +147,9 @@ object FirebaseProvider {
         const val PROFILE_IMAGES = "profile_images"
         const val VEHICLE_IMAGES = "vehicle_images"
         const val DOCUMENTS = "documents"
+        const val LICENSES = "licenses"
+        const val ID_PROOFS = "id_proofs"
+        const val FUEL_BILLS = "fuel_bills"
         const val REPORTS = "reports"
     }
 }
