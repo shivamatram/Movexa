@@ -125,6 +125,39 @@
     <color name="timeline_line_active">#FF00897B</color>
     <color name="timeline_dot_inactive">#FFBDBDBD</color>
 
+    <!-- ═══════════ Tracking Module Colors ═══════════ -->
+
+    <!-- Vehicle Marker States -->
+    <color name="tracking_moving">#FF4CAF50</color>
+    <color name="tracking_moving_bg">#FFE8F5E9</color>
+    <color name="tracking_idle">#FFFF9800</color>
+    <color name="tracking_idle_bg">#FFFFF3E0</color>
+    <color name="tracking_offline">#FF9E9E9E</color>
+    <color name="tracking_offline_bg">#FFF5F5F5</color>
+    <color name="tracking_alert">#FFF44336</color>
+    <color name="tracking_alert_bg">#FFFFEBEE</color>
+
+    <!-- Map UI -->
+    <color name="tracking_route_primary">#FF1565C0</color>
+    <color name="tracking_route_secondary">#664DB6AC</color>
+    <color name="tracking_accuracy_circle">#1A00897B</color>
+    <color name="tracking_eta_badge">#FF00897B</color>
+    <color name="tracking_speed_badge">#FF1565C0</color>
+    <color name="tracking_panel_bg">#F2FFFFFF</color>
+    <color name="tracking_panel_shadow">#14000000</color>
+
+    <!-- Tracking Status -->
+    <color name="tracking_active">#FF4CAF50</color>
+    <color name="tracking_active_bg">#FFE8F5E9</color>
+    <color name="tracking_paused">#FFFF9800</color>
+    <color name="tracking_paused_bg">#FFFFF3E0</color>
+    <color name="tracking_stopped">#FF9E9E9E</color>
+    <color name="tracking_stopped_bg">#FFF5F5F5</color>
+
+    <!-- Pulse Animation -->
+    <color name="tracking_pulse_start">#6600897B</color>
+    <color name="tracking_pulse_end">#0000897B</color>
+
     <!-- Alias for design system -->
     <color name="colorPrimary">@color/primary</color>
     <color name="colorOnPrimary">@color/on_primary</color>

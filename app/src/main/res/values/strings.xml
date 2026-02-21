@@ -665,4 +665,153 @@
     <!-- Complete Trip Form -->
     <string name="trip_actual_distance_hint">Actual distance (km)</string>
     <string name="trip_cancel_reason_hint">Reason for cancellation</string>
+
+    <!-- ═══════════ Real-Time GPS Tracking Module ═══════════ -->
+
+    <!-- Manager Tracking Fragment -->
+    <string name="total_vehicles_count">Total: %d</string>
+    <string name="moving_count">Moving: %d</string>
+    <string name="idle_count">Idle: %d</string>
+    <string name="speed_value">%s km/h</string>
+    <string name="filter_idle">Idle</string>
+    <string name="trip_info_active">Trip: …%s</string>
+    <string name="accuracy_value">±%s m</string>
+
+    <!-- Driver Navigation Fragment -->
+    <string name="start_tracking">Start Tracking</string>
+    <string name="stop_tracking">Stop Tracking</string>
+    <string name="gps_status_active">GPS Active</string>
+    <string name="gps_status_acquiring">Acquiring GPS…</string>
+    <string name="gps_status_poor">Poor Signal</string>
+    <string name="gps_status_inactive">GPS Inactive</string>
+    <string name="active_trip_label">Trip: …%s</string>
+    <string name="permission_denied_message">Location permission denied. Tracking requires GPS access.</string>
+    <string name="background_location_rationale">Allow \"All the time\" location for background tracking.</string>
+    <string name="my_location_marker_title">My Location</string>
+
+    <!-- Live Tracking Fragment -->
+    <string name="status_waiting">Waiting…</string>
+    <string name="status_offline">Offline</string>
+    <string name="distance_remaining_value">%s remaining</string>
+    <string name="tracking_vehicle_title">Tracking %s</string>
+    <string name="vehicle_marker_title">Vehicle</string>
+
+
+    <!-- Manager Tracking Screen -->
+    <string name="tracking_title">Live Tracking</string>
+    <string name="tracking_subtitle">Real-time vehicle monitoring</string>
+    <string name="tracking_all_vehicles">All Vehicles</string>
+    <string name="tracking_moving_vehicles">Moving</string>
+    <string name="tracking_idle_vehicles">Idle</string>
+    <string name="tracking_offline_vehicles">Offline</string>
+    <string name="tracking_vehicle_count">%d vehicles</string>
+    <string name="tracking_moving_count">%d moving</string>
+    <string name="tracking_idle_count">%d idle</string>
+    <string name="tracking_offline_count">%d offline</string>
+    <string name="tracking_no_vehicles">No vehicles being tracked</string>
+    <string name="tracking_no_vehicles_subtitle">Active vehicles with GPS will appear on the map</string>
+    <string name="tracking_search_hint">Search vehicles…</string>
+    <string name="tracking_last_updated">Updated %s ago</string>
+    <string name="tracking_just_now">Just now</string>
+    <string name="tracking_speed_format">%.0f km/h</string>
+    <string name="tracking_accuracy_format">±%.0f m</string>
+    <string name="tracking_heading_format">%.0f°</string>
+    <string name="tracking_vehicle_info">%1$s • %2$s</string>
+    <string name="tracking_driver_info">Driver: %s</string>
+    <string name="tracking_trip_active">Active Trip: %s</string>
+    <string name="tracking_no_active_trip">No active trip</string>
+    <string name="tracking_center_all">Center All</string>
+    <string name="tracking_center_vehicle">Center on Vehicle</string>
+    <string name="tracking_filter_label">Filter</string>
+    <string name="tracking_map_type_normal">Normal</string>
+    <string name="tracking_map_type_satellite">Satellite</string>
+    <string name="tracking_map_type_hybrid">Hybrid</string>
+    <string name="tracking_map_type_terrain">Terrain</string>
+    <string name="tracking_refresh">Refresh</string>
+
+    <!-- Driver Navigation Screen -->
+    <string name="navigation_title">Navigation</string>
+    <string name="navigation_subtitle">GPS tracking and navigation</string>
+    <string name="navigation_start_tracking">Start Tracking</string>
+    <string name="navigation_stop_tracking">Stop Tracking</string>
+    <string name="navigation_tracking_active">Tracking Active</string>
+    <string name="navigation_tracking_inactive">Tracking Stopped</string>
+    <string name="navigation_tracking_started">GPS tracking started</string>
+    <string name="navigation_tracking_stopped">GPS tracking stopped</string>
+    <string name="navigation_current_speed">Current Speed</string>
+    <string name="navigation_avg_speed">Avg Speed</string>
+    <string name="navigation_distance_covered">Distance</string>
+    <string name="navigation_duration">Duration</string>
+    <string name="navigation_accuracy">Accuracy</string>
+    <string name="navigation_heading">Heading</string>
+    <string name="navigation_status_connected">Connected</string>
+    <string name="navigation_status_connecting">Connecting…</string>
+    <string name="navigation_status_disconnected">Disconnected</string>
+    <string name="navigation_gps_weak">Weak GPS signal</string>
+    <string name="navigation_gps_strong">Strong GPS signal</string>
+    <string name="navigation_no_trip">No active trip assigned</string>
+    <string name="navigation_active_trip">Trip: %s</string>
+    <string name="navigation_to_pickup">Navigate to Pickup</string>
+    <string name="navigation_to_drop">Navigate to Drop-off</string>
+    <string name="navigation_permission_required">Location Permission Required</string>
+    <string name="navigation_permission_message">GPS tracking needs location access to share your position.</string>
+    <string name="navigation_permission_bg_message">Background location access is needed to track your position while the app is minimized.</string>
+    <string name="navigation_grant_permission">Grant Permission</string>
+    <string name="navigation_bg_permission_title">Background Location</string>
+    <string name="navigation_bg_permission_msg">To continue tracking while the app is in the background, please allow \"All the time\" location access.</string>
+    <string name="navigation_battery_optimized">Battery Optimized Mode</string>
+    <string name="navigation_high_accuracy">High Accuracy Mode</string>
+
+    <!-- Live Tracking Screen (Customer) -->
+    <string name="live_tracking_title">Track Vehicle</string>
+    <string name="live_tracking_subtitle">Live location of your shipment</string>
+    <string name="live_tracking_eta">ETA</string>
+    <string name="live_tracking_eta_format">%d min</string>
+    <string name="live_tracking_eta_hours_format">%1$dh %2$dm</string>
+    <string name="live_tracking_eta_calculating">Calculating…</string>
+    <string name="live_tracking_distance_remaining">Distance Remaining</string>
+    <string name="live_tracking_distance_format">%.1f km</string>
+    <string name="live_tracking_vehicle_approaching">Vehicle is approaching</string>
+    <string name="live_tracking_vehicle_nearby">Vehicle is nearby</string>
+    <string name="live_tracking_vehicle_arriving">Vehicle is arriving</string>
+    <string name="live_tracking_vehicle_arrived">Vehicle has arrived</string>
+    <string name="live_tracking_no_data">Waiting for vehicle location…</string>
+    <string name="live_tracking_offline">Vehicle appears to be offline</string>
+    <string name="live_tracking_trip_info">Trip Information</string>
+    <string name="live_tracking_pickup">Pickup</string>
+    <string name="live_tracking_dropoff">Drop-off</string>
+    <string name="live_tracking_driver_name">Driver</string>
+    <string name="live_tracking_vehicle_number">Vehicle</string>
+    <string name="live_tracking_speed">Speed</string>
+    <string name="live_tracking_last_update">Last Update</string>
+
+    <!-- Tracking Service Notification -->
+    <string name="tracking_notification_channel">Location Tracking</string>
+    <string name="tracking_notification_channel_desc">Shows when GPS tracking is active</string>
+    <string name="tracking_notification_title">Movexa GPS Active</string>
+    <string name="tracking_notification_text">Sharing your location for trip tracking</string>
+    <string name="tracking_notification_stop">Stop Tracking</string>
+
+    <!-- Tracking Errors -->
+    <string name="error_location_permission">Location permission is required for GPS tracking</string>
+    <string name="error_location_unavailable">Unable to get current location</string>
+    <string name="error_tracking_service">Tracking service error. Please restart tracking.</string>
+    <string name="error_gps_disabled">GPS is disabled. Please enable it in settings.</string>
+    <string name="error_tracking_upload">Failed to upload location. Retrying…</string>
+    <string name="error_map_init">Failed to initialize map</string>
+
+    <!-- Tracking Content Descriptions -->
+    <string name="cd_tracking_map">Vehicle tracking map</string>
+    <string name="cd_vehicle_marker">Vehicle location marker</string>
+    <string name="cd_my_location">My current location</string>
+    <string name="cd_center_map">Center map</string>
+    <string name="cd_map_type">Change map type</string>
+    <string name="cd_tracking_status">Tracking status indicator</string>
+    <string name="cd_speed_indicator">Speed indicator</string>
+    <string name="cd_eta_indicator">Estimated time of arrival</string>
+    <string name="cd_gps_signal">GPS signal strength</string>
+    <string name="cd_start_tracking">Start GPS tracking</string>
+    <string name="cd_stop_tracking">Stop GPS tracking</string>
+    <string name="cd_tracking_filter">Filter vehicles</string>
+    <string name="cd_vehicle_panel">Vehicle information panel</string>
 </resources>

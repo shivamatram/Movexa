@@ -33,7 +33,34 @@
         android:id="@+id/managerTrackingFragment"
         android:name="com.example.movexa.ui.dashboard.manager.ManagerTrackingFragment"
         android:label="Tracking"
-        tools:layout="@layout/fragment_manager_tracking" />
+        tools:layout="@layout/fragment_manager_tracking">
+
+        <action
+            android:id="@+id/action_managerTracking_to_liveTracking"
+            app:destination="@id/liveTrackingFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/liveTrackingFragment"
+        android:name="com.example.movexa.ui.tracking.LiveTrackingFragment"
+        android:label="Live Tracking"
+        tools:layout="@layout/fragment_live_tracking">
+
+        <argument
+            android:name="arg_company_id"
+            app:argType="string" />
+        <argument
+            android:name="arg_vehicle_id"
+            app:argType="string" />
+        <argument
+            android:name="arg_trip_id"
+            app:argType="string"
+            android:defaultValue="" />
+    </fragment>
 
     <fragment
         android:id="@+id/managerAlertsFragment"

@@ -1,6 +1,9 @@
 package com.example.movexa
 
 import android.app.Application
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.os.Build
 import com.example.movexa.data.local.PreferencesManager
 import com.example.movexa.data.session.SessionManager
 
@@ -13,6 +16,7 @@ import com.example.movexa.data.session.SessionManager
  * - Singleton access to application context
  * - Preferences initialization
  * - SessionManager initialization (DataStore)
+ * - Notification channel creation (tracking service)
  *
  * Firebase modules will auto-initialize through their ContentProviders.
  * No manual Firebase.initializeApp() call is needed because the
@@ -23,6 +27,9 @@ class MoveXaApp : Application() {
     companion object {
         @Volatile
         private var instance: MoveXaApp? = null
+
+        /** Notification channel ID for location tracking foreground service. */
+        const val CHANNEL_TRACKING = "movexa_tracking"
 
         /**
          * Global access to the Application instance.
@@ -37,6 +44,7 @@ class MoveXaApp : Application() {
 
         initializePreferences()
         initializeSession()
+        initializeNotificationChannels()
         initializeModules()
     }
 
@@ -54,6 +62,27 @@ class MoveXaApp : Application() {
      */
     private fun initializeSession() {
         SessionManager.init(this)
+    }
+
+    /**
+     * Create notification channels for Android O+ (API 26+).
+     * Channels must be created before posting any notification.
+     */
+    private fun initializeNotificationChannels() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val trackingChannel = NotificationChannel(
+                CHANNEL_TRACKING,
+                getString(R.string.tracking_notification_channel),
+                NotificationManager.IMPORTANCE_LOW
+            ).apply {
+                description = getString(R.string.tracking_notification_channel_desc)
+                setShowBadge(false)
+                enableVibration(false)
+            }
+
+            val notificationManager = getSystemService(NotificationManager::class.java)
+            notificationManager.createNotificationChannel(trackingChannel)
+        }
     }
 
     /**

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <!-- GPS signal / satellite icon -->
+    <path
+        android:fillColor="#FF00897B"
+        android:pathData="M7,24h2v-2H7v2zM11,24h2v-2h-2v2zM15,24h2v-2h-2v2zM3.41,1.64L2,3.05 5.59,6.64 4.12,8.12 8.71,12.71l1.41,-1.41L5.59,6.64 7.05,5.18 3.41,1.64zM11,1h2v4h-2V1zM19.07,4.93l-1.41,1.41 1.06,1.06 1.41,-1.41 -1.06,-1.06zM15,1h2v4h-2V1zM21,11h-4v2h4v-2zM17.66,16.17l-1.41,1.41 1.06,1.06 1.41,-1.41 -1.06,-1.06zM21,15h-4v2h4v-2z"/>
+</vector>
