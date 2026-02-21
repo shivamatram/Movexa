@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <!-- ═══════════════════════════════════════════════════
+         LOADING STATE
+         ═══════════════════════════════════════════════════ -->
+    <LinearLayout
+        android:id="@+id/layoutLoading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:visibility="gone"
+        tools:visibility="gone">
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/progressLoading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            app:indicatorColor="@color/primary"
+            app:trackThickness="4dp"
+            app:indicatorSize="48dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/analytics_loading"
+            android:textSize="@dimen/text_body"
+            android:textColor="@color/text_secondary"
+            android:layout_marginTop="@dimen/spacing_medium" />
+    </LinearLayout>
+
+    <!-- ═══════════════════════════════════════════════════
+         ERROR STATE
+         ═══════════════════════════════════════════════════ -->
+    <LinearLayout
+        android:id="@+id/layoutError"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="@dimen/screen_margin_horizontal"
+        android:visibility="gone"
+        tools:visibility="gone">
+
+        <ImageView
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:src="@drawable/ic_analytics_expense"
+            app:tint="@color/error"
+            android:contentDescription="@string/analytics_error_title"
+            android:layout_marginBottom="@dimen/spacing_medium" />
+
+        <TextView
+            android:id="@+id/tvErrorTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/analytics_error_title"
+            android:textSize="@dimen/text_subtitle"
+            android:textColor="@color/text_primary"
+            android:fontFamily="sans-serif-medium"
+            android:layout_marginBottom="@dimen/spacing_xs" />
+
+        <TextView
+            android:id="@+id/tvErrorMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_body"
+            android:textColor="@color/text_secondary"
+            android:gravity="center"
+            android:layout_marginBottom="@dimen/spacing_large"
+            tools:text="Failed to load report data" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnRetry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/analytics_error_retry"
+            app:icon="@drawable/ic_refresh"
+            style="@style/Widget.Movexa.Button.Primary" />
+    </LinearLayout>
+
+    <!-- ═══════════════════════════════════════════════════
+         MAIN CONTENT
+         ═══════════════════════════════════════════════════ -->
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nestedScroll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:clipToPadding="false"
+            android:paddingBottom="@dimen/spacing_xxl">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- ═══════════════════════════════════════
+                     HEADER
+                     ═══════════════════════════════════════ -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="@dimen/screen_margin_horizontal"
+                    android:paddingTop="@dimen/spacing_medium">
+
+                    <!-- Back + Title -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="@dimen/spacing_xs">
+
+                        <ImageView
+                            android:id="@+id/btnBack"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:src="@drawable/ic_back_arrow"
+                            app:tint="@color/text_primary"
+                            android:contentDescription="@string/cd_back"
+                            android:padding="6dp"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:layout_marginEnd="@dimen/spacing_small" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/analytics_reports_title"
+                            android:textSize="@dimen/text_headline"
+                            android:textColor="@color/text_primary"
+                            android:fontFamily="sans-serif-bold" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/analytics_reports_subtitle"
+                        android:textSize="@dimen/text_caption"
+                        android:textColor="@color/text_secondary"
+                        android:layout_marginBottom="@dimen/spacing_medium"
+                        android:paddingStart="44dp"
+                        tools:ignore="RtlSymmetry" />
+                </LinearLayout>
+
+                <!-- ═══════════════════════════════════════
+                     VEHICLE UTILIZATION (Horizontal Bar Chart)
+                     ═══════════════════════════════════════ -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardUtilization"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/screen_margin_horizontal"
+                    android:layout_marginBottom="@dimen/spacing_medium"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="@dimen/elevation_xs"
+                    app:cardBackgroundColor="@color/surface">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/card_padding">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/analytics_section_vehicle_utilization"
+                            android:textSize="@dimen/text_subtitle"
+                            android:textColor="@color/text_primary"
+                            android:fontFamily="sans-serif-medium"
+                            android:layout_marginBottom="@dimen/spacing_small" />
+
+                        <com.github.mikephil.charting.charts.HorizontalBarChart
+                            android:id="@+id/barChartUtilization"
+                            android:layout_width="match_parent"
+                            android:layout_height="280dp" />
+
+                        <!-- Empty utilization -->
+                        <TextView
+                            android:id="@+id/tvUtilizationEmpty"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/analytics_empty_utilization"
+                            android:textSize="@dimen/text_body"
+                            android:textColor="@color/text_hint"
+                            android:gravity="center"
+                            android:padding="@dimen/spacing_large"
+                            android:visibility="gone" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- ═══════════════════════════════════════
+                     DRIVER PERFORMANCE RANKING (Bar Chart)
+                     ═══════════════════════════════════════ -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardDriverRanking"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/screen_margin_horizontal"
+                    android:layout_marginBottom="@dimen/spacing_medium"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="@dimen/elevation_xs"
+                    app:cardBackgroundColor="@color/surface">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/card_padding">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/analytics_section_driver_rankings"
+                            android:textSize="@dimen/text_subtitle"
+                            android:textColor="@color/text_primary"
+                            android:fontFamily="sans-serif-medium"
+                            android:layout_marginBottom="@dimen/spacing_small" />
+
+                        <com.github.mikephil.charting.charts.BarChart
+                            android:id="@+id/barChartDrivers"
+                            android:layout_width="match_parent"
+                            android:layout_height="240dp"
+                            android:layout_marginBottom="@dimen/spacing_small" />
+
+                        <!-- Driver list (RecyclerView) -->
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rvDriverRankings"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:nestedScrollingEnabled="false"
+                            android:overScrollMode="never"
+                            tools:listitem="@layout/item_driver_ranking"
+                            tools:itemCount="5" />
+
+                        <!-- Empty rankings -->
+                        <TextView
+                            android:id="@+id/tvRankingsEmpty"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/analytics_empty_rankings"
+                            android:textSize="@dimen/text_body"
+                            android:textColor="@color/text_hint"
+                            android:gravity="center"
+                            android:padding="@dimen/spacing_large"
+                            android:visibility="gone" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- ═══════════════════════════════════════
+                     VEHICLE COST RANKING (Table)
+                     ═══════════════════════════════════════ -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardVehicleCosts"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/screen_margin_horizontal"
+                    android:layout_marginBottom="@dimen/spacing_medium"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="@dimen/elevation_xs"
+                    app:cardBackgroundColor="@color/surface">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/card_padding">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/analytics_section_vehicle_costs"
+                            android:textSize="@dimen/text_subtitle"
+                            android:textColor="@color/text_primary"
+                            android:fontFamily="sans-serif-medium"
+                            android:layout_marginBottom="@dimen/spacing_small" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rvVehicleCosts"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:nestedScrollingEnabled="false"
+                            android:overScrollMode="never"
+                            tools:listitem="@layout/item_vehicle_cost"
+                            tools:itemCount="5" />
+
+                        <!-- Empty costs -->
+                        <TextView
+                            android:id="@+id/tvCostsEmpty"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/analytics_empty_costs"
+                            android:textSize="@dimen/text_body"
+                            android:textColor="@color/text_hint"
+                            android:gravity="center"
+                            android:padding="@dimen/spacing_large"
+                            android:visibility="gone" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- ═══════════════════════════════════════
+                     EMPTY STATE (when all sections empty)
+                     ═══════════════════════════════════════ -->
+                <LinearLayout
+                    android:id="@+id/layoutEmpty"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="@dimen/spacing_xxl"
+                    android:visibility="gone"
+                    tools:visibility="gone">
+
+                    <ImageView
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:src="@drawable/ic_analytics_report"
+                        app:tint="@color/text_hint"
+                        android:contentDescription="@string/analytics_empty_reports"
+                        android:layout_marginBottom="@dimen/spacing_medium" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/analytics_empty_reports"
+                        android:textSize="@dimen/text_subtitle"
+                        android:textColor="@color/text_secondary"
+                        android:fontFamily="sans-serif-medium"
+                        android:gravity="center" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

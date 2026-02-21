@@ -360,4 +360,60 @@
     <!-- Alias for design system -->
     <color name="colorPrimary">@color/primary</color>
     <color name="colorOnPrimary">@color/on_primary</color>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!--  ANALYTICS & REPORTING MODULE COLORS                      -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+
+    <!-- Chart: Cost breakdown (pie) -->
+    <color name="analytics_fuel">#FFFF7043</color>
+    <color name="analytics_fuel_fill">#33FF7043</color>
+    <color name="analytics_service">#FF42A5F5</color>
+    <color name="analytics_service_fill">#3342A5F5</color>
+    <color name="analytics_repair">#FFAB47BC</color>
+    <color name="analytics_repair_fill">#33AB47BC</color>
+
+    <!-- Chart: Revenue/Expense lines -->
+    <color name="analytics_revenue">#FF26A69A</color>
+    <color name="analytics_revenue_fill">#4426A69A</color>
+    <color name="analytics_expense">#FFEF5350</color>
+    <color name="analytics_expense_fill">#44EF5350</color>
+
+    <!-- Chart: Utilization bar -->
+    <color name="analytics_util_high">#FF43A047</color>
+    <color name="analytics_util_mid">#FFFFA726</color>
+    <color name="analytics_util_low">#FFEF5350</color>
+
+    <!-- Chart: Driver score bar -->
+    <color name="analytics_score_excellent">#FF2E7D32</color>
+    <color name="analytics_score_good">#FF43A047</color>
+    <color name="analytics_score_average">#FFFFA726</color>
+    <color name="analytics_score_risky">#FFE53935</color>
+
+    <!-- Finance KPI cards -->
+    <color name="analytics_revenue_bg">#FFE8F5E9</color>
+    <color name="analytics_revenue_icon">#FF2E7D32</color>
+    <color name="analytics_expense_bg">#FFFFEBEE</color>
+    <color name="analytics_expense_icon">#FFC62828</color>
+    <color name="analytics_profit_positive_bg">#FFE0F2F1</color>
+    <color name="analytics_profit_positive_icon">#FF00897B</color>
+    <color name="analytics_profit_negative_bg">#FFFFEBEE</color>
+    <color name="analytics_profit_negative_icon">#FFD32F2F</color>
+    <color name="analytics_fuel_kpi_bg">#FFFFF3E0</color>
+    <color name="analytics_fuel_kpi_icon">#FFEF6C00</color>
+    <color name="analytics_service_kpi_bg">#FFE3F2FD</color>
+    <color name="analytics_service_kpi_icon">#FF1565C0</color>
+    <color name="analytics_repair_kpi_bg">#FFF3E5F5</color>
+    <color name="analytics_repair_kpi_icon">#FF7B1FA2</color>
+
+    <!-- Report card backgrounds -->
+    <color name="analytics_card_bg">#FFFFFFFF</color>
+    <color name="analytics_section_bg">#FFF8F9FA</color>
+    <color name="analytics_chip_selected">#FF00897B</color>
+    <color name="analytics_chip_text_selected">#FFFFFFFF</color>
+
+    <!-- Ranking badges -->
+    <color name="analytics_rank_gold">#FFFFC107</color>
+    <color name="analytics_rank_silver">#FF9E9E9E</color>
+    <color name="analytics_rank_bronze">#FF8D6E63</color>
 </resources>

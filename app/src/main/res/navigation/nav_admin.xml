@@ -33,7 +33,22 @@
         android:id="@+id/adminFinanceFragment"
         android:name="com.example.movexa.ui.dashboard.admin.AdminFinanceFragment"
         android:label="Finance"
-        tools:layout="@layout/fragment_admin_finance" />
+        tools:layout="@layout/fragment_admin_finance">
+
+        <action
+            android:id="@+id/action_adminFinance_to_adminReports"
+            app:destination="@id/adminReportsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/adminReportsFragment"
+        android:name="com.example.movexa.ui.dashboard.admin.AdminReportsFragment"
+        android:label="Reports"
+        tools:layout="@layout/fragment_admin_reports" />
 
     <fragment
         android:id="@+id/adminProfileFragment"

@@ -54,6 +54,9 @@ dependencies {
     // SwipeRefreshLayout
     implementation(libs.androidx.swiperefreshlayout)
 
+    // MPAndroidChart
+    implementation(libs.mpandroidchart)
+
     // Navigation
     implementation(libs.androidx.navigation.fragment)
     implementation(libs.androidx.navigation.ui)

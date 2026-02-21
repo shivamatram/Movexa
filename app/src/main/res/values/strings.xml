@@ -1235,4 +1235,128 @@
     <string name="cd_maint_submit">Submit record</string>
     <string name="cd_maint_error">Error state</string>
     <string name="cd_maint_loading">Loading</string>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!--  ANALYTICS & REPORTING MODULE                             -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+
+    <!-- Section titles -->
+    <string name="analytics_finance_title">Financial Overview</string>
+    <string name="analytics_finance_subtitle">Revenue, costs &amp; profit analysis</string>
+    <string name="analytics_reports_title">Reports &amp; Insights</string>
+    <string name="analytics_reports_subtitle">Fleet utilization &amp; driver performance</string>
+
+    <!-- Date presets -->
+    <string name="analytics_filter_period">Period</string>
+    <string name="analytics_this_month">This Month</string>
+    <string name="analytics_last_month">Last Month</string>
+    <string name="analytics_last_3_months">Last 3 Months</string>
+    <string name="analytics_last_6_months">Last 6 Months</string>
+    <string name="analytics_this_year">This Year</string>
+    <string name="analytics_last_year">Last Year</string>
+    <string name="analytics_all_time">All Time</string>
+
+    <!-- KPI card labels -->
+    <string name="analytics_kpi_revenue">Revenue</string>
+    <string name="analytics_kpi_expenses">Total Expenses</string>
+    <string name="analytics_kpi_profit">Profit</string>
+    <string name="analytics_kpi_fuel_cost">Fuel Cost</string>
+    <string name="analytics_kpi_service_cost">Service Cost</string>
+    <string name="analytics_kpi_repair_cost">Repair Cost</string>
+    <string name="analytics_kpi_total_trips">Total Trips</string>
+    <string name="analytics_kpi_completed_trips">Completed</string>
+    <string name="analytics_kpi_active_trips">Active</string>
+    <string name="analytics_kpi_cancelled_trips">Cancelled</string>
+    <string name="analytics_kpi_total_distance">Total Distance</string>
+    <string name="analytics_kpi_avg_distance">Avg Trip Distance</string>
+    <string name="analytics_kpi_avg_duration">Avg Trip Duration</string>
+    <string name="analytics_kpi_avg_mileage">Avg Mileage</string>
+    <string name="analytics_kpi_fuel_litres">Fuel Consumed</string>
+    <string name="analytics_kpi_profit_margin">Profit Margin</string>
+
+    <!-- Chart section titles -->
+    <string name="analytics_chart_revenue_trend">Revenue vs Expenses</string>
+    <string name="analytics_chart_cost_breakdown">Cost Breakdown</string>
+    <string name="analytics_chart_fuel_trend">Fuel Cost Trend</string>
+    <string name="analytics_chart_utilization">Vehicle Utilization</string>
+    <string name="analytics_chart_driver_ranking">Driver Performance</string>
+
+    <!-- Reports section -->
+    <string name="analytics_section_fleet_kpis">Fleet KPIs</string>
+    <string name="analytics_section_vehicle_utilization">Vehicle Utilization</string>
+    <string name="analytics_section_driver_rankings">Driver Rankings</string>
+    <string name="analytics_section_vehicle_costs">Vehicle Cost Ranking</string>
+
+    <!-- Fleet KPIs -->
+    <string name="analytics_fleet_total_vehicles">Total Vehicles</string>
+    <string name="analytics_fleet_available">Available</string>
+    <string name="analytics_fleet_on_trip">On Trip</string>
+    <string name="analytics_fleet_in_service">In Service</string>
+    <string name="analytics_fleet_inactive">Inactive</string>
+    <string name="analytics_fleet_total_drivers">Total Drivers</string>
+    <string name="analytics_fleet_active_drivers">Active Drivers</string>
+    <string name="analytics_fleet_blocked_drivers">Blocked</string>
+    <string name="analytics_fleet_utilization">Fleet Utilization</string>
+
+    <!-- Vehicle utilization item -->
+    <string name="analytics_util_vehicle">Vehicle</string>
+    <string name="analytics_util_trips">%1$d trips</string>
+    <string name="analytics_util_distance">%1$s driven</string>
+
+    <!-- Driver ranking item -->
+    <string name="analytics_rank_score">Score: %1$d</string>
+    <string name="analytics_rank_grade">Grade: %1$s</string>
+    <string name="analytics_rank_trips">%1$d trips</string>
+    <string name="analytics_rank_violations">%1$d violations</string>
+    <string name="analytics_rank_mileage">%1$s</string>
+    <string name="analytics_rank_header">#%1$d</string>
+
+    <!-- Vehicle cost item -->
+    <string name="analytics_cost_fuel">Fuel: %1$s</string>
+    <string name="analytics_cost_service">Service: %1$s</string>
+    <string name="analytics_cost_repair">Repair: %1$s</string>
+    <string name="analytics_cost_total">Total: %1$s</string>
+
+    <!-- Formatters -->
+    <string name="analytics_currency_format">₹%1$,.0f</string>
+    <string name="analytics_percent_format">%1$.1f%%</string>
+    <string name="analytics_km_format">%1$,.1f km</string>
+    <string name="analytics_litres_format">%1$,.1f L</string>
+    <string name="analytics_kmpl_format">%1$.1f km/L</string>
+    <string name="analytics_minutes_format">%1$d min</string>
+
+    <!-- Empty states -->
+    <string name="analytics_empty_title">No Data Yet</string>
+    <string name="analytics_empty_subtitle">Financial data will appear once trips and fuel logs are recorded</string>
+    <string name="analytics_empty_reports">No report data available for this period</string>
+    <string name="analytics_empty_utilization">No vehicle utilization data</string>
+    <string name="analytics_empty_rankings">No driver rankings available</string>
+    <string name="analytics_empty_costs">No cost data for this period</string>
+
+    <!-- Loading / Error -->
+    <string name="analytics_loading">Analyzing fleet data…</string>
+    <string name="analytics_error_title">Something went wrong</string>
+    <string name="analytics_error_retry">Retry</string>
+    <string name="analytics_refresh_success">Data refreshed</string>
+
+    <!-- Reports tab -->
+    <string name="analytics_generate_report">Generate Report</string>
+    <string name="analytics_report_generated">Report ready</string>
+    <string name="analytics_tab_finance">Finance</string>
+    <string name="analytics_tab_reports">Reports</string>
+
+    <!-- Trip stats -->
+    <string name="analytics_trip_stats">Trip Statistics</string>
+    <string name="analytics_fuel_stats">Fuel Statistics</string>
+
+    <!-- Content descriptions -->
+    <string name="cd_analytics_revenue_icon">Revenue icon</string>
+    <string name="cd_analytics_expense_icon">Expenses icon</string>
+    <string name="cd_analytics_profit_icon">Profit icon</string>
+    <string name="cd_analytics_fuel_icon">Fuel cost icon</string>
+    <string name="cd_analytics_chart">Analytics chart</string>
+    <string name="cd_analytics_filter">Filter by date range</string>
+    <string name="cd_analytics_refresh">Refresh data</string>
+    <string name="cd_analytics_rank_badge">Driver rank badge</string>
+    <string name="cd_analytics_trend">Trend indicator</string>
 </resources>
