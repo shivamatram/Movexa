@@ -7,36 +7,180 @@
     android:layout_height="match_parent"
     android:background="@color/background">
 
+    <!-- ═══════ LOADING PROGRESS BAR ═══════ -->
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/progressLoading"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/loading_bar_height"
+        android:indeterminate="true"
+        android:visibility="gone"
+        app:indicatorColor="@color/primary"
+        app:trackColor="@color/primary_surface"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:visibility="visible" />
+
     <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fillViewport="true"
-        app:layout_constraintTop_toTopOf="parent"
+        android:scrollbars="none"
+        android:overScrollMode="always"
+        app:layout_constraintTop_toBottomOf="@id/progressLoading"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
         <LinearLayout
+            android:id="@+id/contentContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="@dimen/screen_margin_horizontal">
+            android:paddingBottom="@dimen/spacing_xxl">
 
-            <!-- Section Header -->
-            <TextView
-                android:id="@+id/tvSectionTitle"
+            <!-- ═══════════════════════════════════════════════════
+                 SECTION 1: PROFILE HEADER CARD
+                 Gradient background, avatar with initials,
+                 name, role badge, company
+                 ═══════════════════════════════════════════════════ -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardProfileHeader"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/section_profile"
+                android:layout_marginStart="@dimen/screen_margin_horizontal"
+                android:layout_marginEnd="@dimen/screen_margin_horizontal"
+                android:layout_marginTop="@dimen/spacing_medium"
+                app:cardCornerRadius="@dimen/radius_xl"
+                app:cardElevation="@dimen/elevation_medium"
+                app:cardBackgroundColor="@android:color/transparent"
+                app:strokeWidth="0dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_profile_header_gradient"
+                    android:padding="@dimen/spacing_large"
+                    android:contentDescription="@string/profile_header_cd">
+
+                    <!-- Avatar Container -->
+                    <FrameLayout
+                        android:id="@+id/avatarContainer"
+                        android:layout_width="@dimen/avatar_large"
+                        android:layout_height="@dimen/avatar_large"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent">
+
+                        <!-- Avatar Circle Background -->
+                        <View
+                            android:id="@+id/viewAvatarBg"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/bg_avatar_circle" />
+
+                        <!-- Initials Text -->
+                        <TextView
+                            android:id="@+id/tvAvatarInitials"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:textColor="@color/white"
+                            android:textSize="28sp"
+                            android:fontFamily="sans-serif-medium"
+                            android:contentDescription="@string/profile_avatar_cd"
+                            tools:text="JD" />
+
+                        <!-- Edit Overlay (camera icon) -->
+                        <ImageView
+                            android:id="@+id/ivEditAvatar"
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:layout_gravity="bottom|end"
+                            android:background="@drawable/bg_edit_avatar_overlay"
+                            android:src="@drawable/ic_camera"
+                            android:padding="5dp"
+                            android:contentDescription="@string/profile_edit_avatar"
+                            app:tint="@color/white" />
+
+                    </FrameLayout>
+
+                    <!-- User Name -->
+                    <TextView
+                        android:id="@+id/tvProfileName"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_medium"
+                        android:gravity="center"
+                        android:textColor="@color/white"
+                        android:textSize="22sp"
+                        android:fontFamily="sans-serif-medium"
+                        android:maxLines="2"
+                        android:ellipsize="end"
+                        app:layout_constraintTop_toBottomOf="@id/avatarContainer"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:text="John Doe" />
+
+                    <!-- Role Badge -->
+                    <TextView
+                        android:id="@+id/tvRoleBadge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_small"
+                        android:paddingHorizontal="@dimen/spacing_medium"
+                        android:paddingVertical="@dimen/spacing_xs"
+                        android:background="@drawable/bg_role_badge"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_caption"
+                        android:fontFamily="sans-serif-medium"
+                        android:letterSpacing="0.05"
+                        android:textAllCaps="true"
+                        app:layout_constraintTop_toBottomOf="@id/tvProfileName"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:text="MANAGER" />
+
+                    <!-- Company Name -->
+                    <TextView
+                        android:id="@+id/tvCompanyName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_small"
+                        android:text="@string/profile_company"
+                        android:textColor="#B2FFFFFF"
+                        android:textSize="@dimen/text_body"
+                        app:layout_constraintTop_toBottomOf="@id/tvRoleBadge"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- ═══════════════════════════════════════════════════
+                 SECTION 2: ACCOUNT INFORMATION
+                 Name, Email, Phone, Member Since
+                 ═══════════════════════════════════════════════════ -->
+            <TextView
+                android:id="@+id/tvSectionAccount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/profile_section_account"
                 android:textAppearance="@style/TextAppearance.Movexa.SectionHeader"
+                android:layout_marginTop="@dimen/spacing_large"
+                android:layout_marginStart="@dimen/screen_margin_horizontal"
+                android:layout_marginEnd="@dimen/screen_margin_horizontal"
                 android:layout_marginBottom="@dimen/spacing_small" />
 
-            <!-- Status Card -->
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cardStatus"
+                android:id="@+id/cardAccountInfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/spacing_medium"
+                android:layout_marginStart="@dimen/screen_margin_horizontal"
+                android:layout_marginEnd="@dimen/screen_margin_horizontal"
                 app:cardCornerRadius="@dimen/radius_large"
                 app:cardElevation="@dimen/elevation_small"
                 app:cardBackgroundColor="@color/surface">
@@ -45,80 +189,652 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="@dimen/card_padding">
+                    android:paddingVertical="@dimen/spacing_small">
 
-                    <ImageView
-                        android:id="@+id/ivIcon"
-                        android:layout_width="@dimen/icon_xl"
-                        android:layout_height="@dimen/icon_xl"
-                        android:layout_gravity="center_horizontal"
-                        android:src="@drawable/ic_nav_profile"
-                        android:contentDescription="@string/cd_app_logo"
-                        app:tint="@color/primary"
-                        android:layout_marginBottom="@dimen/spacing_medium" />
-
-                    <TextView
-                        android:id="@+id/tvTitle"
+                    <!-- Name Row -->
+                    <LinearLayout
+                        android:id="@+id/rowName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/manager_profile_title"
-                        android:textSize="@dimen/text_title"
-                        android:textColor="@color/text_primary"
-                        android:fontFamily="sans-serif-medium"
-                        android:gravity="center"
-                        android:layout_marginBottom="@dimen/spacing_xs" />
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="@dimen/card_padding"
+                        android:paddingVertical="@dimen/spacing_medium">
 
-                    <TextView
-                        android:id="@+id/tvSubtitle"
+                        <ImageView
+                            android:layout_width="@dimen/icon_medium"
+                            android:layout_height="@dimen/icon_medium"
+                            android:src="@drawable/ic_person"
+                            app:tint="@color/primary"
+                            android:contentDescription="@string/cd_profile_icon" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:layout_marginStart="@dimen/spacing_medium">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/profile_label_name"
+                                android:textSize="@dimen/text_caption"
+                                android:textColor="@color/text_secondary" />
+
+                            <TextView
+                                android:id="@+id/tvInfoName"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:textSize="@dimen/text_subtitle"
+                                android:textColor="@color/text_primary"
+                                android:fontFamily="sans-serif-medium"
+                                tools:text="John Doe" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <!-- Divider -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="56dp"
+                        android:background="@color/divider" />
+
+                    <!-- Email Row -->
+                    <LinearLayout
+                        android:id="@+id/rowEmail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/manager_profile_subtitle"
-                        android:textSize="@dimen/text_body"
-                        android:textColor="@color/text_secondary"
-                        android:gravity="center" />
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="@dimen/card_padding"
+                        android:paddingVertical="@dimen/spacing_medium">
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_medium"
+                            android:layout_height="@dimen/icon_medium"
+                            android:src="@drawable/ic_email"
+                            app:tint="@color/primary"
+                            android:contentDescription="@string/cd_profile_icon" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:layout_marginStart="@dimen/spacing_medium">
+
+                            <TextView
+                                android:id="@+id/tvInfoEmailLabel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/profile_label_email"
+                                android:textSize="@dimen/text_caption"
+                                android:textColor="@color/text_secondary" />
+
+                            <TextView
+                                android:id="@+id/tvInfoEmail"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:textSize="@dimen/text_subtitle"
+                                android:textColor="@color/text_primary"
+                                android:fontFamily="sans-serif-medium"
+                                tools:text="john@movexa.com" />
+
+                        </LinearLayout>
+
+                        <!-- Verified badge -->
+                        <ImageView
+                            android:id="@+id/ivEmailVerified"
+                            android:layout_width="@dimen/icon_small"
+                            android:layout_height="@dimen/icon_small"
+                            android:src="@drawable/ic_verified"
+                            app:tint="@color/success"
+                            android:visibility="gone"
+                            android:contentDescription="@string/profile_label_email_verified"
+                            tools:visibility="visible" />
+
+                    </LinearLayout>
+
+                    <!-- Divider -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="56dp"
+                        android:background="@color/divider" />
+
+                    <!-- Phone Row -->
+                    <LinearLayout
+                        android:id="@+id/rowPhone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="@dimen/card_padding"
+                        android:paddingVertical="@dimen/spacing_medium">
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_medium"
+                            android:layout_height="@dimen/icon_medium"
+                            android:src="@drawable/ic_phone"
+                            app:tint="@color/primary"
+                            android:contentDescription="@string/cd_profile_icon" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:layout_marginStart="@dimen/spacing_medium">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/profile_label_phone"
+                                android:textSize="@dimen/text_caption"
+                                android:textColor="@color/text_secondary" />
+
+                            <TextView
+                                android:id="@+id/tvInfoPhone"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:textSize="@dimen/text_subtitle"
+                                android:textColor="@color/text_primary"
+                                android:fontFamily="sans-serif-medium"
+                                tools:text="+1 (555) 123-4567" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <!-- Divider -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="56dp"
+                        android:background="@color/divider" />
+
+                    <!-- Member Since Row -->
+                    <LinearLayout
+                        android:id="@+id/rowMemberSince"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="@dimen/card_padding"
+                        android:paddingVertical="@dimen/spacing_medium">
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_medium"
+                            android:layout_height="@dimen/icon_medium"
+                            android:src="@drawable/ic_schedule"
+                            app:tint="@color/primary"
+                            android:contentDescription="@string/cd_profile_icon" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:layout_marginStart="@dimen/spacing_medium">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/profile_label_member_since"
+                                android:textSize="@dimen/text_caption"
+                                android:textColor="@color/text_secondary" />
+
+                            <TextView
+                                android:id="@+id/tvInfoMemberSince"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:textSize="@dimen/text_subtitle"
+                                android:textColor="@color/text_primary"
+                                android:fontFamily="sans-serif-medium"
+                                tools:text="January 2024" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- Empty State Placeholder -->
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cardEmptyState"
+            <!-- ═══════════════════════════════════════════════════
+                 SECTION 3: QUICK ACTIONS
+                 Edit Profile, Change Password, Activity Summary, Logout
+                 ═══════════════════════════════════════════════════ -->
+            <TextView
+                android:id="@+id/tvSectionActions"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/spacing_medium"
+                android:text="@string/profile_section_actions"
+                android:textAppearance="@style/TextAppearance.Movexa.SectionHeader"
+                android:layout_marginTop="@dimen/spacing_large"
+                android:layout_marginStart="@dimen/screen_margin_horizontal"
+                android:layout_marginEnd="@dimen/screen_margin_horizontal"
+                android:layout_marginBottom="@dimen/spacing_small" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardQuickActions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/screen_margin_horizontal"
+                android:layout_marginEnd="@dimen/screen_margin_horizontal"
                 app:cardCornerRadius="@dimen/radius_large"
-                app:cardElevation="@dimen/elevation_xs"
-                app:strokeColor="@color/outline_variant"
-                app:strokeWidth="1dp"
-                app:cardBackgroundColor="@color/surface_variant">
+                app:cardElevation="@dimen/elevation_small"
+                app:cardBackgroundColor="@color/surface">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="@dimen/card_padding"
-                    android:gravity="center">
+                    android:paddingVertical="@dimen/spacing_xs">
 
-                    <TextView
-                        android:id="@+id/tvEmptyTitle"
+                    <!-- Edit Profile Action -->
+                    <LinearLayout
+                        android:id="@+id/actionEditProfile"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/empty_state_title"
-                        android:textSize="@dimen/text_subtitle"
-                        android:textColor="@color/text_secondary"
-                        android:fontFamily="sans-serif-medium"
-                        android:gravity="center"
-                        android:layout_marginBottom="@dimen/spacing_xs" />
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="@dimen/card_padding"
+                        android:paddingVertical="14dp"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:contentDescription="@string/cd_edit_profile">
 
-                    <TextView
-                        android:id="@+id/tvEmptySubtitle"
+                        <ImageView
+                            android:layout_width="@dimen/icon_medium"
+                            android:layout_height="@dimen/icon_medium"
+                            android:src="@drawable/ic_edit"
+                            app:tint="@color/primary"
+                            android:importantForAccessibility="no" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:layout_marginStart="@dimen/spacing_medium">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/profile_action_edit"
+                                android:textSize="@dimen/text_subtitle"
+                                android:textColor="@color/text_primary"
+                                android:fontFamily="sans-serif-medium" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/profile_action_edit_desc"
+                                android:textSize="@dimen/text_caption"
+                                android:textColor="@color/text_secondary"
+                                android:layout_marginTop="2dp" />
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_small"
+                            android:layout_height="@dimen/icon_small"
+                            android:src="@drawable/ic_chevron_right"
+                            app:tint="@color/text_disabled"
+                            android:contentDescription="@string/cd_chevron" />
+
+                    </LinearLayout>
+
+                    <!-- Divider -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="56dp"
+                        android:background="@color/divider" />
+
+                    <!-- Change Password Action -->
+                    <LinearLayout
+                        android:id="@+id/actionChangePassword"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/empty_state_subtitle"
-                        android:textSize="@dimen/text_caption"
-                        android:textColor="@color/text_hint"
-                        android:gravity="center" />
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="@dimen/card_padding"
+                        android:paddingVertical="14dp"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:contentDescription="@string/cd_change_password">
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_medium"
+                            android:layout_height="@dimen/icon_medium"
+                            android:src="@drawable/ic_lock"
+                            app:tint="@color/secondary"
+                            android:importantForAccessibility="no" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:layout_marginStart="@dimen/spacing_medium">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/profile_action_password"
+                                android:textSize="@dimen/text_subtitle"
+                                android:textColor="@color/text_primary"
+                                android:fontFamily="sans-serif-medium" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/profile_action_password_desc"
+                                android:textSize="@dimen/text_caption"
+                                android:textColor="@color/text_secondary"
+                                android:layout_marginTop="2dp" />
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_small"
+                            android:layout_height="@dimen/icon_small"
+                            android:src="@drawable/ic_chevron_right"
+                            app:tint="@color/text_disabled"
+                            android:contentDescription="@string/cd_chevron" />
+
+                    </LinearLayout>
+
+                    <!-- Divider -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="56dp"
+                        android:background="@color/divider" />
+
+                    <!-- Activity Summary Action -->
+                    <LinearLayout
+                        android:id="@+id/actionActivitySummary"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="@dimen/card_padding"
+                        android:paddingVertical="14dp"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:contentDescription="@string/cd_activity_summary">
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_medium"
+                            android:layout_height="@dimen/icon_medium"
+                            android:src="@drawable/ic_dashboard"
+                            app:tint="@color/info"
+                            android:importantForAccessibility="no" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:layout_marginStart="@dimen/spacing_medium">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/profile_action_activity"
+                                android:textSize="@dimen/text_subtitle"
+                                android:textColor="@color/text_primary"
+                                android:fontFamily="sans-serif-medium" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/profile_action_activity_desc"
+                                android:textSize="@dimen/text_caption"
+                                android:textColor="@color/text_secondary"
+                                android:layout_marginTop="2dp" />
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_small"
+                            android:layout_height="@dimen/icon_small"
+                            android:src="@drawable/ic_chevron_right"
+                            app:tint="@color/text_disabled"
+                            android:contentDescription="@string/cd_chevron" />
+
+                    </LinearLayout>
+
+                    <!-- Divider -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="56dp"
+                        android:background="@color/divider" />
+
+                    <!-- Logout Action -->
+                    <LinearLayout
+                        android:id="@+id/actionLogout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="@dimen/card_padding"
+                        android:paddingVertical="14dp"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:contentDescription="@string/cd_logout">
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_medium"
+                            android:layout_height="@dimen/icon_medium"
+                            android:src="@drawable/ic_logout"
+                            app:tint="@color/error"
+                            android:importantForAccessibility="no" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:layout_marginStart="@dimen/spacing_medium">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/profile_action_logout"
+                                android:textSize="@dimen/text_subtitle"
+                                android:textColor="@color/error"
+                                android:fontFamily="sans-serif-medium" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/profile_action_logout_desc"
+                                android:textSize="@dimen/text_caption"
+                                android:textColor="@color/text_secondary"
+                                android:layout_marginTop="2dp" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- ═══════════════════════════════════════════════════
+                 SECTION 4: APP INFORMATION
+                 Version, Privacy, Terms
+                 ═══════════════════════════════════════════════════ -->
+            <TextView
+                android:id="@+id/tvSectionAppInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/profile_section_app_info"
+                android:textAppearance="@style/TextAppearance.Movexa.SectionHeader"
+                android:layout_marginTop="@dimen/spacing_large"
+                android:layout_marginStart="@dimen/screen_margin_horizontal"
+                android:layout_marginEnd="@dimen/screen_margin_horizontal"
+                android:layout_marginBottom="@dimen/spacing_small" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardAppInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/screen_margin_horizontal"
+                android:layout_marginEnd="@dimen/screen_margin_horizontal"
+                app:cardCornerRadius="@dimen/radius_large"
+                app:cardElevation="@dimen/elevation_small"
+                app:cardBackgroundColor="@color/surface">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingVertical="@dimen/spacing_xs">
+
+                    <!-- App Version Row -->
+                    <LinearLayout
+                        android:id="@+id/rowAppVersion"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="@dimen/card_padding"
+                        android:paddingVertical="14dp">
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_medium"
+                            android:layout_height="@dimen/icon_medium"
+                            android:src="@drawable/ic_info"
+                            app:tint="@color/text_secondary"
+                            android:contentDescription="@string/cd_app_version" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/profile_app_version"
+                            android:textSize="@dimen/text_subtitle"
+                            android:textColor="@color/text_primary"
+                            android:layout_marginStart="@dimen/spacing_medium" />
+
+                        <TextView
+                            android:id="@+id/tvAppVersion"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/profile_app_version_value"
+                            android:textSize="@dimen/text_body"
+                            android:textColor="@color/text_secondary" />
+
+                    </LinearLayout>
+
+                    <!-- Divider -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="56dp"
+                        android:background="@color/divider" />
+
+                    <!-- Privacy Policy Row -->
+                    <LinearLayout
+                        android:id="@+id/actionPrivacyPolicy"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="@dimen/card_padding"
+                        android:paddingVertical="14dp"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:contentDescription="@string/cd_privacy_policy">
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_medium"
+                            android:layout_height="@dimen/icon_medium"
+                            android:src="@drawable/ic_privacy"
+                            app:tint="@color/text_secondary"
+                            android:importantForAccessibility="no" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/profile_privacy_policy"
+                            android:textSize="@dimen/text_subtitle"
+                            android:textColor="@color/text_primary"
+                            android:layout_marginStart="@dimen/spacing_medium" />
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_small"
+                            android:layout_height="@dimen/icon_small"
+                            android:src="@drawable/ic_chevron_right"
+                            app:tint="@color/text_disabled"
+                            android:contentDescription="@string/cd_chevron" />
+
+                    </LinearLayout>
+
+                    <!-- Divider -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="56dp"
+                        android:background="@color/divider" />
+
+                    <!-- Terms of Service Row -->
+                    <LinearLayout
+                        android:id="@+id/actionTerms"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="@dimen/card_padding"
+                        android:paddingVertical="14dp"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:contentDescription="@string/cd_terms_of_service">
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_medium"
+                            android:layout_height="@dimen/icon_medium"
+                            android:src="@drawable/ic_terms"
+                            app:tint="@color/text_secondary"
+                            android:importantForAccessibility="no" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/profile_terms"
+                            android:textSize="@dimen/text_subtitle"
+                            android:textColor="@color/text_primary"
+                            android:layout_marginStart="@dimen/spacing_medium" />
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_small"
+                            android:layout_height="@dimen/icon_small"
+                            android:src="@drawable/ic_chevron_right"
+                            app:tint="@color/text_disabled"
+                            android:contentDescription="@string/cd_chevron" />
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
