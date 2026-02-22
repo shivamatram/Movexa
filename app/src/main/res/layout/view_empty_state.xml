@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:paddingHorizontal="40dp"
+    android:paddingVertical="64dp">
+
+    <!-- Illustration icon with subtle tint -->
+    <ImageView
+        android:id="@+id/ivEmptyIcon"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:alpha="0.6"
+        android:contentDescription="@string/cd_empty_state"
+        app:tint="@color/text_hint"
+        tools:src="@drawable/ic_local_shipping" />
+
+    <!-- Primary message -->
+    <TextView
+        android:id="@+id/tvEmptyTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:gravity="center"
+        android:textSize="@dimen/text_title"
+        android:textColor="@color/text_primary"
+        android:fontFamily="sans-serif-medium"
+        android:letterSpacing="0.01"
+        tools:text="No trips yet" />
+
+    <!-- Secondary description -->
+    <TextView
+        android:id="@+id/tvEmptyMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:textSize="@dimen/text_body"
+        android:textColor="@color/text_secondary"
+        android:lineSpacingExtra="3dp"
+        tools:text="Your active trips will appear here once dispatched." />
+
+    <!-- CTA button (optional) -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnEmptyAction"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/button_height_small"
+        android:layout_marginTop="24dp"
+        android:textAllCaps="false"
+        android:textSize="@dimen/text_body"
+        android:visibility="gone"
+        app:cornerRadius="@dimen/radius_medium"
+        app:backgroundTint="@color/primary"
+        android:textColor="@color/on_primary"
+        tools:text="Create Trip"
+        tools:visibility="visible" />
+
+</LinearLayout>

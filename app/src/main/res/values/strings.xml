@@ -1501,4 +1501,52 @@
     <string name="public_detail_open_map">Open Live Map</string>
     <string name="public_detail_share">Share Tracking Link</string>
     <string name="public_share_text">Track my delivery in real-time!\nTracking ID: %1$s\nStatus: %2$s</string>
+
+    <!-- ═══════ FINAL POLISH — Empty States ═══════ -->
+    <string name="cd_empty_state">Empty state illustration</string>
+    <string name="cd_error_state">Error illustration</string>
+    <string name="cd_network_status">Network status</string>
+    <string name="cd_dismiss">Dismiss</string>
+
+    <string name="empty_no_trips_title">No trips yet</string>
+    <string name="empty_no_trips_message">Your active trips will appear here once dispatched by the fleet manager.</string>
+    <string name="empty_no_trips_action">Create Trip</string>
+
+    <string name="empty_no_vehicles_title">No vehicles found</string>
+    <string name="empty_no_vehicles_message">Add vehicles to your fleet to start tracking and managing them.</string>
+    <string name="empty_no_vehicles_action">Add Vehicle</string>
+
+    <string name="empty_no_alerts_title">All clear!</string>
+    <string name="empty_no_alerts_message">No active alerts at the moment. Your fleet is operating normally.</string>
+
+    <string name="empty_no_reports_title">No reports available</string>
+    <string name="empty_no_reports_message">Reports will be generated as your fleet starts operating and recording data.</string>
+    <string name="empty_no_reports_action">Generate Report</string>
+
+    <!-- ═══════ FINAL POLISH — Error States ═══════ -->
+    <string name="error_generic_title">Something went wrong</string>
+    <string name="error_generic_message">An unexpected error occurred. Please try again.</string>
+
+    <string name="error_no_internet_title">No internet connection</string>
+    <string name="error_no_internet_message">Please check your network settings and try again.</string>
+
+    <string name="error_timeout_title">Request timed out</string>
+    <string name="error_timeout_message">The server took too long to respond. Please try again later.</string>
+
+    <string name="error_permission_title">Permission required</string>
+    <string name="error_permission_message">This feature requires additional permissions to work properly.</string>
+
+    <string name="error_server_title">Server error</string>
+    <string name="error_server_message">Our servers are having trouble. Please try again shortly.</string>
+
+    <string name="error_empty_result_title">No results found</string>
+    <string name="error_empty_result_message">Try adjusting your search or filters.</string>
+
+    <!-- ═══════ FINAL POLISH — Network Banner ═══════ -->
+    <string name="network_offline">No internet connection</string>
+    <string name="network_back_online">Back online</string>
+
+    <!-- ═══════ FINAL POLISH — Shimmer/Loading ═══════ -->
+    <string name="loading_please_wait">Loading…</string>
+    <string name="loading_refreshing">Refreshing data…</string>
 </resources>

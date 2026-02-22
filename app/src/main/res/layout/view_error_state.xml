@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:paddingHorizontal="40dp"
+    android:paddingVertical="64dp">
+
+    <!-- Error icon -->
+    <ImageView
+        android:id="@+id/ivErrorIcon"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/ic_cloud_off"
+        android:alpha="0.7"
+        android:contentDescription="@string/cd_error_state"
+        app:tint="@color/error" />
+
+    <!-- Error title -->
+    <TextView
+        android:id="@+id/tvErrorTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="@string/error_generic_title"
+        android:textSize="@dimen/text_title"
+        android:textColor="@color/text_primary"
+        android:fontFamily="sans-serif-medium" />
+
+    <!-- Error message -->
+    <TextView
+        android:id="@+id/tvErrorMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="@string/error_generic_message"
+        android:textSize="@dimen/text_body"
+        android:textColor="@color/text_secondary"
+        android:lineSpacingExtra="3dp" />
+
+    <!-- Retry button -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnRetry"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/button_height_small"
+        android:layout_marginTop="20dp"
+        android:text="@string/action_retry"
+        android:textAllCaps="false"
+        android:textSize="@dimen/text_body"
+        app:cornerRadius="@dimen/radius_medium"
+        app:icon="@drawable/ic_refresh"
+        app:iconGravity="textStart"
+        app:iconPadding="8dp"
+        app:backgroundTint="@color/primary"
+        android:textColor="@color/on_primary" />
+
+</LinearLayout>

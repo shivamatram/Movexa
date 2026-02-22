@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Shimmer placeholder for alert card loading state -->
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/spacing_small"
+    app:cardCornerRadius="@dimen/radius_medium"
+    app:cardElevation="@dimen/elevation_small"
+    app:cardBackgroundColor="@color/surface"
+    app:strokeWidth="0dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Priority strip placeholder -->
+        <View
+            android:layout_width="5dp"
+            android:layout_height="match_parent"
+            android:background="@color/shimmer_base" />
+
+        <!-- Content area -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/spacing_medium">
+
+            <!-- Row 1: Icon + Title + Priority badge -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="@dimen/spacing_small">
+
+                <!-- Alert type icon circle -->
+                <View
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:background="@drawable/shimmer_circle" />
+
+                <!-- Title -->
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="16dp"
+                    android:layout_weight="1"
+                    android:layout_marginHorizontal="@dimen/spacing_small"
+                    android:background="@color/shimmer_base" />
+
+                <!-- Priority badge -->
+                <View
+                    android:layout_width="48dp"
+                    android:layout_height="18dp"
+                    android:background="@color/shimmer_highlight" />
+
+            </LinearLayout>
+
+            <!-- Row 2: Description -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="12dp"
+                android:layout_marginBottom="@dimen/spacing_xxs"
+                android:background="@color/shimmer_base" />
+
+            <View
+                android:layout_width="200dp"
+                android:layout_height="12dp"
+                android:layout_marginBottom="@dimen/spacing_small"
+                android:background="@color/shimmer_base" />
+
+            <!-- Row 3: Metadata - vehicle + time -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <!-- Vehicle icon placeholder -->
+                <View
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:background="@drawable/shimmer_circle" />
+
+                <View
+                    android:layout_width="80dp"
+                    android:layout_height="10dp"
+                    android:layout_marginStart="@dimen/spacing_xxs"
+                    android:background="@color/shimmer_highlight" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <!-- Timestamp -->
+                <View
+                    android:layout_width="60dp"
+                    android:layout_height="10dp"
+                    android:background="@color/shimmer_highlight" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

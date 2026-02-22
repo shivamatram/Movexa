@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Shimmer placeholder for trip card loading state -->
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/spacing_small"
+    app:cardCornerRadius="@dimen/radius_medium"
+    app:cardElevation="@dimen/elevation_small"
+    app:cardBackgroundColor="@color/surface"
+    app:strokeColor="@color/shimmer_base"
+    app:strokeWidth="0.5dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/card_padding">
+
+        <!-- Row 1: Status badge + tracking ID -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="@dimen/spacing_small">
+
+            <!-- Status badge placeholder -->
+            <View
+                android:layout_width="64dp"
+                android:layout_height="20dp"
+                android:background="@color/shimmer_highlight" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <!-- Tracking ID placeholder -->
+            <View
+                android:layout_width="90dp"
+                android:layout_height="14dp"
+                android:background="@color/shimmer_base" />
+
+        </LinearLayout>
+
+        <!-- Row 2: Route info (origin -> destination) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="@dimen/spacing_xs">
+
+            <!-- Circle shimmer for origin -->
+            <View
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:background="@drawable/shimmer_circle" />
+
+            <!-- Origin text -->
+            <View
+                android:layout_width="100dp"
+                android:layout_height="14dp"
+                android:layout_marginStart="@dimen/spacing_xs"
+                android:background="@color/shimmer_base" />
+
+            <!-- Arrow placeholder -->
+            <View
+                android:layout_width="20dp"
+                android:layout_height="2dp"
+                android:layout_marginHorizontal="@dimen/spacing_xs"
+                android:background="@color/shimmer_highlight" />
+
+            <!-- Circle shimmer for destination -->
+            <View
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:background="@drawable/shimmer_circle" />
+
+            <!-- Destination text -->
+            <View
+                android:layout_width="100dp"
+                android:layout_height="14dp"
+                android:layout_marginStart="@dimen/spacing_xs"
+                android:background="@color/shimmer_base" />
+
+        </LinearLayout>
+
+        <!-- Divider -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginVertical="@dimen/spacing_small"
+            android:background="@color/shimmer_highlight" />
+
+        <!-- Row 3: Driver + Vehicle info -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="@dimen/spacing_xs">
+
+            <!-- Driver avatar circle -->
+            <View
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:background="@drawable/shimmer_circle" />
+
+            <!-- Driver name -->
+            <View
+                android:layout_width="80dp"
+                android:layout_height="12dp"
+                android:layout_marginStart="@dimen/spacing_xs"
+                android:background="@color/shimmer_base" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <!-- Vehicle plate -->
+            <View
+                android:layout_width="60dp"
+                android:layout_height="12dp"
+                android:background="@color/shimmer_base" />
+
+        </LinearLayout>
+
+        <!-- Row 4: Date + time -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="70dp"
+                android:layout_height="10dp"
+                android:background="@color/shimmer_highlight" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <View
+                android:layout_width="50dp"
+                android:layout_height="10dp"
+                android:background="@color/shimmer_highlight" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

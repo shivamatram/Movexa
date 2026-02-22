@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="0dp"
+    app:cardElevation="4dp"
+    app:strokeWidth="0dp"
+    app:cardBackgroundColor="@color/error">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="10dp">
+
+        <ImageView
+            android:id="@+id/ivBannerIcon"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:src="@drawable/ic_cloud_off"
+            app:tint="@color/on_error"
+            android:contentDescription="@string/cd_network_status" />
+
+        <TextView
+            android:id="@+id/tvBannerMessage"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="12dp"
+            android:text="@string/network_offline"
+            android:textSize="13sp"
+            android:textColor="@color/on_error"
+            android:fontFamily="sans-serif-medium" />
+
+        <ImageView
+            android:id="@+id/ivBannerDismiss"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_close"
+            android:padding="2dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            app:tint="@color/on_error"
+            android:contentDescription="@string/cd_dismiss"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>
