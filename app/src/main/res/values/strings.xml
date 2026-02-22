@@ -1359,4 +1359,146 @@
     <string name="cd_analytics_refresh">Refresh data</string>
     <string name="cd_analytics_rank_badge">Driver rank badge</string>
     <string name="cd_analytics_trend">Trend indicator</string>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         PUBLIC CUSTOMER TRACKING MODULE
+         ═══════════════════════════════════════════════════════════ -->
+
+    <!-- ── Splash / Landing ──────────────────────────────────── -->
+    <string name="public_app_title">Movexa Track</string>
+    <string name="public_app_subtitle">Track your delivery in real-time</string>
+
+    <!-- ── Enter Tracking Screen ─────────────────────────────── -->
+    <string name="public_enter_title">Track Your Delivery</string>
+    <string name="public_enter_subtitle">Enter your tracking ID to see live delivery updates</string>
+    <string name="public_enter_input_hint">Enter Tracking ID</string>
+    <string name="public_enter_input_helper">e.g. TRK-2026-ABCD</string>
+    <string name="public_enter_track_button">Track Delivery</string>
+    <string name="public_enter_recent_title">Recent Searches</string>
+    <string name="public_enter_clear_all">Clear All</string>
+    <string name="public_enter_no_recent">No recent searches</string>
+    <string name="public_enter_powered_by">Powered by Movexa Fleet Platform</string>
+
+    <!-- ── Enter Tracking — Errors ───────────────────────────── -->
+    <string name="public_error_empty">Please enter a tracking ID</string>
+    <string name="public_error_too_short">Tracking ID must be at least 4 characters</string>
+    <string name="public_error_invalid_title">Tracking ID Not Found</string>
+    <string name="public_error_invalid_message">We couldn\'t find a delivery matching this tracking ID. Please check and try again.</string>
+    <string name="public_error_expired_title">Tracking Expired</string>
+    <string name="public_error_expired_message">This delivery is too old. Tracking data is no longer available.</string>
+    <string name="public_error_network_title">Connection Error</string>
+    <string name="public_error_network_message">Unable to connect. Please check your internet and try again.</string>
+    <string name="public_error_try_again">Try Again</string>
+    <string name="public_error_go_back">Go Back</string>
+
+    <!-- ── Live Tracking Screen ──────────────────────────────── -->
+    <string name="public_live_title">Live Tracking</string>
+    <string name="public_live_tracking_id">Tracking ID: %s</string>
+    <string name="public_live_eta_label">Estimated Arrival</string>
+    <string name="public_live_eta_value">%s</string>
+    <string name="public_live_distance_label">Distance Left</string>
+    <string name="public_live_distance_value">%s</string>
+    <string name="public_live_speed_label">Speed</string>
+    <string name="public_live_speed_value">%.0f km/h</string>
+    <string name="public_live_center_vehicle">Center on vehicle</string>
+    <string name="public_live_view_details">View Delivery Details</string>
+
+    <!-- ── Live Tracking — Connection States ─────────────────── -->
+    <string name="public_conn_connecting">Connecting to live tracking…</string>
+    <string name="public_conn_connected">Live • Vehicle is being tracked</string>
+    <string name="public_conn_vehicle_offline">Vehicle is currently offline</string>
+    <string name="public_conn_disconnected">Connection lost</string>
+    <string name="public_conn_error">Unable to connect</string>
+
+    <!-- ── Live Tracking — Status ────────────────────────────── -->
+    <string name="public_status_moving">Vehicle is moving • %s km/h</string>
+    <string name="public_status_stopped">Vehicle is stopped</string>
+    <string name="public_status_completed_msg">Your delivery has been completed! 🎉</string>
+    <string name="public_status_cancelled_msg">This delivery has been cancelled.</string>
+    <string name="public_status_waiting">Waiting for vehicle location…</string>
+
+    <!-- ── Live Tracking — Map ───────────────────────────────── -->
+    <string name="public_map_pickup_marker">Pickup Location</string>
+    <string name="public_map_drop_marker">Drop-off Location</string>
+    <string name="public_map_vehicle_marker">Your Delivery Vehicle</string>
+
+    <!-- ── Delivery Details Screen ───────────────────────────── -->
+    <string name="public_details_title">Delivery Details</string>
+    <string name="public_details_status_label">Status</string>
+    <string name="public_details_tracking_id_label">Tracking ID</string>
+
+    <!-- ── Details — Driver ──────────────────────────────────── -->
+    <string name="public_details_driver_section">Driver Information</string>
+    <string name="public_details_driver_name">Driver</string>
+    <string name="public_details_driver_phone">Phone (masked)</string>
+    <string name="public_details_driver_rating">Rating</string>
+    <string name="public_details_driver_trips">Deliveries</string>
+    <string name="public_details_call_driver">Call Driver</string>
+    <string name="public_details_call_unavailable">Phone not available</string>
+
+    <!-- ── Details — Vehicle ─────────────────────────────────── -->
+    <string name="public_details_vehicle_section">Vehicle Information</string>
+    <string name="public_details_vehicle_number">Vehicle Number</string>
+    <string name="public_details_vehicle_type">Vehicle Type</string>
+
+    <!-- ── Details — Route ───────────────────────────────────── -->
+    <string name="public_details_route_section">Route</string>
+    <string name="public_details_pickup_label">Pickup</string>
+    <string name="public_details_drop_label">Drop-off</string>
+    <string name="public_details_distance_label">Distance</string>
+
+    <!-- ── Details — Timeline ────────────────────────────────── -->
+    <string name="public_details_timeline_section">Delivery Timeline</string>
+    <string name="public_details_timeline_empty">Timeline will be updated as your delivery progresses</string>
+
+    <!-- ── Details — Actions ─────────────────────────────────── -->
+    <string name="public_details_open_map">Open Live Map</string>
+    <string name="public_details_share_tracking">Share Tracking Link</string>
+    <string name="public_details_back">Back</string>
+
+    <!-- ── Shared / Misc ─────────────────────────────────────── -->
+    <string name="public_loading">Loading…</string>
+    <string name="public_retry">Retry</string>
+    <string name="public_no_data">—</string>
+    <string name="public_just_now">Just now</string>
+
+    <!-- ── Content Descriptions ──────────────────────────────── -->
+    <string name="cd_public_back">Go back</string>
+    <string name="cd_public_search">Search tracking ID</string>
+    <string name="cd_public_track_icon">Delivery tracking icon</string>
+    <string name="cd_public_location_icon">Location icon</string>
+    <string name="cd_public_driver_avatar">Driver avatar</string>
+    <string name="cd_public_vehicle_icon">Vehicle icon</string>
+    <string name="cd_public_call_icon">Call driver</string>
+    <string name="cd_public_center_map">Center map on vehicle</string>
+    <string name="cd_public_timeline_dot">Timeline event marker</string>
+    <string name="cd_public_status_icon">Delivery status icon</string>
+    <string name="cd_public_eta_icon">Estimated time icon</string>
+    <string name="cd_public_recent_icon">Recent search</string>
+    <string name="cd_public_remove_recent">Remove from recent</string>
+    <string name="cd_public_pickup_marker">Pickup location marker</string>
+    <string name="cd_public_drop_marker">Drop-off location marker</string>
+    <string name="cd_public_details_button">View delivery details</string>
+    <string name="cd_public_connection_status">Connection status indicator</string>
+    <string name="cd_public_eta">Estimated arrival time</string>
+    <string name="cd_public_route_icon">Route icon</string>
+    <string name="cd_public_share">Share tracking link</string>
+    <string name="cd_public_driver">Driver</string>
+    <string name="cd_public_vehicle">Vehicle</string>
+    <string name="cd_public_timeline">Timeline</string>
+    <string name="cd_public_star">Rating</string>
+    <string name="cd_public_call_driver">Call driver</string>
+    <string name="public_status_waiting_gps">Waiting for vehicle GPS signal…</string>
+    <string name="public_detail_title">Delivery Details</string>
+    <string name="public_detail_driver_section">Driver Information</string>
+    <string name="public_detail_vehicle_section">Vehicle Information</string>
+    <string name="public_detail_vehicle_type">Vehicle Type</string>
+    <string name="public_detail_vehicle_number">Vehicle Number</string>
+    <string name="public_detail_route_section">Route</string>
+    <string name="public_detail_route_pickup">Pickup</string>
+    <string name="public_detail_route_drop">Drop-off</string>
+    <string name="public_detail_timeline_section">Delivery Timeline</string>
+    <string name="public_detail_open_map">Open Live Map</string>
+    <string name="public_detail_share">Share Tracking Link</string>
+    <string name="public_share_text">Track my delivery in real-time!\nTracking ID: %1$s\nStatus: %2$s</string>
 </resources>

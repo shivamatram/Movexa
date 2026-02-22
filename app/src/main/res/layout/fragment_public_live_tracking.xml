@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/public_bg">
+
+    <!-- ═══════════════════════════════════════════════════════
+         FULL-SCREEN MAP
+         ═══════════════════════════════════════════════════════ -->
+
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!-- ═══════════════════════════════════════════════════════
+         TOP BAR — Back + Tracking ID + Connection Status
+         ═══════════════════════════════════════════════════════ -->
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardTopBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="44dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="6dp"
+        app:strokeWidth="0dp"
+        app:cardBackgroundColor="@color/public_card_bg">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="14dp"
+            android:gravity="center_vertical">
+
+            <!-- Back button -->
+            <ImageButton
+                android:id="@+id/btnBack"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_back_arrow"
+                android:contentDescription="@string/cd_public_back"
+                android:padding="7dp"
+                app:tint="@color/public_text_primary" />
+
+            <!-- Title + Connection Status -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/public_live_title"
+                    android:textSize="16sp"
+                    android:textColor="@color/public_text_primary"
+                    android:fontFamily="sans-serif-medium" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="2dp">
+
+                    <!-- Connection indicator dot -->
+                    <View
+                        android:id="@+id/viewConnectionDot"
+                        android:layout_width="7dp"
+                        android:layout_height="7dp"
+                        android:background="@drawable/bg_timeline_dot_current" />
+
+                    <TextView
+                        android:id="@+id/tvConnectionStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:textSize="12sp"
+                        android:textColor="@color/public_conn_connected"
+                        tools:text="Connected" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- Tracking ID badge -->
+            <TextView
+                android:id="@+id/tvTrackingIdBadge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_public_eta_badge"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="4dp"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:textColor="@color/public_on_primary"
+                android:letterSpacing="0.04"
+                tools:text="TRK-ABCD" />
+
+            <!-- Center vehicle button -->
+            <ImageButton
+                android:id="@+id/btnCenterVehicle"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:layout_marginStart="6dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_center_focus"
+                android:contentDescription="@string/cd_public_center_map"
+                android:padding="7dp"
+                app:tint="@color/public_primary" />
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- ═══════════════════════════════════════════════════════
+         ETA BADGE (floating top-right)
+         ═══════════════════════════════════════════════════════ -->
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardEta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="120dp"
+        android:visibility="gone"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="4dp"
+        app:strokeWidth="0dp"
+        app:cardBackgroundColor="@color/public_eta_badge_bg"
+        tools:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="14dp"
+            android:paddingVertical="10dp"
+            android:gravity="center"
+            android:minWidth="76dp">
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/ic_public_eta"
+                app:tint="@color/public_on_primary"
+                android:contentDescription="@string/cd_public_eta" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="@string/public_live_eta_label"
+                android:textSize="10sp"
+                android:textColor="@color/public_on_primary"
+                android:textAllCaps="true"
+                android:letterSpacing="0.06" />
+
+            <TextView
+                android:id="@+id/tvEta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@color/public_on_primary"
+                android:fontFamily="sans-serif-medium"
+                tools:text="12 min" />
+
+            <TextView
+                android:id="@+id/tvDistanceRemaining"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="11sp"
+                android:textColor="@color/public_on_primary"
+                tools:text="8.5 km away" />
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- ═══════════════════════════════════════════════════════
+         BOTTOM INFO PANEL
+         ═══════════════════════════════════════════════════════ -->
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardBottomInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="20dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="6dp"
+        app:strokeWidth="0dp"
+        app:cardBackgroundColor="@color/public_card_bg">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="18dp">
+
+            <!-- Status message row -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:id="@+id/ivStatusIcon"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_public_pin"
+                    app:tint="@color/public_primary"
+                    android:contentDescription="@string/cd_public_status_icon" />
+
+                <TextView
+                    android:id="@+id/tvStatusMessage"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="10dp"
+                    android:textSize="14sp"
+                    android:textColor="@color/public_primary"
+                    android:fontFamily="sans-serif-medium"
+                    tools:text="Vehicle is moving · 45 km/h" />
+
+            </LinearLayout>
+
+            <!-- Divider -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginVertical="12dp"
+                android:background="@color/public_divider" />
+
+            <!-- Pickup / Drop addresses -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <!-- Pickup -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/public_detail_route_pickup"
+                        android:textSize="10sp"
+                        android:textColor="@color/public_text_hint"
+                        android:textAllCaps="true"
+                        android:letterSpacing="0.04" />
+
+                    <TextView
+                        android:id="@+id/tvPickupAddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:textSize="13sp"
+                        android:textColor="@color/public_text_primary"
+                        android:maxLines="2"
+                        android:ellipsize="end"
+                        tools:text="123 MG Road, Pune" />
+
+                </LinearLayout>
+
+                <!-- Arrow -->
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center"
+                    android:layout_marginHorizontal="8dp"
+                    android:src="@drawable/ic_nav_navigation"
+                    android:contentDescription="@string/cd_public_route_icon"
+                    app:tint="@color/public_accent" />
+
+                <!-- Drop-off -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/public_detail_route_drop"
+                        android:textSize="10sp"
+                        android:textColor="@color/public_text_hint"
+                        android:textAllCaps="true"
+                        android:letterSpacing="0.04" />
+
+                    <TextView
+                        android:id="@+id/tvDropAddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:textSize="13sp"
+                        android:textColor="@color/public_text_primary"
+                        android:maxLines="2"
+                        android:ellipsize="end"
+                        tools:text="456 FC Road, Mumbai" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- Divider -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginVertical="12dp"
+                android:background="@color/public_divider" />
+
+            <!-- View Details + Speed -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <!-- View Delivery Details -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnViewDetails"
+                    android:layout_width="0dp"
+                    android:layout_height="44dp"
+                    android:layout_weight="1"
+                    android:text="@string/public_live_view_details"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:textAllCaps="false"
+                    app:cornerRadius="14dp"
+                    app:backgroundTint="@color/public_primary"
+                    android:textColor="@color/public_on_primary"
+                    app:icon="@drawable/ic_public_info"
+                    app:iconGravity="textStart"
+                    app:iconTint="@color/public_on_primary"
+                    app:iconSize="16dp"
+                    app:iconPadding="8dp" />
+
+                <!-- Speed badge -->
+                <TextView
+                    android:id="@+id/tvSpeed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:textSize="13sp"
+                    android:textColor="@color/public_text_secondary"
+                    android:visibility="gone"
+                    tools:text="45 km/h"
+                    tools:visibility="visible" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- ═══════════════════════════════════════════════════════
+         WAITING / NO DATA STATE (centered overlay)
+         ═══════════════════════════════════════════════════════ -->
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardWaiting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="6dp"
+        app:strokeWidth="0dp"
+        app:cardBackgroundColor="@color/public_card_bg"
+        tools:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="32dp"
+            android:minWidth="240dp">
+
+            <com.google.android.material.progressindicator.CircularProgressIndicator
+                android:id="@+id/progressWaiting"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:indeterminate="true"
+                app:indicatorColor="@color/public_primary"
+                app:trackThickness="4dp" />
+
+            <TextView
+                android:id="@+id/tvWaitingTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/public_conn_connecting"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="@color/public_text_primary"
+                android:gravity="center" />
+
+            <TextView
+                android:id="@+id/tvWaitingMessage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="@string/public_status_waiting_gps"
+                android:textSize="13sp"
+                android:textColor="@color/public_text_secondary"
+                android:gravity="center"
+                android:lineSpacingExtra="3dp" />
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

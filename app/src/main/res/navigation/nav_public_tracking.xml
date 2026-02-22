@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_public_tracking"
+    app:startDestination="@id/enterTrackingFragment">
+
+    <!-- ═══════════════════════════════════════════════════════
+         Screen 1: Enter Tracking ID
+         ═══════════════════════════════════════════════════════ -->
+
+    <fragment
+        android:id="@+id/enterTrackingFragment"
+        android:name="com.example.movexa.ui.public_tracking.EnterTrackingFragment"
+        android:label="Track Delivery"
+        tools:layout="@layout/fragment_enter_tracking">
+
+        <action
+            android:id="@+id/action_enter_to_liveTracking"
+            app:destination="@id/publicLiveTrackingFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+        <action
+            android:id="@+id/action_enter_to_deliveryDetails"
+            app:destination="@id/deliveryDetailsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+    </fragment>
+
+    <!-- ═══════════════════════════════════════════════════════
+         Screen 2: Public Live Tracking Map
+         ═══════════════════════════════════════════════════════ -->
+
+    <fragment
+        android:id="@+id/publicLiveTrackingFragment"
+        android:name="com.example.movexa.ui.public_tracking.PublicLiveTrackingFragment"
+        android:label="Live Tracking"
+        tools:layout="@layout/fragment_public_live_tracking">
+
+        <action
+            android:id="@+id/action_liveTracking_to_deliveryDetails"
+            app:destination="@id/deliveryDetailsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+    </fragment>
+
+    <!-- ═══════════════════════════════════════════════════════
+         Screen 3: Delivery Details
+         ═══════════════════════════════════════════════════════ -->
+
+    <fragment
+        android:id="@+id/deliveryDetailsFragment"
+        android:name="com.example.movexa.ui.public_tracking.DeliveryDetailsFragment"
+        android:label="Delivery Details"
+        tools:layout="@layout/fragment_delivery_details">
+
+        <action
+            android:id="@+id/action_deliveryDetails_to_liveTracking"
+            app:destination="@id/publicLiveTrackingFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+    </fragment>
+
+</navigation>

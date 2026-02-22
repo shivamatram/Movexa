@@ -416,4 +416,110 @@
     <color name="analytics_rank_gold">#FFFFC107</color>
     <color name="analytics_rank_silver">#FF9E9E9E</color>
     <color name="analytics_rank_bronze">#FF8D6E63</color>
+
+    <!-- ═══════════════════════════════════════════════════════
+         PUBLIC TRACKING MODULE
+         ═══════════════════════════════════════════════════════ -->
+
+    <!-- Background & Surface -->
+    <color name="public_bg">#FFF5F7FA</color>
+    <color name="public_surface">#FFFFFFFF</color>
+    <color name="public_card_bg">#FFFFFFFF</color>
+    <color name="public_card_elevated">#FFFAFBFD</color>
+
+    <!-- Primary / Brand (customer-facing blue) -->
+    <color name="public_primary">#FF1565C0</color>
+    <color name="public_primary_light">#FF42A5F5</color>
+    <color name="public_primary_dark">#FF0D47A1</color>
+    <color name="public_primary_surface">#1A1565C0</color>
+    <color name="public_on_primary">#FFFFFFFF</color>
+
+    <!-- Accent (warm orange for CTAs) -->
+    <color name="public_accent">#FFFF6D00</color>
+    <color name="public_accent_surface">#1AFF6D00</color>
+
+    <!-- Text -->
+    <color name="public_text_primary">#DE000000</color>
+    <color name="public_text_secondary">#99000000</color>
+    <color name="public_text_hint">#61000000</color>
+    <color name="public_text_disabled">#42000000</color>
+    <color name="public_text_on_dark">#FFFFFFFF</color>
+    <color name="public_text_on_dark_secondary">#B3FFFFFF</color>
+
+    <!-- Status pill colors -->
+    <color name="public_status_created">#FF9E9E9E</color>
+    <color name="public_status_created_bg">#1A9E9E9E</color>
+    <color name="public_status_assigned">#FF1565C0</color>
+    <color name="public_status_assigned_bg">#1A1565C0</color>
+    <color name="public_status_accepted">#FF00897B</color>
+    <color name="public_status_accepted_bg">#1A00897B</color>
+    <color name="public_status_started">#FFFF6D00</color>
+    <color name="public_status_started_bg">#1AFF6D00</color>
+    <color name="public_status_completed">#FF2E7D32</color>
+    <color name="public_status_completed_bg">#1A2E7D32</color>
+    <color name="public_status_cancelled">#FFC62828</color>
+    <color name="public_status_cancelled_bg">#1AC62828</color>
+
+    <!-- Map -->
+    <color name="public_map_route">#FF1565C0</color>
+    <color name="public_map_route_faded">#801565C0</color>
+    <color name="public_map_pickup">#FF2E7D32</color>
+    <color name="public_map_drop">#FFC62828</color>
+    <color name="public_map_vehicle">#FFFF6D00</color>
+
+    <!-- Connection state -->
+    <color name="public_connected">#FF2E7D32</color>
+    <color name="public_connected_bg">#1A2E7D32</color>
+    <color name="public_connecting">#FFFF8F00</color>
+    <color name="public_connecting_bg">#1AFF8F00</color>
+    <color name="public_offline">#FF9E9E9E</color>
+    <color name="public_offline_bg">#1A9E9E9E</color>
+    <color name="public_error_red">#FFC62828</color>
+    <color name="public_error_bg">#1AC62828</color>
+
+    <!-- ETA badge -->
+    <color name="public_eta_bg">#FF1565C0</color>
+    <color name="public_eta_text">#FFFFFFFF</color>
+
+    <!-- Timeline -->
+    <color name="public_timeline_completed">#FF2E7D32</color>
+    <color name="public_timeline_current">#FFFF6D00</color>
+    <color name="public_timeline_pending">#FFE0E0E0</color>
+    <color name="public_timeline_line_active">#FF2E7D32</color>
+    <color name="public_timeline_line_pending">#FFE0E0E0</color>
+
+    <!-- Call button -->
+    <color name="public_call_button">#FF2E7D32</color>
+    <color name="public_call_button_text">#FFFFFFFF</color>
+
+    <!-- Input -->
+    <color name="public_input_bg">#FFFFFFFF</color>
+    <color name="public_input_stroke">#FFE0E0E0</color>
+    <color name="public_input_stroke_focused">#FF1565C0</color>
+
+    <!-- Divider -->
+    <color name="public_divider">#1F000000</color>
+
+    <!-- Rating star -->
+    <color name="public_rating_star">#FFFFC107</color>
+
+    <!-- Recent search -->
+    <color name="public_recent_bg">#FFF5F5F5</color>
+    <color name="public_recent_icon">#FF9E9E9E</color>
+
+    <!-- Connection state color aliases (used by PublicLiveTrackingFragment) -->
+    <color name="public_conn_connecting">#FFFF8F00</color>
+    <color name="public_conn_connected">#FF2E7D32</color>
+    <color name="public_conn_offline">#FF9E9E9E</color>
+    <color name="public_conn_disconnected">#FF757575</color>
+    <color name="public_conn_error">#FFC62828</color>
+
+    <!-- Timeline line default (pending) -->
+    <color name="public_timeline_line">#FFE0E0E0</color>
+
+    <!-- Call button alias -->
+    <color name="public_call_btn">#FF2E7D32</color>
+
+    <!-- ETA badge background alias -->
+    <color name="public_eta_badge_bg">#FF1565C0</color>
 </resources>

@@ -42,6 +42,12 @@
             </intent-filter>
         </activity>
 
+        <!-- Public Customer Tracking — no auth, isolated from main nav -->
+        <activity
+            android:name=".ui.public_tracking.PublicTrackingActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Movexa" />
+
         <!-- Google Maps API Key -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
