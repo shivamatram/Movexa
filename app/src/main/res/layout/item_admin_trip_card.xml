@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Admin trip card with enhanced info: tracking ID, route, driver, vehicle,
+     status badge, distance, duration, revenue, timestamp, audit flag -->
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardTrip"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/screen_margin_horizontal"
+    android:layout_marginBottom="@dimen/spacing_small"
+    app:cardCornerRadius="@dimen/radius_medium"
+    app:cardElevation="@dimen/elevation_small"
+    app:cardBackgroundColor="@color/surface"
+    app:strokeColor="@color/outline_variant"
+    app:strokeWidth="0.5dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackground">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/card_padding">
+
+        <!-- Row 1: Status Badge + Tracking ID + Audit Flag -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/tvStatusBadge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_trip_status_badge"
+                android:textSize="10sp"
+                android:fontFamily="sans-serif-medium"
+                android:textAllCaps="true"
+                android:letterSpacing="0.05"
+                tools:text="STARTED"
+                tools:textColor="@color/trip_started" />
+
+            <!-- Audit flag indicator -->
+            <TextView
+                android:id="@+id/tvAuditFlag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_xs"
+                android:background="@drawable/bg_audit_badge"
+                android:text="@string/admin_trip_audit_flagged"
+                android:textSize="9sp"
+                android:textColor="@color/warning"
+                android:fontFamily="sans-serif-medium"
+                android:textAllCaps="true"
+                android:visibility="gone"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/tvTrackingId"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="@dimen/spacing_small"
+                android:textSize="@dimen/text_caption"
+                android:textColor="@color/text_hint"
+                android:fontFamily="monospace"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:gravity="end"
+                tools:text="TRK-20260222-A1B2C3" />
+
+        </LinearLayout>
+
+        <!-- Divider -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/divider"
+            android:layout_marginVertical="@dimen/spacing_small" />
+
+        <!-- Row 2: Route (Pickup → Drop) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- Route indicator dots -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                android:layout_marginEnd="@dimen/spacing_small">
+
+                <View
+                    android:id="@+id/dotPickup"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/bg_timeline_dot" />
+
+                <View
+                    android:layout_width="2dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="@color/timeline_line"
+                    android:layout_marginVertical="2dp" />
+
+                <View
+                    android:id="@+id/dotDrop"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/bg_timeline_dot" />
+
+            </LinearLayout>
+
+            <!-- Addresses -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <!-- Pickup -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/trip_pickup_label"
+                    android:textSize="10sp"
+                    android:textColor="@color/text_hint"
+                    android:fontFamily="sans-serif-medium"
+                    android:textAllCaps="true" />
+
+                <TextView
+                    android:id="@+id/tvPickupAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="13sp"
+                    android:textColor="@color/text_primary"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginBottom="@dimen/spacing_small"
+                    tools:text="123 Industrial Area, Phase 2, Mumbai" />
+
+                <!-- Drop -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/trip_drop_label"
+                    android:textSize="10sp"
+                    android:textColor="@color/text_hint"
+                    android:fontFamily="sans-serif-medium"
+                    android:textAllCaps="true" />
+
+                <TextView
+                    android:id="@+id/tvDropAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="13sp"
+                    android:textColor="@color/text_primary"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:layout_marginTop="1dp"
+                    tools:text="456 Warehouse District, Pune" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Divider -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/divider"
+            android:layout_marginVertical="@dimen/spacing_small" />
+
+        <!-- Row 3: Driver + Vehicle info -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <!-- Driver -->
+            <LinearLayout
+                android:id="@+id/layoutDriverInfo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:src="@drawable/ic_person"
+                    android:contentDescription="@string/cd_driver_info"
+                    app:tint="@color/text_hint" />
+
+                <TextView
+                    android:id="@+id/tvDriverName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_xxs"
+                    android:textSize="@dimen/text_caption"
+                    android:textColor="@color/text_secondary"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    tools:text="Rajesh Kumar" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="12dp"
+                android:background="@color/divider"
+                android:layout_marginHorizontal="@dimen/spacing_small" />
+
+            <!-- Vehicle -->
+            <LinearLayout
+                android:id="@+id/layoutVehicleInfo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:src="@drawable/ic_local_shipping"
+                    android:contentDescription="@string/cd_vehicle"
+                    app:tint="@color/text_hint" />
+
+                <TextView
+                    android:id="@+id/tvVehicleNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_xxs"
+                    android:textSize="@dimen/text_caption"
+                    android:textColor="@color/text_secondary"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    tools:text="MH-12-AB-1234" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Row 4: Metrics (Distance | Duration | Revenue | Timestamp) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="@dimen/spacing_small">
+
+            <!-- Distance -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:src="@drawable/ic_straighten"
+                    android:contentDescription="@string/cd_distance"
+                    app:tint="@color/text_hint" />
+
+                <TextView
+                    android:id="@+id/tvDistance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="2dp"
+                    android:textSize="11sp"
+                    android:textColor="@color/text_secondary"
+                    tools:text="350 km" />
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/dividerDuration"
+                android:layout_width="1dp"
+                android:layout_height="10dp"
+                android:background="@color/divider"
+                android:layout_marginHorizontal="@dimen/spacing_xs" />
+
+            <!-- Duration -->
+            <LinearLayout
+                android:id="@+id/layoutDuration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:src="@drawable/ic_timer"
+                    android:contentDescription="@string/cd_duration"
+                    app:tint="@color/text_hint" />
+
+                <TextView
+                    android:id="@+id/tvDuration"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="2dp"
+                    android:textSize="11sp"
+                    android:textColor="@color/text_secondary"
+                    tools:text="5h 30m" />
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/dividerRevenue"
+                android:layout_width="1dp"
+                android:layout_height="10dp"
+                android:background="@color/divider"
+                android:layout_marginHorizontal="@dimen/spacing_xs"
+                android:visibility="gone"
+                tools:visibility="visible" />
+
+            <!-- Revenue (shown for completed trips) -->
+            <LinearLayout
+                android:id="@+id/layoutRevenue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <ImageView
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:src="@drawable/ic_currency"
+                    android:contentDescription="@string/admin_trip_revenue"
+                    app:tint="@color/success" />
+
+                <TextView
+                    android:id="@+id/tvRevenue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="2dp"
+                    android:textSize="11sp"
+                    android:textColor="@color/success"
+                    android:fontFamily="sans-serif-medium"
+                    tools:text="₹12,500" />
+
+            </LinearLayout>
+
+            <!-- Spacer -->
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <!-- Timestamp -->
+            <TextView
+                android:id="@+id/tvTimestamp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="10sp"
+                android:textColor="@color/text_hint"
+                tools:text="2h ago" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

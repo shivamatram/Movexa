@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Shimmer placeholder for admin trip card loading state -->
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/screen_margin_horizontal"
+    android:layout_marginBottom="@dimen/spacing_small"
+    app:cardCornerRadius="@dimen/radius_medium"
+    app:cardElevation="@dimen/elevation_small"
+    app:cardBackgroundColor="@color/surface"
+    app:strokeColor="@color/shimmer_base"
+    app:strokeWidth="0.5dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/card_padding">
+
+        <!-- Row 1: Status badge + tracking ID -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <View
+                android:layout_width="64dp"
+                android:layout_height="20dp"
+                android:background="@color/shimmer_highlight" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <View
+                android:layout_width="110dp"
+                android:layout_height="14dp"
+                android:background="@color/shimmer_base" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginVertical="@dimen/spacing_small"
+            android:background="@color/shimmer_highlight" />
+
+        <!-- Row 2: Route dots + addresses -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                android:layout_marginEnd="@dimen/spacing_small">
+
+                <View
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:background="@drawable/shimmer_circle" />
+
+                <View
+                    android:layout_width="2dp"
+                    android:layout_height="24dp"
+                    android:layout_marginVertical="2dp"
+                    android:background="@color/shimmer_highlight" />
+
+                <View
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:background="@drawable/shimmer_circle" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <View
+                    android:layout_width="40dp"
+                    android:layout_height="10dp"
+                    android:background="@color/shimmer_highlight" />
+
+                <View
+                    android:layout_width="180dp"
+                    android:layout_height="13dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="@dimen/spacing_small"
+                    android:background="@color/shimmer_base" />
+
+                <View
+                    android:layout_width="40dp"
+                    android:layout_height="10dp"
+                    android:background="@color/shimmer_highlight" />
+
+                <View
+                    android:layout_width="160dp"
+                    android:layout_height="13dp"
+                    android:layout_marginTop="2dp"
+                    android:background="@color/shimmer_base" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginVertical="@dimen/spacing_small"
+            android:background="@color/shimmer_highlight" />
+
+        <!-- Row 3: Driver + Vehicle -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <View
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:background="@drawable/shimmer_circle" />
+
+            <View
+                android:layout_width="80dp"
+                android:layout_height="12dp"
+                android:layout_marginStart="@dimen/spacing_xxs"
+                android:background="@color/shimmer_base" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <View
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:background="@drawable/shimmer_circle" />
+
+            <View
+                android:layout_width="70dp"
+                android:layout_height="12dp"
+                android:layout_marginStart="@dimen/spacing_xxs"
+                android:background="@color/shimmer_base" />
+
+        </LinearLayout>
+
+        <!-- Row 4: Metrics -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="@dimen/spacing_small">
+
+            <View
+                android:layout_width="50dp"
+                android:layout_height="11dp"
+                android:background="@color/shimmer_base" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="10dp"
+                android:layout_marginHorizontal="@dimen/spacing_xs"
+                android:background="@color/shimmer_highlight" />
+
+            <View
+                android:layout_width="45dp"
+                android:layout_height="11dp"
+                android:background="@color/shimmer_base" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <View
+                android:layout_width="40dp"
+                android:layout_height="10dp"
+                android:background="@color/shimmer_highlight" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

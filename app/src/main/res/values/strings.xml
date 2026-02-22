@@ -68,6 +68,97 @@
     <string name="admin_fleet_subtitle">Manage all vehicles in your fleet.</string>
     <string name="admin_trips_title">Trip Management</string>
     <string name="admin_trips_subtitle">Monitor and manage all trips.</string>
+
+    <!-- Admin Trips Module -->
+    <string name="admin_trips_toolbar_title">Trip Operations</string>
+    <string name="admin_trips_toolbar_subtitle">Fleet Operations Command Center</string>
+    <string name="admin_trips_search_hint">Search tracking ID, driver, vehicle…</string>
+    <string name="admin_trips_filter">Filter trips</string>
+
+    <!-- Admin Trips Tabs -->
+    <string name="admin_trips_tab_ongoing">Ongoing</string>
+    <string name="admin_trips_tab_completed">Completed</string>
+    <string name="admin_trips_tab_cancelled">Cancelled</string>
+    <string name="admin_trips_tab_all">All</string>
+
+    <!-- Admin Trip Card -->
+    <string name="admin_trip_audit_flagged">AUDIT</string>
+    <string name="admin_trip_revenue">Revenue</string>
+    <string name="admin_trips_no_address">Address not set</string>
+    <string name="admin_trips_unassigned">Unassigned</string>
+    <string name="admin_trips_no_vehicle">No vehicle</string>
+    <string name="admin_trips_loading_name">Loading…</string>
+
+    <!-- Admin Trips Empty States -->
+    <string name="admin_trips_empty_title">No Trips Found</string>
+    <string name="admin_trips_empty_subtitle">Trip data will appear here as operations begin.</string>
+    <string name="admin_trips_empty_ongoing_title">No Ongoing Trips</string>
+    <string name="admin_trips_empty_ongoing_subtitle">All trips are either completed or not yet started.</string>
+    <string name="admin_trips_empty_completed_title">No Completed Trips</string>
+    <string name="admin_trips_empty_completed_subtitle">Completed trips will appear here.</string>
+    <string name="admin_trips_empty_cancelled_title">No Cancelled Trips</string>
+    <string name="admin_trips_empty_cancelled_subtitle">No trips have been cancelled.</string>
+    <string name="admin_trips_empty_filter_title">No Matching Trips</string>
+    <string name="admin_trips_empty_filter_subtitle">Try adjusting your filters or search query.</string>
+    <string name="admin_trips_clear_filters">Clear Filters</string>
+
+    <!-- Admin Trips Error States -->
+    <string name="admin_trips_error_title">Failed to Load Trips</string>
+
+    <!-- Admin Trip Actions -->
+    <string name="admin_trips_actions_title">Trip Actions</string>
+    <string name="admin_trips_action_cancel">Cancel Trip</string>
+    <string name="admin_trips_action_cancel_desc">Terminate this trip and notify the driver</string>
+    <string name="admin_trips_action_force_complete">Force Complete</string>
+    <string name="admin_trips_action_force_complete_desc">Mark trip as completed with admin override</string>
+    <string name="admin_trips_action_reassign">Reassign Driver</string>
+    <string name="admin_trips_action_reassign_desc">Assign a different vehicle and driver</string>
+    <string name="admin_trips_action_flag">Flag for Audit</string>
+    <string name="admin_trips_action_flag_desc">Mark trip for compliance review</string>
+    <string name="admin_trips_action_view_details">View Details</string>
+    <string name="admin_trips_action_view_details_desc">Open full trip details and timeline</string>
+
+    <!-- Admin Trip Cancel Confirmation -->
+    <string name="admin_trips_cancel_confirm_title">Cancel Trip?</string>
+    <string name="admin_trips_cancel_confirm_message">Are you sure you want to cancel trip %s? This action cannot be undone.</string>
+    <string name="admin_trips_reason_hint">Reason (optional)</string>
+
+    <!-- Admin Trip Force Complete Confirmation -->
+    <string name="admin_trips_force_complete_title">Force Complete Trip?</string>
+    <string name="admin_trips_force_complete_message">Force-completing trip %s will override the normal flow. The driver will be notified.</string>
+
+    <!-- Admin Trip Flag Confirmation -->
+    <string name="admin_trips_flag_confirm_title">Flag for Audit?</string>
+    <string name="admin_trips_flag_confirm_message">This trip will be flagged for compliance review. Audit team will be notified.</string>
+    <string name="admin_trips_flag_reason_hint">Audit reason</string>
+
+    <!-- Admin Trip Reassign -->
+    <string name="admin_trips_reassign_title">Reassign Vehicle &amp; Driver</string>
+    <string name="admin_trips_reassign_subtitle">Select an available vehicle with an assigned driver</string>
+    <string name="admin_trips_reassign_no_vehicles">No eligible vehicles available for reassignment</string>
+    <string name="admin_trips_reassign_reason_hint">Reason for reassignment</string>
+    <string name="admin_trips_reassign_confirm">Confirm Reassignment</string>
+
+    <!-- Admin Trips Filter -->
+    <string name="admin_trips_filter_title">Filter Trips</string>
+    <string name="admin_trips_filter_status">Status</string>
+    <string name="admin_trips_filter_status_all">All</string>
+    <string name="admin_trips_filter_status_created">Created</string>
+    <string name="admin_trips_filter_status_assigned">Assigned</string>
+    <string name="admin_trips_filter_status_started">Started</string>
+    <string name="admin_trips_filter_status_completed">Completed</string>
+    <string name="admin_trips_filter_status_cancelled">Cancelled</string>
+    <string name="admin_trips_filter_driver">Driver</string>
+    <string name="admin_trips_filter_driver_hint">Select driver</string>
+    <string name="admin_trips_filter_all_drivers">All Drivers</string>
+    <string name="admin_trips_filter_vehicle">Vehicle</string>
+    <string name="admin_trips_filter_vehicle_hint">Select vehicle</string>
+    <string name="admin_trips_filter_all_vehicles">All Vehicles</string>
+    <string name="admin_trips_filter_date_range">Date Range</string>
+    <string name="admin_trips_filter_start_date">Start Date</string>
+    <string name="admin_trips_filter_end_date">End Date</string>
+    <string name="admin_trips_filter_apply">Apply Filters</string>
+
     <string name="admin_finance_title">Finance</string>
     <string name="admin_finance_subtitle">View financial reports and expenses.</string>
     <string name="admin_profile_title">Admin Profile</string>

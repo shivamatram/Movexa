@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Item layout for eligible vehicle in reassign bottom sheet -->
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardVehicle"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/spacing_xs"
+    app:cardCornerRadius="@dimen/radius_medium"
+    app:cardElevation="0dp"
+    app:cardBackgroundColor="@color/surface_variant"
+    app:strokeWidth="1dp"
+    app:strokeColor="@color/outline_variant"
+    android:checkable="true"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackground">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="@dimen/spacing_medium">
+
+        <!-- Radio indicator -->
+        <RadioButton
+            android:id="@+id/rbSelect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:focusable="false" />
+
+        <!-- Vehicle icon -->
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="@dimen/spacing_small"
+            android:src="@drawable/ic_local_shipping"
+            android:contentDescription="@string/cd_vehicle"
+            app:tint="@color/primary" />
+
+        <!-- Info -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginStart="@dimen/spacing_small">
+
+            <TextView
+                android:id="@+id/tvVehicleNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@color/text_primary"
+                android:fontFamily="sans-serif-medium"
+                tools:text="MH-12-AB-5678" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="2dp">
+
+                <TextView
+                    android:id="@+id/tvVehicleType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="11sp"
+                    android:textColor="@color/text_hint"
+                    tools:text="Heavy Truck" />
+
+                <View
+                    android:layout_width="3dp"
+                    android:layout_height="3dp"
+                    android:layout_marginHorizontal="@dimen/spacing_xs"
+                    android:background="@drawable/shimmer_circle"
+                    android:backgroundTint="@color/text_hint" />
+
+                <ImageView
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:src="@drawable/ic_person"
+                    android:contentDescription="@null"
+                    app:tint="@color/text_hint" />
+
+                <TextView
+                    android:id="@+id/tvDriverName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="2dp"
+                    android:textSize="11sp"
+                    android:textColor="@color/text_hint"
+                    tools:text="Suresh Patil" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

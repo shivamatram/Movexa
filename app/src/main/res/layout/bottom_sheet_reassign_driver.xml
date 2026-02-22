@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Reassign driver bottom sheet: select new vehicle+driver pair -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/bg_bottom_sheet"
+    android:padding="@dimen/spacing_medium">
+
+    <!-- Handle bar -->
+    <View
+        android:layout_width="40dp"
+        android:layout_height="4dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="@dimen/spacing_medium"
+        android:background="@drawable/bg_bottom_sheet_handle" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/admin_trips_reassign_title"
+        android:textSize="@dimen/text_subtitle"
+        android:textColor="@color/text_primary"
+        android:fontFamily="sans-serif-medium"
+        android:layout_marginBottom="@dimen/spacing_xs" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/admin_trips_reassign_subtitle"
+        android:textSize="@dimen/text_caption"
+        android:textColor="@color/text_hint"
+        android:layout_marginBottom="@dimen/spacing_medium" />
+
+    <!-- Available vehicles list -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvEligibleVehicles"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxHeight="300dp"
+        android:nestedScrollingEnabled="false"
+        tools:listitem="@layout/item_eligible_vehicle" />
+
+    <!-- Empty state -->
+    <TextView
+        android:id="@+id/tvNoVehicles"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/admin_trips_reassign_no_vehicles"
+        android:textSize="@dimen/text_body"
+        android:textColor="@color/text_hint"
+        android:gravity="center"
+        android:padding="@dimen/spacing_xxxl"
+        android:visibility="gone" />
+
+    <!-- Reason input -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilReassignReason"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_medium"
+        android:hint="@string/admin_trips_reassign_reason_hint"
+        app:counterEnabled="true"
+        app:counterMaxLength="200"
+        app:boxCornerRadiusTopStart="@dimen/radius_medium"
+        app:boxCornerRadiusTopEnd="@dimen/radius_medium"
+        app:boxCornerRadiusBottomStart="@dimen/radius_medium"
+        app:boxCornerRadiusBottomEnd="@dimen/radius_medium">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etReassignReason"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:minLines="2"
+            android:maxLines="4"
+            android:textSize="14sp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Confirm button -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnConfirmReassign"
+        style="@style/Widget.Movexa.Button.Primary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_medium"
+        android:text="@string/admin_trips_reassign_confirm"
+        android:enabled="false" />
+
+</LinearLayout>

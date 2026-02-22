@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Trip filter bottom sheet: Status, Driver, Vehicle, Date Range -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/bg_bottom_sheet"
+    android:padding="@dimen/spacing_medium">
+
+    <!-- Handle bar -->
+    <View
+        android:layout_width="40dp"
+        android:layout_height="4dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="@dimen/spacing_medium"
+        android:background="@drawable/bg_bottom_sheet_handle" />
+
+    <!-- Header row -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="@dimen/spacing_medium">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/admin_trips_filter_title"
+            android:textSize="@dimen/text_subtitle"
+            android:textColor="@color/text_primary"
+            android:fontFamily="sans-serif-medium" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnClearAllFilters"
+            style="@style/Widget.Movexa.Button.Text"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:text="@string/admin_trips_clear_filters"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxHeight="400dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Status Filter -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/admin_trips_filter_status"
+                android:textSize="@dimen/text_caption"
+                android:textColor="@color/text_secondary"
+                android:fontFamily="sans-serif-medium"
+                android:textAllCaps="true"
+                android:letterSpacing="0.05"
+                android:layout_marginBottom="@dimen/spacing_small" />
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipGroupStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:singleSelection="true"
+                android:layout_marginBottom="@dimen/spacing_medium">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipStatusAll"
+                    style="@style/Widget.Material3.Chip.Filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/admin_trips_filter_status_all"
+                    android:checked="true" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipStatusCreated"
+                    style="@style/Widget.Material3.Chip.Filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/admin_trips_filter_status_created" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipStatusAssigned"
+                    style="@style/Widget.Material3.Chip.Filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/admin_trips_filter_status_assigned" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipStatusStarted"
+                    style="@style/Widget.Material3.Chip.Filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/admin_trips_filter_status_started" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipStatusCompleted"
+                    style="@style/Widget.Material3.Chip.Filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/admin_trips_filter_status_completed" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipStatusCancelled"
+                    style="@style/Widget.Material3.Chip.Filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/admin_trips_filter_status_cancelled" />
+
+            </com.google.android.material.chip.ChipGroup>
+
+            <!-- Driver Filter -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/admin_trips_filter_driver"
+                android:textSize="@dimen/text_caption"
+                android:textColor="@color/text_secondary"
+                android:fontFamily="sans-serif-medium"
+                android:textAllCaps="true"
+                android:letterSpacing="0.05"
+                android:layout_marginBottom="@dimen/spacing_small" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilDriverFilter"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_medium"
+                android:hint="@string/admin_trips_filter_driver_hint"
+                app:startIconDrawable="@drawable/ic_person"
+                app:boxCornerRadiusTopStart="@dimen/radius_medium"
+                app:boxCornerRadiusTopEnd="@dimen/radius_medium"
+                app:boxCornerRadiusBottomStart="@dimen/radius_medium"
+                app:boxCornerRadiusBottomEnd="@dimen/radius_medium">
+
+                <AutoCompleteTextView
+                    android:id="@+id/actvDriverFilter"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none"
+                    android:textSize="14sp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Vehicle Filter -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/admin_trips_filter_vehicle"
+                android:textSize="@dimen/text_caption"
+                android:textColor="@color/text_secondary"
+                android:fontFamily="sans-serif-medium"
+                android:textAllCaps="true"
+                android:letterSpacing="0.05"
+                android:layout_marginBottom="@dimen/spacing_small" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilVehicleFilter"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_medium"
+                android:hint="@string/admin_trips_filter_vehicle_hint"
+                app:startIconDrawable="@drawable/ic_local_shipping"
+                app:boxCornerRadiusTopStart="@dimen/radius_medium"
+                app:boxCornerRadiusTopEnd="@dimen/radius_medium"
+                app:boxCornerRadiusBottomStart="@dimen/radius_medium"
+                app:boxCornerRadiusBottomEnd="@dimen/radius_medium">
+
+                <AutoCompleteTextView
+                    android:id="@+id/actvVehicleFilter"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none"
+                    android:textSize="14sp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Date Range -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/admin_trips_filter_date_range"
+                android:textSize="@dimen/text_caption"
+                android:textColor="@color/text_secondary"
+                android:fontFamily="sans-serif-medium"
+                android:textAllCaps="true"
+                android:letterSpacing="0.05"
+                android:layout_marginBottom="@dimen/spacing_small" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="@dimen/spacing_medium"
+                android:baselineAligned="false">
+
+                <!-- Start Date -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilStartDate"
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="@dimen/spacing_xs"
+                    android:hint="@string/admin_trips_filter_start_date"
+                    app:startIconDrawable="@drawable/ic_calendar"
+                    app:boxCornerRadiusTopStart="@dimen/radius_medium"
+                    app:boxCornerRadiusTopEnd="@dimen/radius_medium"
+                    app:boxCornerRadiusBottomStart="@dimen/radius_medium"
+                    app:boxCornerRadiusBottomEnd="@dimen/radius_medium">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etStartDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="none"
+                        android:focusable="false"
+                        android:clickable="true"
+                        android:textSize="13sp"
+                        tools:text="01 Jan 2026" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- End Date -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilEndDate"
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="@dimen/spacing_xs"
+                    android:hint="@string/admin_trips_filter_end_date"
+                    app:startIconDrawable="@drawable/ic_calendar"
+                    app:boxCornerRadiusTopStart="@dimen/radius_medium"
+                    app:boxCornerRadiusTopEnd="@dimen/radius_medium"
+                    app:boxCornerRadiusBottomStart="@dimen/radius_medium"
+                    app:boxCornerRadiusBottomEnd="@dimen/radius_medium">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etEndDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="none"
+                        android:focusable="false"
+                        android:clickable="true"
+                        android:textSize="13sp"
+                        tools:text="31 Jan 2026" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <!-- Apply button -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnApplyFilters"
+        style="@style/Widget.Movexa.Button.Primary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_small"
+        android:text="@string/admin_trips_filter_apply" />
+
+</LinearLayout>

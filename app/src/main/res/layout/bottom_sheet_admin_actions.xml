@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Admin trip actions bottom sheet: Cancel, Force Complete, Reassign, Flag Audit -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/bg_bottom_sheet"
+    android:padding="@dimen/spacing_medium">
+
+    <!-- Handle bar -->
+    <View
+        android:layout_width="40dp"
+        android:layout_height="4dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="@dimen/spacing_medium"
+        android:background="@drawable/bg_bottom_sheet_handle" />
+
+    <!-- Title -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/admin_trips_actions_title"
+        android:textSize="@dimen/text_subtitle"
+        android:textColor="@color/text_primary"
+        android:fontFamily="sans-serif-medium"
+        android:layout_marginBottom="@dimen/spacing_xs" />
+
+    <!-- Trip summary -->
+    <TextView
+        android:id="@+id/tvActionTripSummary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_caption"
+        android:textColor="@color/text_hint"
+        android:layout_marginBottom="@dimen/spacing_medium"
+        tools:text="TRK-20260222-A1B2C3 • Mumbai → Pune" />
+
+    <!-- Cancel Trip -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/btnActionCancel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/spacing_small"
+        app:cardCornerRadius="@dimen/radius_medium"
+        app:cardElevation="0dp"
+        app:cardBackgroundColor="@color/surface_variant"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="@dimen/spacing_medium">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_close"
+                android:contentDescription="@string/admin_trips_action_cancel"
+                app:tint="@color/error" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="@dimen/spacing_medium"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/admin_trips_action_cancel"
+                    android:textSize="@dimen/text_body"
+                    android:textColor="@color/text_primary"
+                    android:fontFamily="sans-serif-medium" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/admin_trips_action_cancel_desc"
+                    android:textSize="@dimen/text_caption"
+                    android:textColor="@color/text_hint" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/ic_chevron_right"
+                android:contentDescription="@null"
+                app:tint="@color/text_hint" />
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Force Complete -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/btnActionForceComplete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/spacing_small"
+        app:cardCornerRadius="@dimen/radius_medium"
+        app:cardElevation="0dp"
+        app:cardBackgroundColor="@color/surface_variant"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="@dimen/spacing_medium">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_assignment"
+                android:contentDescription="@string/admin_trips_action_force_complete"
+                app:tint="@color/warning" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="@dimen/spacing_medium"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/admin_trips_action_force_complete"
+                    android:textSize="@dimen/text_body"
+                    android:textColor="@color/text_primary"
+                    android:fontFamily="sans-serif-medium" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/admin_trips_action_force_complete_desc"
+                    android:textSize="@dimen/text_caption"
+                    android:textColor="@color/text_hint" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/ic_chevron_right"
+                android:contentDescription="@null"
+                app:tint="@color/text_hint" />
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Reassign Driver -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/btnActionReassign"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/spacing_small"
+        app:cardCornerRadius="@dimen/radius_medium"
+        app:cardElevation="0dp"
+        app:cardBackgroundColor="@color/surface_variant"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="@dimen/spacing_medium">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_swap"
+                android:contentDescription="@string/admin_trips_action_reassign"
+                app:tint="@color/primary" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="@dimen/spacing_medium"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/admin_trips_action_reassign"
+                    android:textSize="@dimen/text_body"
+                    android:textColor="@color/text_primary"
+                    android:fontFamily="sans-serif-medium" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/admin_trips_action_reassign_desc"
+                    android:textSize="@dimen/text_caption"
+                    android:textColor="@color/text_hint" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/ic_chevron_right"
+                android:contentDescription="@null"
+                app:tint="@color/text_hint" />
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Flag for Audit -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/btnActionFlag"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/spacing_small"
+        app:cardCornerRadius="@dimen/radius_medium"
+        app:cardElevation="0dp"
+        app:cardBackgroundColor="@color/surface_variant"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="@dimen/spacing_medium">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_flag"
+                android:contentDescription="@string/admin_trips_action_flag"
+                app:tint="@color/warning" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="@dimen/spacing_medium"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/admin_trips_action_flag"
+                    android:textSize="@dimen/text_body"
+                    android:textColor="@color/text_primary"
+                    android:fontFamily="sans-serif-medium" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/admin_trips_action_flag_desc"
+                    android:textSize="@dimen/text_caption"
+                    android:textColor="@color/text_hint" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/ic_chevron_right"
+                android:contentDescription="@null"
+                app:tint="@color/text_hint" />
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- View Details -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/btnActionViewDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="@dimen/radius_medium"
+        app:cardElevation="0dp"
+        app:cardBackgroundColor="@color/surface_variant"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="@dimen/spacing_medium">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_assignment"
+                android:contentDescription="@string/admin_trips_action_view_details"
+                app:tint="@color/text_secondary" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="@dimen/spacing_medium"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/admin_trips_action_view_details"
+                    android:textSize="@dimen/text_body"
+                    android:textColor="@color/text_primary"
+                    android:fontFamily="sans-serif-medium" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/admin_trips_action_view_details_desc"
+                    android:textSize="@dimen/text_caption"
+                    android:textColor="@color/text_hint" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/ic_chevron_right"
+                android:contentDescription="@null"
+                app:tint="@color/text_hint" />
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</LinearLayout>

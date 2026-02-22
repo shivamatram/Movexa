@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<!-- Admin Trip Operations — full layout with toolbar, search, tabs, list, shimmer, states -->
+<androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,125 +8,441 @@
     android:layout_height="match_parent"
     android:background="@color/background">
 
-    <ScrollView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:fillViewport="true"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/surface"
+        app:elevation="0dp">
+
+        <!-- Toolbar -->
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:layout_scrollFlags="scroll|enterAlways|snap">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvToolbarTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/admin_trips_toolbar_title"
+                    android:textSize="@dimen/text_title"
+                    android:textColor="@color/text_primary"
+                    android:fontFamily="sans-serif-medium" />
+
+                <TextView
+                    android:id="@+id/tvToolbarSubtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="11sp"
+                    android:textColor="@color/text_hint"
+                    tools:text="Movexa Fleet Operations" />
+
+            </LinearLayout>
+
+        </com.google.android.material.appbar.MaterialToolbar>
+
+        <!-- Search Bar -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardSearchBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/screen_margin_horizontal"
+            android:layout_marginBottom="@dimen/spacing_small"
+            app:cardCornerRadius="@dimen/radius_medium"
+            app:cardElevation="0dp"
+            app:cardBackgroundColor="@color/surface_variant"
+            app:strokeWidth="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="@dimen/spacing_medium">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_search"
+                    android:contentDescription="@string/admin_trips_search_hint"
+                    app:tint="@color/text_hint" />
+
+                <EditText
+                    android:id="@+id/etSearch"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginHorizontal="@dimen/spacing_small"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/admin_trips_search_hint"
+                    android:textSize="14sp"
+                    android:textColor="@color/text_primary"
+                    android:textColorHint="@color/text_hint"
+                    android:inputType="text"
+                    android:imeOptions="actionSearch"
+                    android:maxLines="1"
+                    android:importantForAutofill="no" />
+
+                <!-- Filter button with badge -->
+                <FrameLayout
+                    android:id="@+id/btnFilter"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:contentDescription="@string/admin_trips_filter">
+
+                    <ImageView
+                        android:id="@+id/ivFilterIcon"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_filter"
+                        app:tint="@color/text_hint" />
+
+                    <!-- Active filter indicator dot -->
+                    <View
+                        android:id="@+id/viewFilterBadge"
+                        android:layout_width="8dp"
+                        android:layout_height="8dp"
+                        android:layout_gravity="top|end"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginEnd="4dp"
+                        android:background="@drawable/shimmer_circle"
+                        android:backgroundTint="@color/error"
+                        android:visibility="gone" />
+
+                </FrameLayout>
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Tabs -->
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            app:tabMode="fixed"
+            app:tabGravity="fill"
+            app:tabTextAppearance="@style/TextAppearance.Movexa.Caption"
+            app:tabSelectedTextColor="@color/primary"
+            app:tabTextColor="@color/text_hint"
+            app:tabIndicatorColor="@color/primary"
+            app:tabIndicatorHeight="3dp"
+            app:tabIndicatorFullWidth="false"
+            app:tabRippleColor="@color/primary_container"
+            android:background="@color/surface" />
+
+        <!-- Progress bar for loading operations -->
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/progressBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            app:indicatorColor="@color/primary"
+            app:trackColor="@color/primary_container"
+            app:trackThickness="2dp"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!-- Main Content Area -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipeRefresh"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <!-- Trip list -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvTrips"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:paddingTop="@dimen/spacing_small"
+                android:paddingBottom="80dp"
+                android:scrollbars="vertical"
+                tools:listitem="@layout/item_admin_trip_card" />
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        <!-- Shimmer loading state -->
+        <LinearLayout
+            android:id="@+id/shimmerContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/spacing_small"
+            android:visibility="gone"
+            tools:visibility="gone">
+
+            <include layout="@layout/shimmer_admin_trip_card" />
+            <include layout="@layout/shimmer_admin_trip_card" />
+            <include layout="@layout/shimmer_admin_trip_card" />
+            <include layout="@layout/shimmer_admin_trip_card" />
+            <include layout="@layout/shimmer_admin_trip_card" />
+
+        </LinearLayout>
+
+        <!-- Empty state -->
+        <LinearLayout
+            android:id="@+id/layoutEmptyState"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="@dimen/spacing_xxxl"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/ivEmptyIcon"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:src="@drawable/ic_nav_trips"
+                android:contentDescription="@string/admin_trips_empty_title"
+                app:tint="@color/text_hint"
+                android:alpha="0.4" />
+
+            <TextView
+                android:id="@+id/tvEmptyTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:text="@string/admin_trips_empty_title"
+                android:textSize="@dimen/text_subtitle"
+                android:textColor="@color/text_secondary"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center" />
+
+            <TextView
+                android:id="@+id/tvEmptySubtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_xs"
+                android:text="@string/admin_trips_empty_subtitle"
+                android:textSize="@dimen/text_caption"
+                android:textColor="@color/text_hint"
+                android:gravity="center" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnClearFilters"
+                style="@style/Widget.Movexa.Button.Text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:text="@string/admin_trips_clear_filters"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+        <!-- Error state -->
+        <LinearLayout
+            android:id="@+id/layoutErrorState"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="@dimen/spacing_xxxl"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:src="@drawable/ic_cloud_off"
+                android:contentDescription="@string/admin_trips_error_title"
+                app:tint="@color/error"
+                android:alpha="0.5" />
+
+            <TextView
+                android:id="@+id/tvErrorTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:text="@string/admin_trips_error_title"
+                android:textSize="@dimen/text_subtitle"
+                android:textColor="@color/text_secondary"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center" />
+
+            <TextView
+                android:id="@+id/tvErrorMessage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_xs"
+                android:textSize="@dimen/text_caption"
+                android:textColor="@color/text_hint"
+                android:gravity="center"
+                tools:text="Network error" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnRetry"
+                style="@style/Widget.Movexa.Button.Secondary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:text="@string/btn_retry"
+                app:icon="@drawable/ic_refresh" />
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+    <!-- Counts summary bar (floating at bottom) -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardCountsBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginHorizontal="@dimen/screen_margin_horizontal"
+        android:layout_marginBottom="@dimen/spacing_medium"
+        app:cardCornerRadius="@dimen/radius_large"
+        app:cardElevation="@dimen/elevation_medium"
+        app:cardBackgroundColor="@color/surface">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="@dimen/screen_margin_horizontal">
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingVertical="@dimen/spacing_small"
+            android:paddingHorizontal="@dimen/spacing_medium"
+            android:baselineAligned="false">
 
-            <!-- Section Header -->
-            <TextView
-                android:id="@+id/tvSectionTitle"
-                android:layout_width="match_parent"
+            <!-- Ongoing count -->
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/admin_section_trips"
-                android:textAppearance="@style/TextAppearance.Movexa.SectionHeader"
-                android:layout_marginBottom="@dimen/spacing_small" />
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
 
-            <!-- Status Card -->
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cardStatus"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/spacing_medium"
-                app:cardCornerRadius="@dimen/radius_large"
-                app:cardElevation="@dimen/elevation_small"
-                app:cardBackgroundColor="@color/surface">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/tvOngoingCount"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="@dimen/card_padding">
+                    android:textSize="@dimen/text_title"
+                    android:textColor="@color/trip_started"
+                    android:fontFamily="sans-serif-bold"
+                    tools:text="12" />
 
-                    <ImageView
-                        android:id="@+id/ivIcon"
-                        android:layout_width="@dimen/icon_xl"
-                        android:layout_height="@dimen/icon_xl"
-                        android:layout_gravity="center_horizontal"
-                        android:src="@drawable/ic_nav_trips"
-                        android:contentDescription="@string/cd_app_logo"
-                        app:tint="@color/primary"
-                        android:layout_marginBottom="@dimen/spacing_medium" />
-
-                    <TextView
-                        android:id="@+id/tvTitle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/admin_trips_title"
-                        android:textSize="@dimen/text_title"
-                        android:textColor="@color/text_primary"
-                        android:fontFamily="sans-serif-medium"
-                        android:gravity="center"
-                        android:layout_marginBottom="@dimen/spacing_xs" />
-
-                    <TextView
-                        android:id="@+id/tvSubtitle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/admin_trips_subtitle"
-                        android:textSize="@dimen/text_body"
-                        android:textColor="@color/text_secondary"
-                        android:gravity="center" />
-
-                </LinearLayout>
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <!-- Empty State Placeholder -->
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cardEmptyState"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/spacing_medium"
-                app:cardCornerRadius="@dimen/radius_large"
-                app:cardElevation="@dimen/elevation_xs"
-                app:strokeColor="@color/outline_variant"
-                app:strokeWidth="1dp"
-                app:cardBackgroundColor="@color/surface_variant">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="@dimen/card_padding"
-                    android:gravity="center">
+                    android:text="@string/admin_trips_tab_ongoing"
+                    android:textSize="10sp"
+                    android:textColor="@color/text_hint" />
 
-                    <TextView
-                        android:id="@+id/tvEmptyTitle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/empty_state_title"
-                        android:textSize="@dimen/text_subtitle"
-                        android:textColor="@color/text_secondary"
-                        android:fontFamily="sans-serif-medium"
-                        android:gravity="center"
-                        android:layout_marginBottom="@dimen/spacing_xs" />
+            </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/tvEmptySubtitle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/empty_state_subtitle"
-                        android:textSize="@dimen/text_caption"
-                        android:textColor="@color/text_hint"
-                        android:gravity="center" />
+            <View
+                android:layout_width="1dp"
+                android:layout_height="28dp"
+                android:background="@color/divider" />
 
-                </LinearLayout>
+            <!-- Completed count -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
 
-            </com.google.android.material.card.MaterialCardView>
+                <TextView
+                    android:id="@+id/tvCompletedCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_title"
+                    android:textColor="@color/trip_completed"
+                    android:fontFamily="sans-serif-bold"
+                    tools:text="248" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/admin_trips_tab_completed"
+                    android:textSize="10sp"
+                    android:textColor="@color/text_hint" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="28dp"
+                android:background="@color/divider" />
+
+            <!-- Cancelled count -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/tvCancelledCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_title"
+                    android:textColor="@color/trip_cancelled"
+                    android:fontFamily="sans-serif-bold"
+                    tools:text="15" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/admin_trips_tab_cancelled"
+                    android:textSize="10sp"
+                    android:textColor="@color/text_hint" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="28dp"
+                android:background="@color/divider" />
+
+            <!-- Total count -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/tvTotalCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_title"
+                    android:textColor="@color/primary"
+                    android:fontFamily="sans-serif-bold"
+                    tools:text="275" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/admin_trips_tab_all"
+                    android:textSize="10sp"
+                    android:textColor="@color/text_hint" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
-    </ScrollView>
+    </com.google.android.material.card.MaterialCardView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
