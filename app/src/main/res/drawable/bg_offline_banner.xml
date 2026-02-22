@@ -1,0 +1,8 @@
+<!-- Offline banner background -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="@color/error" />
+    <corners
+        android:bottomLeftRadius="@dimen/radius_medium"
+        android:bottomRightRadius="@dimen/radius_medium" />
+</shape>

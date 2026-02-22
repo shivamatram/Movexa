@@ -1715,4 +1715,67 @@
     <string name="cd_app_version">Application version</string>
     <string name="cd_privacy_policy">Privacy policy</string>
     <string name="cd_terms_of_service">Terms of service</string>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         DRIVER HOME MODULE
+         ═══════════════════════════════════════════════════════════════ -->
+
+    <!-- Greeting -->
+    <string name="driver_home_greeting_format">%1$s, %2$s</string>
+
+    <!-- Active Trip Card -->
+    <string name="driver_home_pickup">Pickup</string>
+    <string name="driver_home_drop">Drop-off</string>
+    <string name="driver_home_distance">Distance</string>
+    <string name="driver_home_duration">Duration</string>
+    <string name="driver_home_eta">ETA</string>
+    <string name="driver_home_eta_format">~%1$d min</string>
+    <string name="driver_home_tracking_id_format">#%1$s</string>
+    <string name="driver_home_address_unknown">Address not available</string>
+
+    <!-- Empty Trip State -->
+    <string name="driver_home_no_trip_title">No Active Trip</string>
+    <string name="driver_home_no_trip_subtitle">You have no trip assigned right now. Check back soon or pull to refresh.</string>
+
+    <!-- Vehicle Info Card -->
+    <string name="driver_home_vehicle_title">Your Vehicle</string>
+    <string name="driver_home_vehicle_type_format">%1$s • %2$s</string>
+    <string name="driver_home_service_overdue">Service overdue — please notify your manager</string>
+    <string name="driver_home_no_vehicle">No vehicle assigned. Contact your fleet manager.</string>
+
+    <!-- Today Summary -->
+    <string name="driver_home_today_summary">Today\'s Summary</string>
+    <string name="driver_home_stat_trips">Trips</string>
+    <string name="driver_home_stat_distance">Distance</string>
+    <string name="driver_home_stat_duration">Drive Time</string>
+    <string name="driver_home_stat_alerts">Alerts</string>
+    <string name="driver_home_stat_distance_format">%.1f km</string>
+    <string name="driver_home_stat_duration_format">%1$dh %2$dm</string>
+
+    <!-- Trip Action Buttons -->
+    <string name="driver_action_accept">Accept Trip</string>
+    <string name="driver_action_start">Start Trip</string>
+    <string name="driver_action_complete">Mark Delivered</string>
+    <string name="driver_action_summary">View Summary</string>
+    <string name="driver_action_navigate">Navigate</string>
+
+    <!-- Action Confirmations -->
+    <string name="driver_confirm_accept_title">Accept Trip?</string>
+    <string name="driver_confirm_accept_message">You will be responsible for this delivery. Make sure you\'re ready to proceed.</string>
+    <string name="driver_confirm_start_title">Start Trip?</string>
+    <string name="driver_confirm_start_message">This will begin GPS tracking and mark the trip as in-progress.</string>
+    <string name="driver_confirm_complete_title">Complete Trip?</string>
+    <string name="driver_confirm_complete_message">Confirm that the delivery has been made and the trip is finished.</string>
+    <string name="driver_confirm_yes">Confirm</string>
+    <string name="driver_confirm_no">Cancel</string>
+
+    <!-- States -->
+    <string name="driver_home_offline">You\'re offline — some data may not be current</string>
+    <string name="driver_home_error">Something went wrong loading your dashboard</string>
+    <string name="driver_home_retry">Retry</string>
+
+    <!-- Content Descriptions — Driver Home -->
+    <string name="cd_profile_avatar">Profile avatar</string>
+    <string name="cd_trip_action">Trip action button</string>
+    <string name="cd_score_badge">Performance score</string>
 </resources>
