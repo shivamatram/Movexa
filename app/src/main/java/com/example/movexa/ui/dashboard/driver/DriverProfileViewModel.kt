@@ -253,12 +253,11 @@ class DriverProfileViewModel : BaseViewModel() {
      * Start real-time listener on the user document.
      */
     fun startUserListener() {
-        val uid = sessionManager.getCachedUserId()
-            ?: repository.getCurrentUserId()
-            ?: return
-
         userListenerJob?.cancel()
         userListenerJob = viewModelScope.launch(Dispatchers.IO) {
+            val uid = sessionManager.getCachedUserId()
+                ?: repository.getCurrentUserId()
+                ?: return@launch
             repository.observeUserProfile(uid).collect { result ->
                 if (result is ResultState.Success) {
                     sessionManager.updateUser(result.data)

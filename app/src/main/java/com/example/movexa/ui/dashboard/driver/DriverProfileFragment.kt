@@ -171,7 +171,7 @@ class DriverProfileFragment : BaseFragment<FragmentDriverProfileBinding>(
         super.onViewCreated(view, savedInstanceState)
         // Load profile if not already loaded
         if (viewModel.profileState.value is ResultState.Idle) {
-            viewModel.loadProfile()
+            viewModel.loadFullProfile()
         }
     }
 
@@ -195,8 +195,8 @@ class DriverProfileFragment : BaseFragment<FragmentDriverProfileBinding>(
     override fun initViews() {
         // Populate from cached data immediately
         viewModel.cachedUser?.let { populateProfile(it) }
-        viewModel.cachedDriver?.let { populateDriverInfo(it) }
-        viewModel.cachedVehicle?.let { populateVehicle(it) }
+        viewModel.getCachedDriver()?.let { populateDriverInfo(it) }
+        viewModel.getCachedVehicle()?.let { populateVehicle(it) }
 
         // Entrance animations
         animateCardEntrance()
@@ -845,7 +845,7 @@ class DriverProfileFragment : BaseFragment<FragmentDriverProfileBinding>(
 
         // Pre-populate fields
         val currentUser = viewModel.cachedUser
-        val currentDriver = viewModel.cachedDriver
+        val currentDriver = viewModel.getCachedDriver()
 
         sheetBinding.etEditName.setText(currentUser?.fullName ?: "")
         sheetBinding.etEditPhone.setText(currentUser?.phone ?: "")
@@ -1114,8 +1114,8 @@ class DriverProfileFragment : BaseFragment<FragmentDriverProfileBinding>(
      */
     private fun handleCapturedDocument(bitmap: Bitmap) {
         when (currentUploadType) {
-            DOC_TYPE_LICENSE -> viewModel.uploadLicense(bitmap)
-            DOC_TYPE_ID_PROOF -> viewModel.uploadIdProof(bitmap)
+            DOC_TYPE_LICENSE -> viewModel.uploadLicenseDocument(bitmap)
+            DOC_TYPE_ID_PROOF -> viewModel.uploadIdProofDocument(bitmap)
         }
     }
 
