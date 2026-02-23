@@ -1778,4 +1778,91 @@
     <string name="cd_profile_avatar">Profile avatar</string>
     <string name="cd_trip_action">Trip action button</string>
     <string name="cd_score_badge">Performance score</string>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         DRIVER PROFILE MODULE
+         ═══════════════════════════════════════════════════════════════ -->
+
+    <!-- Driver Profile — Header -->
+    <string name="driver_profile_company">Movexa Fleet Management</string>
+    <string name="driver_profile_member_since">Member since %s</string>
+
+    <!-- Driver Profile — Sections -->
+    <string name="driver_profile_section_account">Account Information</string>
+    <string name="driver_profile_section_documents">Document Verification</string>
+    <string name="driver_profile_section_actions">Quick Actions</string>
+    <string name="driver_profile_section_app_info">App Information</string>
+
+    <!-- Driver Profile — Account Info Labels -->
+    <string name="driver_profile_label_license_number">License Number</string>
+    <string name="driver_label_license_number">License Number</string>
+    <string name="driver_profile_label_vehicle">Assigned Vehicle</string>
+    <string name="driver_profile_label_emergency">Emergency Contact</string>
+    <string name="driver_label_emergency">Emergency Contact</string>
+    <string name="driver_profile_label_blood_group">Blood Group</string>
+    <string name="driver_label_blood_group">Blood Group</string>
+    <string name="driver_profile_label_rating">Driver Rating</string>
+    <string name="driver_profile_no_vehicle">Not assigned</string>
+    <string name="driver_profile_rating_format">⭐ %s</string>
+
+    <!-- Driver Profile — Verification Badge -->
+    <string name="driver_profile_verified">Verified</string>
+    <string name="driver_profile_pending">Pending</string>
+    <string name="driver_profile_under_review">Under Review</string>
+    <string name="driver_profile_rejected">Rejected</string>
+    <string name="driver_profile_expired">Expired</string>
+
+    <!-- Driver Profile — Verification Banner -->
+    <string name="driver_verification_approved_title">Account Verified</string>
+    <string name="driver_verification_approved_message">Your account has been verified. You are eligible for trip assignments.</string>
+    <string name="driver_verification_pending_title">Verification Pending</string>
+    <string name="driver_verification_pending_message">Please upload your documents to complete verification and start receiving trips.</string>
+    <string name="driver_verification_under_review_title">Documents Under Review</string>
+    <string name="driver_verification_under_review_message">Your documents are being reviewed by the admin. This usually takes 1–2 business days.</string>
+    <string name="driver_verification_rejected_title">Verification Rejected</string>
+    <string name="driver_verification_rejected_message">Your documents were rejected. Please re-upload valid documents to proceed.</string>
+    <string name="driver_verification_expired_title">Verification Expired</string>
+    <string name="driver_verification_expired_message">Your verification has expired. Please re-upload your license and ID proof.</string>
+
+    <!-- Driver Profile — Document Cards -->
+    <string name="driver_doc_license_title">Driving License</string>
+    <string name="driver_doc_license">Driving License</string>
+    <string name="driver_doc_idproof_title">ID Proof</string>
+    <string name="driver_doc_idproof">ID Proof</string>
+    <string name="driver_doc_tap_upload">Tap to upload</string>
+    <string name="driver_doc_tap_replace">Tap to replace</string>
+    <string name="driver_doc_uploaded">Document uploaded</string>
+    <string name="driver_doc_not_uploaded">Not uploaded</string>
+    <string name="driver_doc_license_expiry">Expires: %s</string>
+    <string name="driver_doc_upload_license">Upload your driving license</string>
+    <string name="driver_doc_upload_idproof">Upload your ID proof</string>
+
+    <!-- Driver Profile — Sections (aliases for XML) -->
+    <string name="driver_section_documents">Document Verification</string>
+
+    <!-- Driver Profile — Document Upload Bottom Sheet -->
+    <string name="driver_doc_upload_title">Upload Document</string>
+    <string name="driver_doc_upload_subtitle">Choose how to upload your document</string>
+    <string name="driver_doc_take_photo">Take Photo</string>
+    <string name="driver_doc_take_photo_desc">Capture using camera</string>
+    <string name="driver_doc_choose_gallery">Choose from Gallery</string>
+    <string name="driver_doc_choose_gallery_desc">Select an existing image</string>
+
+    <!-- Driver Profile — Edit Bottom Sheet -->
+    <string name="driver_edit_profile_title">Edit Driver Profile</string>
+    <string name="driver_edit_profile_subtitle">Update your personal and driver information</string>
+    <string name="driver_edit_emergency_hint">Emergency Contact Number</string>
+    <string name="driver_emergency_contact_hint">Emergency Contact Number</string>
+    <string name="driver_edit_blood_group_hint">Blood Group (e.g., O+, A−, B+)</string>
+    <string name="driver_blood_group_hint">Blood Group (e.g., O+, A−, B+)</string>
+    <string name="driver_edit_action_desc">Update your profile and driver details</string>
+    <string name="driver_action_edit_desc">Update your profile and driver details</string>
+
+    <!-- Driver Profile — Content Descriptions -->
+    <string name="cd_driver_verification_status">Verification status indicator</string>
+    <string name="cd_verification_status">Verification status</string>
+    <string name="cd_driver_verification_banner">Verification status banner</string>
+    <string name="cd_driver_upload_license">Upload driving license</string>
+    <string name="cd_driver_upload_idproof">Upload ID proof document</string>
+    <string name="cd_driver_document_status">Document verification status</string>
 </resources>

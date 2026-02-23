@@ -7,35 +7,733 @@
     android:layout_height="match_parent"
     android:background="@color/background">
 
+    <!-- ═══════ LOADING PROGRESS BAR ═══════ -->
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/progressLoading"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/loading_bar_height"
+        android:indeterminate="true"
+        android:visibility="gone"
+        app:indicatorColor="@color/primary"
+        app:trackColor="@color/primary_surface"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:visibility="visible" />
+
     <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fillViewport="true"
-        app:layout_constraintTop_toTopOf="parent"
+        android:scrollbars="none"
+        android:overScrollMode="always"
+        app:layout_constraintTop_toBottomOf="@id/progressLoading"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
         <LinearLayout
+            android:id="@+id/contentContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="@dimen/screen_margin_horizontal">
+            android:paddingBottom="@dimen/spacing_xxl">
 
-            <!-- Section Header -->
-            <TextView
-                android:id="@+id/tvSectionTitle"
+            <!-- ═══════════════════════════════════════════════════
+                 SECTION 1: PROFILE HEADER CARD
+                 Gradient background, avatar with initials,
+                 name, DRIVER badge, verification badge, company, date
+                 ═══════════════════════════════════════════════════ -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardProfileHeader"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/section_profile"
+                android:layout_marginStart="@dimen/screen_margin_horizontal"
+                android:layout_marginEnd="@dimen/screen_margin_horizontal"
+                android:layout_marginTop="@dimen/spacing_medium"
+                app:cardCornerRadius="@dimen/radius_xl"
+                app:cardElevation="@dimen/elevation_medium"
+                app:cardBackgroundColor="@android:color/transparent"
+                app:strokeWidth="0dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_profile_header_gradient"
+                    android:padding="@dimen/spacing_large"
+                    android:contentDescription="@string/profile_header_cd">
+
+                    <!-- Avatar Container -->
+                    <FrameLayout
+                        android:id="@+id/avatarContainer"
+                        android:layout_width="@dimen/avatar_large"
+                        android:layout_height="@dimen/avatar_large"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent">
+
+                        <!-- Avatar Circle Background -->
+                        <View
+                            android:id="@+id/viewAvatarBg"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/bg_avatar_circle" />
+
+                        <!-- Initials Text -->
+                        <TextView
+                            android:id="@+id/tvAvatarInitials"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:textColor="@color/white"
+                            android:textSize="28sp"
+                            android:fontFamily="sans-serif-medium"
+                            android:contentDescription="@string/profile_avatar_cd"
+                            tools:text="JD" />
+
+                        <!-- Edit Overlay (camera icon) -->
+                        <ImageView
+                            android:id="@+id/ivEditAvatar"
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:layout_gravity="bottom|end"
+                            android:background="@drawable/bg_edit_avatar_overlay"
+                            android:src="@drawable/ic_camera"
+                            android:padding="5dp"
+                            android:contentDescription="@string/profile_edit_avatar"
+                            app:tint="@color/white" />
+
+                    </FrameLayout>
+
+                    <!-- User Name -->
+                    <TextView
+                        android:id="@+id/tvProfileName"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_medium"
+                        android:gravity="center"
+                        android:textColor="@color/white"
+                        android:textSize="22sp"
+                        android:fontFamily="sans-serif-medium"
+                        android:maxLines="2"
+                        android:ellipsize="end"
+                        app:layout_constraintTop_toBottomOf="@id/avatarContainer"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:text="John Doe" />
+
+                    <!-- Role Badge -->
+                    <TextView
+                        android:id="@+id/tvRoleBadge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_small"
+                        android:paddingHorizontal="@dimen/spacing_medium"
+                        android:paddingVertical="@dimen/spacing_xs"
+                        android:background="@drawable/bg_role_badge"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_caption"
+                        android:fontFamily="sans-serif-medium"
+                        android:letterSpacing="0.05"
+                        android:textAllCaps="true"
+                        app:layout_constraintTop_toBottomOf="@id/tvProfileName"
+                        app:layout_constraintEnd_toStartOf="@id/tvVerificationBadge"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintHorizontal_chainStyle="packed"
+                        tools:text="DRIVER" />
+
+                    <!-- Verification Status Badge -->
+                    <TextView
+                        android:id="@+id/tvVerificationBadge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_small"
+                        android:layout_marginStart="@dimen/spacing_small"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="@dimen/spacing_xs"
+                        android:background="@drawable/bg_verification_badge"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_caption"
+                        android:fontFamily="sans-serif-medium"
+                        android:drawablePadding="4dp"
+                        app:layout_constraintTop_toBottomOf="@id/tvProfileName"
+                        app:layout_constraintStart_toEndOf="@id/tvRoleBadge"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:text="Verified"
+                        tools:visibility="visible" />
+
+                    <!-- Company Name -->
+                    <TextView
+                        android:id="@+id/tvCompanyName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_small"
+                        android:text="@string/profile_company"
+                        android:textColor="#B2FFFFFF"
+                        android:textSize="@dimen/text_body"
+                        app:layout_constraintTop_toBottomOf="@id/tvRoleBadge"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
+                    <!-- Member Since -->
+                    <TextView
+                        android:id="@+id/tvMemberSince"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_xxs"
+                        android:textColor="#80FFFFFF"
+                        android:textSize="@dimen/text_caption"
+                        app:layout_constraintTop_toBottomOf="@id/tvCompanyName"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        tools:text="Member since January 2024" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- ═══════════════════════════════════════════════════
+                 SECTION 2: VERIFICATION STATUS BANNER
+                 Shows only when not APPROVED
+                 ═══════════════════════════════════════════════════ -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardVerificationBanner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/screen_margin_horizontal"
+                android:layout_marginEnd="@dimen/screen_margin_horizontal"
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:visibility="gone"
+                app:cardCornerRadius="@dimen/radius_large"
+                app:cardElevation="@dimen/elevation_small"
+                app:strokeWidth="0dp"
+                tools:visibility="visible">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:padding="@dimen/card_padding">
+
+                    <ImageView
+                        android:id="@+id/ivBannerIcon"
+                        android:layout_width="@dimen/icon_medium"
+                        android:layout_height="@dimen/icon_medium"
+                        android:src="@drawable/ic_warning"
+                        android:contentDescription="@string/cd_verification_status" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_marginStart="@dimen/spacing_medium">
+
+                        <TextView
+                            android:id="@+id/tvBannerTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/text_subtitle"
+                            android:textColor="@color/text_primary"
+                            android:fontFamily="sans-serif-medium"
+                            tools:text="Verification Pending" />
+
+                        <TextView
+                            android:id="@+id/tvBannerMessage"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:textSize="@dimen/text_caption"
+                            android:textColor="@color/text_secondary"
+                            tools:text="Upload your documents to get verified" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- ═══════════════════════════════════════════════════
+                 SECTION 3: ACCOUNT INFORMATION
+                 Name, Email, Phone, License Number, Vehicle, Member Since
+                 ═══════════════════════════════════════════════════ -->
+            <TextView
+                android:id="@+id/tvSectionAccount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/profile_section_account"
                 android:textAppearance="@style/TextAppearance.Movexa.SectionHeader"
+                android:layout_marginTop="@dimen/spacing_large"
+                android:layout_marginStart="@dimen/screen_margin_horizontal"
+                android:layout_marginEnd="@dimen/screen_margin_horizontal"
                 android:layout_marginBottom="@dimen/spacing_small" />
 
-            <!-- Status Card -->
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cardStatus"
+                android:id="@+id/cardAccountInfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/screen_margin_horizontal"
+                android:layout_marginEnd="@dimen/screen_margin_horizontal"
+                app:cardCornerRadius="@dimen/radius_large"
+                app:cardElevation="@dimen/elevation_small"
+                app:cardBackgroundColor="@color/surface">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingVertical="@dimen/spacing_small">
+
+                    <!-- Name Row -->
+                    <LinearLayout
+                        android:id="@+id/rowName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="@dimen/card_padding"
+                        android:paddingVertical="@dimen/spacing_medium">
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_medium"
+                            android:layout_height="@dimen/icon_medium"
+                            android:src="@drawable/ic_person"
+                            app:tint="@color/primary"
+                            android:contentDescription="@string/cd_profile_icon" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:layout_marginStart="@dimen/spacing_medium">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/profile_label_name"
+                                android:textSize="@dimen/text_caption"
+                                android:textColor="@color/text_secondary" />
+
+                            <TextView
+                                android:id="@+id/tvInfoName"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:textSize="@dimen/text_subtitle"
+                                android:textColor="@color/text_primary"
+                                android:fontFamily="sans-serif-medium"
+                                tools:text="John Doe" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <!-- Divider -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="56dp"
+                        android:background="@color/divider" />
+
+                    <!-- Email Row -->
+                    <LinearLayout
+                        android:id="@+id/rowEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="@dimen/card_padding"
+                        android:paddingVertical="@dimen/spacing_medium">
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_medium"
+                            android:layout_height="@dimen/icon_medium"
+                            android:src="@drawable/ic_email"
+                            app:tint="@color/primary"
+                            android:contentDescription="@string/cd_profile_icon" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:layout_marginStart="@dimen/spacing_medium">
+
+                            <TextView
+                                android:id="@+id/tvInfoEmailLabel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/profile_label_email"
+                                android:textSize="@dimen/text_caption"
+                                android:textColor="@color/text_secondary" />
+
+                            <TextView
+                                android:id="@+id/tvInfoEmail"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:textSize="@dimen/text_subtitle"
+                                android:textColor="@color/text_primary"
+                                android:fontFamily="sans-serif-medium"
+                                tools:text="john@movexa.com" />
+
+                        </LinearLayout>
+
+                        <!-- Verified badge -->
+                        <ImageView
+                            android:id="@+id/ivEmailVerified"
+                            android:layout_width="@dimen/icon_small"
+                            android:layout_height="@dimen/icon_small"
+                            android:src="@drawable/ic_verified"
+                            app:tint="@color/success"
+                            android:visibility="gone"
+                            android:contentDescription="@string/profile_label_email_verified"
+                            tools:visibility="visible" />
+
+                    </LinearLayout>
+
+                    <!-- Divider -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="56dp"
+                        android:background="@color/divider" />
+
+                    <!-- Phone Row -->
+                    <LinearLayout
+                        android:id="@+id/rowPhone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="@dimen/card_padding"
+                        android:paddingVertical="@dimen/spacing_medium">
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_medium"
+                            android:layout_height="@dimen/icon_medium"
+                            android:src="@drawable/ic_phone"
+                            app:tint="@color/primary"
+                            android:contentDescription="@string/cd_profile_icon" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:layout_marginStart="@dimen/spacing_medium">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/profile_label_phone"
+                                android:textSize="@dimen/text_caption"
+                                android:textColor="@color/text_secondary" />
+
+                            <TextView
+                                android:id="@+id/tvInfoPhone"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:textSize="@dimen/text_subtitle"
+                                android:textColor="@color/text_primary"
+                                android:fontFamily="sans-serif-medium"
+                                tools:text="+91 98765 43210" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <!-- Divider -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="56dp"
+                        android:background="@color/divider" />
+
+                    <!-- License Number Row -->
+                    <LinearLayout
+                        android:id="@+id/rowLicense"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="@dimen/card_padding"
+                        android:paddingVertical="@dimen/spacing_medium">
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_medium"
+                            android:layout_height="@dimen/icon_medium"
+                            android:src="@drawable/ic_assignment"
+                            app:tint="@color/primary"
+                            android:contentDescription="@string/cd_profile_icon" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:layout_marginStart="@dimen/spacing_medium">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/driver_label_license_number"
+                                android:textSize="@dimen/text_caption"
+                                android:textColor="@color/text_secondary" />
+
+                            <TextView
+                                android:id="@+id/tvInfoLicenseNumber"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:textSize="@dimen/text_subtitle"
+                                android:textColor="@color/text_primary"
+                                android:fontFamily="sans-serif-medium"
+                                tools:text="DL-0420110012345" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <!-- Divider -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="56dp"
+                        android:background="@color/divider" />
+
+                    <!-- Assigned Vehicle Row -->
+                    <LinearLayout
+                        android:id="@+id/rowVehicle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="@dimen/card_padding"
+                        android:paddingVertical="@dimen/spacing_medium">
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_medium"
+                            android:layout_height="@dimen/icon_medium"
+                            android:src="@drawable/ic_local_shipping"
+                            app:tint="@color/primary"
+                            android:contentDescription="@string/cd_profile_icon" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:layout_marginStart="@dimen/spacing_medium">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/driver_label_vehicle"
+                                android:textSize="@dimen/text_caption"
+                                android:textColor="@color/text_secondary" />
+
+                            <TextView
+                                android:id="@+id/tvInfoVehicle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:textSize="@dimen/text_subtitle"
+                                android:textColor="@color/text_primary"
+                                android:fontFamily="sans-serif-medium"
+                                tools:text="MH-12-AB-1234 (Truck)" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <!-- Divider -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="56dp"
+                        android:background="@color/divider" />
+
+                    <!-- Emergency Contact Row -->
+                    <LinearLayout
+                        android:id="@+id/rowEmergency"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="@dimen/card_padding"
+                        android:paddingVertical="@dimen/spacing_medium">
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_medium"
+                            android:layout_height="@dimen/icon_medium"
+                            android:src="@drawable/ic_phone"
+                            app:tint="@color/error"
+                            android:contentDescription="@string/cd_profile_icon" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:layout_marginStart="@dimen/spacing_medium">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/driver_label_emergency"
+                                android:textSize="@dimen/text_caption"
+                                android:textColor="@color/text_secondary" />
+
+                            <TextView
+                                android:id="@+id/tvInfoEmergency"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:textSize="@dimen/text_subtitle"
+                                android:textColor="@color/text_primary"
+                                android:fontFamily="sans-serif-medium"
+                                tools:text="+91 11111 22222" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <!-- Divider -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="56dp"
+                        android:background="@color/divider" />
+
+                    <!-- Blood Group Row -->
+                    <LinearLayout
+                        android:id="@+id/rowBloodGroup"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="@dimen/card_padding"
+                        android:paddingVertical="@dimen/spacing_medium">
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_medium"
+                            android:layout_height="@dimen/icon_medium"
+                            android:src="@drawable/ic_info"
+                            app:tint="@color/error"
+                            android:contentDescription="@string/cd_profile_icon" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:layout_marginStart="@dimen/spacing_medium">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/driver_label_blood_group"
+                                android:textSize="@dimen/text_caption"
+                                android:textColor="@color/text_secondary" />
+
+                            <TextView
+                                android:id="@+id/tvInfoBloodGroup"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:textSize="@dimen/text_subtitle"
+                                android:textColor="@color/text_primary"
+                                android:fontFamily="sans-serif-medium"
+                                tools:text="O+" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <!-- Divider -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="56dp"
+                        android:background="@color/divider" />
+
+                    <!-- Rating Row -->
+                    <LinearLayout
+                        android:id="@+id/rowRating"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="@dimen/card_padding"
+                        android:paddingVertical="@dimen/spacing_medium">
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_medium"
+                            android:layout_height="@dimen/icon_medium"
+                            android:src="@drawable/ic_star"
+                            app:tint="@color/status_pending"
+                            android:contentDescription="@string/cd_profile_icon" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:layout_marginStart="@dimen/spacing_medium">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/driver_label_rating"
+                                android:textSize="@dimen/text_caption"
+                                android:textColor="@color/text_secondary" />
+
+                            <TextView
+                                android:id="@+id/tvInfoRating"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:textSize="@dimen/text_subtitle"
+                                android:textColor="@color/text_primary"
+                                android:fontFamily="sans-serif-medium"
+                                tools:text="4.5/5.0 (120 trips)" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- ═══════════════════════════════════════════════════
+                 SECTION 4: DOCUMENT VERIFICATION
+                 Driving License & ID Proof upload cards
+                 ═══════════════════════════════════════════════════ -->
+            <TextView
+                android:id="@+id/tvSectionDocuments"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/driver_section_documents"
+                android:textAppearance="@style/TextAppearance.Movexa.SectionHeader"
+                android:layout_marginTop="@dimen/spacing_large"
+                android:layout_marginStart="@dimen/screen_margin_horizontal"
+                android:layout_marginEnd="@dimen/screen_margin_horizontal"
+                android:layout_marginBottom="@dimen/spacing_small" />
+
+            <!-- Driving License Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardLicense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/screen_margin_horizontal"
+                android:layout_marginEnd="@dimen/screen_margin_horizontal"
                 android:layout_marginBottom="@dimen/spacing_medium"
                 app:cardCornerRadius="@dimen/radius_large"
                 app:cardElevation="@dimen/elevation_small"
@@ -47,78 +745,660 @@
                     android:orientation="vertical"
                     android:padding="@dimen/card_padding">
 
-                    <ImageView
-                        android:id="@+id/ivIcon"
-                        android:layout_width="@dimen/icon_xl"
-                        android:layout_height="@dimen/icon_xl"
-                        android:layout_gravity="center_horizontal"
-                        android:src="@drawable/ic_nav_profile"
-                        android:contentDescription="@string/cd_app_logo"
-                        app:tint="@color/primary"
-                        android:layout_marginBottom="@dimen/spacing_medium" />
-
-                    <TextView
-                        android:id="@+id/tvTitle"
+                    <!-- License Header -->
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/driver_profile_title"
-                        android:textSize="@dimen/text_title"
-                        android:textColor="@color/text_primary"
-                        android:fontFamily="sans-serif-medium"
-                        android:gravity="center"
-                        android:layout_marginBottom="@dimen/spacing_xs" />
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="@dimen/spacing_medium">
 
-                    <TextView
-                        android:id="@+id/tvSubtitle"
+                        <ImageView
+                            android:layout_width="@dimen/icon_medium"
+                            android:layout_height="@dimen/icon_medium"
+                            android:src="@drawable/ic_assignment"
+                            app:tint="@color/primary"
+                            android:importantForAccessibility="no" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="@dimen/spacing_small"
+                            android:text="@string/driver_doc_license"
+                            android:textSize="@dimen/text_subtitle"
+                            android:textColor="@color/text_primary"
+                            android:fontFamily="sans-serif-medium" />
+
+                        <!-- Status Badge -->
+                        <TextView
+                            android:id="@+id/tvLicenseStatus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/text_caption"
+                            android:fontFamily="sans-serif-medium"
+                            tools:text="Uploaded"
+                            tools:textColor="@color/status_approved" />
+
+                    </LinearLayout>
+
+                    <!-- Upload Area / Preview -->
+                    <FrameLayout
+                        android:id="@+id/frameLicenseUpload"
                         android:layout_width="match_parent"
+                        android:layout_height="120dp"
+                        android:background="@drawable/bg_document_upload_area"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:contentDescription="@string/driver_doc_upload_license">
+
+                        <!-- Empty state (upload prompt) -->
+                        <LinearLayout
+                            android:id="@+id/layoutLicenseEmpty"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:orientation="vertical"
+                            android:gravity="center">
+
+                            <ImageView
+                                android:layout_width="36dp"
+                                android:layout_height="36dp"
+                                android:src="@drawable/ic_camera"
+                                app:tint="@color/text_hint"
+                                android:layout_marginBottom="@dimen/spacing_xs"
+                                android:importantForAccessibility="no" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/driver_doc_tap_upload"
+                                android:textSize="@dimen/text_caption"
+                                android:textColor="@color/text_hint" />
+
+                        </LinearLayout>
+
+                        <!-- Uploaded indicator -->
+                        <LinearLayout
+                            android:id="@+id/layoutLicenseUploaded"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:visibility="gone"
+                            tools:visibility="visible">
+
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:src="@drawable/ic_check_circle"
+                                app:tint="@color/status_approved"
+                                android:layout_marginBottom="@dimen/spacing_xs"
+                                android:importantForAccessibility="no" />
+
+                            <TextView
+                                android:id="@+id/tvLicenseUploadedLabel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/driver_doc_uploaded"
+                                android:textSize="@dimen/text_caption"
+                                android:textColor="@color/status_approved"
+                                android:fontFamily="sans-serif-medium" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/driver_doc_tap_replace"
+                                android:textSize="11sp"
+                                android:textColor="@color/text_hint"
+                                android:layout_marginTop="2dp" />
+
+                        </LinearLayout>
+
+                        <!-- Upload progress -->
+                        <com.google.android.material.progressindicator.CircularProgressIndicator
+                            android:id="@+id/progressLicenseUpload"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_gravity="center"
+                            android:indeterminate="true"
+                            android:visibility="gone"
+                            app:indicatorColor="@color/primary"
+                            app:trackColor="@color/primary_surface"
+                            app:indicatorSize="40dp"
+                            tools:visibility="gone" />
+
+                    </FrameLayout>
+
+                    <!-- License Expiry -->
+                    <TextView
+                        android:id="@+id/tvLicenseExpiry"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/driver_profile_subtitle"
-                        android:textSize="@dimen/text_body"
+                        android:layout_marginTop="@dimen/spacing_small"
+                        android:textSize="@dimen/text_caption"
                         android:textColor="@color/text_secondary"
-                        android:gravity="center" />
+                        android:visibility="gone"
+                        tools:text="Expires: Dec 2028"
+                        tools:visibility="visible" />
 
                 </LinearLayout>
 
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- Empty State Placeholder -->
+            <!-- ID Proof Card -->
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cardEmptyState"
+                android:id="@+id/cardIdProof"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/spacing_medium"
+                android:layout_marginStart="@dimen/screen_margin_horizontal"
+                android:layout_marginEnd="@dimen/screen_margin_horizontal"
                 app:cardCornerRadius="@dimen/radius_large"
-                app:cardElevation="@dimen/elevation_xs"
-                app:strokeColor="@color/outline_variant"
-                app:strokeWidth="1dp"
-                app:cardBackgroundColor="@color/surface_variant">
+                app:cardElevation="@dimen/elevation_small"
+                app:cardBackgroundColor="@color/surface">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="@dimen/card_padding"
-                    android:gravity="center">
+                    android:padding="@dimen/card_padding">
 
-                    <TextView
-                        android:id="@+id/tvEmptyTitle"
+                    <!-- ID Proof Header -->
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/empty_state_title"
-                        android:textSize="@dimen/text_subtitle"
-                        android:textColor="@color/text_secondary"
-                        android:fontFamily="sans-serif-medium"
-                        android:gravity="center"
-                        android:layout_marginBottom="@dimen/spacing_xs" />
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="@dimen/spacing_medium">
 
-                    <TextView
-                        android:id="@+id/tvEmptySubtitle"
+                        <ImageView
+                            android:layout_width="@dimen/icon_medium"
+                            android:layout_height="@dimen/icon_medium"
+                            android:src="@drawable/ic_person"
+                            app:tint="@color/secondary"
+                            android:importantForAccessibility="no" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="@dimen/spacing_small"
+                            android:text="@string/driver_doc_idproof"
+                            android:textSize="@dimen/text_subtitle"
+                            android:textColor="@color/text_primary"
+                            android:fontFamily="sans-serif-medium" />
+
+                        <!-- Status Badge -->
+                        <TextView
+                            android:id="@+id/tvIdProofStatus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/text_caption"
+                            android:fontFamily="sans-serif-medium"
+                            tools:text="Not Uploaded"
+                            tools:textColor="@color/text_hint" />
+
+                    </LinearLayout>
+
+                    <!-- Upload Area / Preview -->
+                    <FrameLayout
+                        android:id="@+id/frameIdProofUpload"
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp"
+                        android:background="@drawable/bg_document_upload_area"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:contentDescription="@string/driver_doc_upload_idproof">
+
+                        <!-- Empty state -->
+                        <LinearLayout
+                            android:id="@+id/layoutIdProofEmpty"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:orientation="vertical"
+                            android:gravity="center">
+
+                            <ImageView
+                                android:layout_width="36dp"
+                                android:layout_height="36dp"
+                                android:src="@drawable/ic_camera"
+                                app:tint="@color/text_hint"
+                                android:layout_marginBottom="@dimen/spacing_xs"
+                                android:importantForAccessibility="no" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/driver_doc_tap_upload"
+                                android:textSize="@dimen/text_caption"
+                                android:textColor="@color/text_hint" />
+
+                        </LinearLayout>
+
+                        <!-- Uploaded indicator -->
+                        <LinearLayout
+                            android:id="@+id/layoutIdProofUploaded"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:visibility="gone"
+                            tools:visibility="visible">
+
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:src="@drawable/ic_check_circle"
+                                app:tint="@color/status_approved"
+                                android:layout_marginBottom="@dimen/spacing_xs"
+                                android:importantForAccessibility="no" />
+
+                            <TextView
+                                android:id="@+id/tvIdProofUploadedLabel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/driver_doc_uploaded"
+                                android:textSize="@dimen/text_caption"
+                                android:textColor="@color/status_approved"
+                                android:fontFamily="sans-serif-medium" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/driver_doc_tap_replace"
+                                android:textSize="11sp"
+                                android:textColor="@color/text_hint"
+                                android:layout_marginTop="2dp" />
+
+                        </LinearLayout>
+
+                        <!-- Upload progress -->
+                        <com.google.android.material.progressindicator.CircularProgressIndicator
+                            android:id="@+id/progressIdProofUpload"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_gravity="center"
+                            android:indeterminate="true"
+                            android:visibility="gone"
+                            app:indicatorColor="@color/primary"
+                            app:trackColor="@color/primary_surface"
+                            app:indicatorSize="40dp"
+                            tools:visibility="gone" />
+
+                    </FrameLayout>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- ═══════════════════════════════════════════════════
+                 SECTION 5: QUICK ACTIONS
+                 Edit Profile, Change Password, Logout
+                 ═══════════════════════════════════════════════════ -->
+            <TextView
+                android:id="@+id/tvSectionActions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/profile_section_actions"
+                android:textAppearance="@style/TextAppearance.Movexa.SectionHeader"
+                android:layout_marginTop="@dimen/spacing_large"
+                android:layout_marginStart="@dimen/screen_margin_horizontal"
+                android:layout_marginEnd="@dimen/screen_margin_horizontal"
+                android:layout_marginBottom="@dimen/spacing_small" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardQuickActions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/screen_margin_horizontal"
+                android:layout_marginEnd="@dimen/screen_margin_horizontal"
+                app:cardCornerRadius="@dimen/radius_large"
+                app:cardElevation="@dimen/elevation_small"
+                app:cardBackgroundColor="@color/surface">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingVertical="@dimen/spacing_xs">
+
+                    <!-- Edit Profile Action -->
+                    <LinearLayout
+                        android:id="@+id/actionEditProfile"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/empty_state_subtitle"
-                        android:textSize="@dimen/text_caption"
-                        android:textColor="@color/text_hint"
-                        android:gravity="center" />
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="@dimen/card_padding"
+                        android:paddingVertical="14dp"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:contentDescription="@string/cd_edit_profile">
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_medium"
+                            android:layout_height="@dimen/icon_medium"
+                            android:src="@drawable/ic_edit"
+                            app:tint="@color/primary"
+                            android:importantForAccessibility="no" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:layout_marginStart="@dimen/spacing_medium">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/profile_action_edit"
+                                android:textSize="@dimen/text_subtitle"
+                                android:textColor="@color/text_primary"
+                                android:fontFamily="sans-serif-medium" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/driver_action_edit_desc"
+                                android:textSize="@dimen/text_caption"
+                                android:textColor="@color/text_secondary"
+                                android:layout_marginTop="2dp" />
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_small"
+                            android:layout_height="@dimen/icon_small"
+                            android:src="@drawable/ic_chevron_right"
+                            app:tint="@color/text_disabled"
+                            android:contentDescription="@string/cd_chevron" />
+
+                    </LinearLayout>
+
+                    <!-- Divider -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="56dp"
+                        android:background="@color/divider" />
+
+                    <!-- Change Password Action -->
+                    <LinearLayout
+                        android:id="@+id/actionChangePassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="@dimen/card_padding"
+                        android:paddingVertical="14dp"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:contentDescription="@string/cd_change_password">
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_medium"
+                            android:layout_height="@dimen/icon_medium"
+                            android:src="@drawable/ic_lock"
+                            app:tint="@color/secondary"
+                            android:importantForAccessibility="no" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:layout_marginStart="@dimen/spacing_medium">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/profile_action_password"
+                                android:textSize="@dimen/text_subtitle"
+                                android:textColor="@color/text_primary"
+                                android:fontFamily="sans-serif-medium" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/profile_action_password_desc"
+                                android:textSize="@dimen/text_caption"
+                                android:textColor="@color/text_secondary"
+                                android:layout_marginTop="2dp" />
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_small"
+                            android:layout_height="@dimen/icon_small"
+                            android:src="@drawable/ic_chevron_right"
+                            app:tint="@color/text_disabled"
+                            android:contentDescription="@string/cd_chevron" />
+
+                    </LinearLayout>
+
+                    <!-- Divider -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="56dp"
+                        android:background="@color/divider" />
+
+                    <!-- Logout Action -->
+                    <LinearLayout
+                        android:id="@+id/actionLogout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="@dimen/card_padding"
+                        android:paddingVertical="14dp"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:contentDescription="@string/cd_logout">
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_medium"
+                            android:layout_height="@dimen/icon_medium"
+                            android:src="@drawable/ic_logout"
+                            app:tint="@color/error"
+                            android:importantForAccessibility="no" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:layout_marginStart="@dimen/spacing_medium">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/profile_action_logout"
+                                android:textSize="@dimen/text_subtitle"
+                                android:textColor="@color/error"
+                                android:fontFamily="sans-serif-medium" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/profile_action_logout_desc"
+                                android:textSize="@dimen/text_caption"
+                                android:textColor="@color/text_secondary"
+                                android:layout_marginTop="2dp" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- ═══════════════════════════════════════════════════
+                 SECTION 6: APP INFORMATION
+                 Version, Privacy, Terms
+                 ═══════════════════════════════════════════════════ -->
+            <TextView
+                android:id="@+id/tvSectionAppInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/profile_section_app_info"
+                android:textAppearance="@style/TextAppearance.Movexa.SectionHeader"
+                android:layout_marginTop="@dimen/spacing_large"
+                android:layout_marginStart="@dimen/screen_margin_horizontal"
+                android:layout_marginEnd="@dimen/screen_margin_horizontal"
+                android:layout_marginBottom="@dimen/spacing_small" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardAppInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/screen_margin_horizontal"
+                android:layout_marginEnd="@dimen/screen_margin_horizontal"
+                app:cardCornerRadius="@dimen/radius_large"
+                app:cardElevation="@dimen/elevation_small"
+                app:cardBackgroundColor="@color/surface">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingVertical="@dimen/spacing_xs">
+
+                    <!-- App Version Row -->
+                    <LinearLayout
+                        android:id="@+id/rowAppVersion"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="@dimen/card_padding"
+                        android:paddingVertical="14dp">
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_medium"
+                            android:layout_height="@dimen/icon_medium"
+                            android:src="@drawable/ic_info"
+                            app:tint="@color/text_secondary"
+                            android:contentDescription="@string/cd_app_version" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/profile_app_version"
+                            android:textSize="@dimen/text_subtitle"
+                            android:textColor="@color/text_primary"
+                            android:layout_marginStart="@dimen/spacing_medium" />
+
+                        <TextView
+                            android:id="@+id/tvAppVersion"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/profile_app_version_value"
+                            android:textSize="@dimen/text_body"
+                            android:textColor="@color/text_secondary" />
+
+                    </LinearLayout>
+
+                    <!-- Divider -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="56dp"
+                        android:background="@color/divider" />
+
+                    <!-- Privacy Policy Row -->
+                    <LinearLayout
+                        android:id="@+id/actionPrivacyPolicy"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="@dimen/card_padding"
+                        android:paddingVertical="14dp"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:contentDescription="@string/cd_privacy_policy">
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_medium"
+                            android:layout_height="@dimen/icon_medium"
+                            android:src="@drawable/ic_privacy"
+                            app:tint="@color/text_secondary"
+                            android:importantForAccessibility="no" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/profile_privacy_policy"
+                            android:textSize="@dimen/text_subtitle"
+                            android:textColor="@color/text_primary"
+                            android:layout_marginStart="@dimen/spacing_medium" />
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_small"
+                            android:layout_height="@dimen/icon_small"
+                            android:src="@drawable/ic_chevron_right"
+                            app:tint="@color/text_disabled"
+                            android:contentDescription="@string/cd_chevron" />
+
+                    </LinearLayout>
+
+                    <!-- Divider -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="56dp"
+                        android:background="@color/divider" />
+
+                    <!-- Terms of Service Row -->
+                    <LinearLayout
+                        android:id="@+id/actionTerms"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="@dimen/card_padding"
+                        android:paddingVertical="14dp"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:contentDescription="@string/cd_terms_of_service">
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_medium"
+                            android:layout_height="@dimen/icon_medium"
+                            android:src="@drawable/ic_terms"
+                            app:tint="@color/text_secondary"
+                            android:importantForAccessibility="no" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/profile_terms"
+                            android:textSize="@dimen/text_subtitle"
+                            android:textColor="@color/text_primary"
+                            android:layout_marginStart="@dimen/spacing_medium" />
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_small"
+                            android:layout_height="@dimen/icon_small"
+                            android:src="@drawable/ic_chevron_right"
+                            app:tint="@color/text_disabled"
+                            android:contentDescription="@string/cd_chevron" />
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
