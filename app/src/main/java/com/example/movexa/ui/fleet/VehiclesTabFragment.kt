@@ -116,6 +116,18 @@ class VehiclesTabFragment : BaseFragment<FragmentVehiclesTabBinding>(
                 is ResultState.Idle -> {}
             }
         }
+
+        // ── Document validity result ─────────────────────────────
+        collectLatestFlow(viewModel.docValidityResult) { result ->
+            when (result) {
+                is ResultState.Success -> {
+                    showSuccess(result.data)
+                    // no need to clear; state resets when triggered again
+                }
+                is ResultState.Error -> showError(result.message)
+                else -> {}
+            }
+        }
     }
 
     // ── Chip Filtering ──────────────────────────────────────────
@@ -191,6 +203,11 @@ class VehiclesTabFragment : BaseFragment<FragmentVehiclesTabBinding>(
                 showStatusChangeDialog(v)
             }
 
+            // Mark documents valid/invalid
+            cardView.onToggleDocsClick = { v ->
+                showDocsValidityDialog(v)
+            }
+
             // Assign driver
             cardView.onAssignDriverClick = { v ->
                 showAssignDriverSheet(v)
@@ -264,6 +281,29 @@ class VehiclesTabFragment : BaseFragment<FragmentVehiclesTabBinding>(
                 viewModel.changeVehicleStatus(vehicle.vehicleId, statuses[which])
             }
             .setNegativeButton(getString(R.string.action_cancel), null)
+            .show()
+    }
+
+    // ── Document Validity ───────────────────────────────────────
+
+    private fun showDocsValidityDialog(vehicle: Vehicle) {
+        val willMarkValid = !vehicle.documentsValid
+        val message = if (willMarkValid) {
+            getString(R.string.confirm_mark_docs_valid_msg)
+        } else {
+            getString(R.string.confirm_mark_docs_invalid_msg)
+        }
+
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle(
+                if (willMarkValid) getString(R.string.action_mark_docs_valid)
+                else getString(R.string.action_mark_docs_invalid)
+            )
+            .setMessage(message)
+            .setNegativeButton(getString(R.string.action_cancel), null)
+            .setPositiveButton(getString(R.string.action_confirm)) { _, _ ->
+                viewModel.changeDocumentValidity(vehicle.vehicleId, willMarkValid)
+            }
             .show()
     }
 

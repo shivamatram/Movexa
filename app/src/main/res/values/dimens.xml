@@ -60,6 +60,9 @@
     <dimen name="card_padding">16dp</dimen>
     <dimen name="card_min_height">80dp</dimen>
 
+    <!-- Divider -->
+    <dimen name="divider_height">1dp</dimen>
+
     <!-- Loading -->
     <dimen name="loading_bar_height">3dp</dimen>
 </resources>

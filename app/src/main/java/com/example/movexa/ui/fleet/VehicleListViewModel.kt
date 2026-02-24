@@ -60,6 +60,10 @@ class VehicleListViewModel : BaseViewModel() {
     private val _vehicleCount = MutableStateFlow(0)
     val vehicleCount: StateFlow<Int> = _vehicleCount.asStateFlow()
 
+    // new: result for document validity updates
+    private val _docValidityResult = MutableStateFlow<ResultState<String>>(ResultState.Idle)
+    val docValidityResult: StateFlow<ResultState<String>> = _docValidityResult.asStateFlow()
+
     private var currentCompanyId: String? = null
 
     // ── Initialization ──────────────────────────────────────────
@@ -298,6 +302,32 @@ class VehicleListViewModel : BaseViewModel() {
             } catch (e: Exception) {
                 _operationResult.value = ResultState.Error(
                     e.message ?: "Failed to change status", e
+                )
+            }
+        }
+    }
+
+    /**
+     * Update the "documentsValid" flag for a vehicle.
+     * Used by admin to mark paperwork as valid/invalid.
+     */
+    fun changeDocumentValidity(vehicleId: String, valid: Boolean) {
+        _docValidityResult.value = ResultState.Loading
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                when (val res = vehicleRepository.updateDocumentValidity(vehicleId, valid)) {
+                    is ResultState.Success -> {
+                        val msg = if (valid) "Documents marked valid" else "Documents marked invalid"
+                        _docValidityResult.value = ResultState.Success(msg)
+                    }
+                    is ResultState.Error -> {
+                        _docValidityResult.value = ResultState.Error(res.message, res.exception)
+                    }
+                    else -> {}
+                }
+            } catch (e: Exception) {
+                _docValidityResult.value = ResultState.Error(
+                    e.message ?: "Failed to update document status", e
                 )
             }
         }

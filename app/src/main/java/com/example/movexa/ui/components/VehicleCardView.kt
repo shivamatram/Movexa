@@ -29,6 +29,7 @@ class VehicleCardView(context: Context) : LinearLayout(context) {
     var onDeleteClick: ((Vehicle) -> Unit)? = null
     var onStatusChangeClick: ((Vehicle) -> Unit)? = null
     var onAssignDriverClick: ((Vehicle) -> Unit)? = null
+    var onToggleDocsClick: ((Vehicle) -> Unit)? = null    // new callback for marking docs valid/invalid
     var onCardClick: ((Vehicle) -> Unit)? = null
 
     private var currentVehicle: Vehicle? = null
@@ -168,7 +169,10 @@ class VehicleCardView(context: Context) : LinearLayout(context) {
             if (isAdmin) {
                 add(0, MENU_EDIT, 0, R.string.action_edit)
                 add(0, MENU_CHANGE_STATUS, 1, R.string.action_change_status)
-                add(0, MENU_DELETE, 2, R.string.action_delete)
+                add(0, MENU_TOGGLE_DOCS, 2,
+                    if (vehicle.documentsValid) R.string.action_mark_docs_invalid
+                    else R.string.action_mark_docs_valid)
+                add(0, MENU_DELETE, 3, R.string.action_delete)
             } else {
                 add(0, MENU_CHANGE_STATUS, 0, R.string.action_change_status)
             }
@@ -181,6 +185,10 @@ class VehicleCardView(context: Context) : LinearLayout(context) {
                 }
                 MENU_CHANGE_STATUS -> {
                     onStatusChangeClick?.invoke(vehicle)
+                    true
+                }
+                MENU_TOGGLE_DOCS -> {
+                    onToggleDocsClick?.invoke(vehicle)
                     true
                 }
                 MENU_DELETE -> {
@@ -196,6 +204,7 @@ class VehicleCardView(context: Context) : LinearLayout(context) {
     companion object {
         private const val MENU_EDIT = 1
         private const val MENU_CHANGE_STATUS = 2
-        private const val MENU_DELETE = 3
+        private const val MENU_TOGGLE_DOCS = 3 // new menu id
+        private const val MENU_DELETE = 4
     }
 }

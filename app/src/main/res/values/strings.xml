@@ -30,6 +30,13 @@
     <string name="role_mechanic">Mechanic</string>
     <string name="error_role_required">Please select a role</string>
 
+    <!-- Override Play services strings to avoid invalid escape sequences -->
+    <string name="common_google_play_services_enable_text">%1$s won’t work unless you enable Google Play services.</string>
+    <string name="common_google_play_services_install_text">%1$s won’t run without Google Play services, which are missing from your device.</string>
+    <string name="common_google_play_services_unsupported_text">%1$s won’t run without Google Play services, which are not supported by your device.</string>
+    <string name="common_google_play_services_update_text">%1$s won’t run unless you update Google Play services.</string>
+    <string name="common_google_play_services_updating_text">%1$s won’t run without Google Play services, which are currently updating.</string>
+
     <!-- Forgot Password -->
     <string name="forgot_password_title">Reset Password</string>
     <string name="forgot_password_subtitle">Enter your email and we\'ll send you a link to reset your password.</string>
@@ -513,7 +520,14 @@
     <string name="vehicle_label_docs">Docs</string>
     <string name="vehicle_docs_valid">Valid</string>
     <string name="vehicle_docs_invalid">Invalid</string>
+    <string name="action_mark_docs_valid">Mark documents valid</string>
+    <string name="action_mark_docs_invalid">Mark documents invalid</string>
     <string name="vehicle_assign_driver">Assign</string>
+    <string name="confirm_mark_docs_valid_msg">Are you sure you want to mark this vehicle\'s documents as valid?</string>
+    <string name="confirm_mark_docs_invalid_msg">Are you sure you want to mark this vehicle\'s documents as invalid?</string>
+    <!-- override material library string that contains an escaped apostrophe (o\'clock)
+         which causes aapt2 build errors when merged. -->
+    <string name="material_hour_suffix">%1$s o\'clock</string>
 
     <!-- Driver Card Labels -->
     <string name="driver_label_rating">Rating</string>
@@ -1715,6 +1729,83 @@
     <string name="cd_app_version">Application version</string>
     <string name="cd_privacy_policy">Privacy policy</string>
     <string name="cd_terms_of_service">Terms of service</string>
+    <string name="cd_company_settings">Company settings</string>
+    <string name="cd_system_control">System control</string>
+    <string name="cd_security_controls">Security controls</string>
+    <string name="cd_audit_preview">Audit preview</string>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         ADMIN PROFILE MODULE
+         ═══════════════════════════════════════════════════════════════ -->
+
+    <!-- Admin Profile — Header -->
+    <string name="admin_profile_header_cd">Admin executive profile header</string>
+    <string name="admin_profile_role_label">System Administrator</string>
+    <string name="admin_profile_status_active">Active</string>
+    <string name="admin_profile_status_inactive">Inactive</string>
+    <string name="admin_profile_last_login">Last login: %s</string>
+
+    <!-- Admin Profile — Personal Information -->
+    <string name="admin_profile_section_personal">Personal Information</string>
+    <string name="admin_profile_label_uid">User ID</string>
+    <string name="admin_profile_label_last_active">Last Active</string>
+
+    <!-- Admin Profile — Company Settings -->
+    <string name="admin_profile_section_company">Company Settings</string>
+    <string name="admin_profile_company_name">Company Name</string>
+    <string name="admin_profile_company_name_desc">Organization display name</string>
+    <string name="admin_profile_company_address">Company Address</string>
+    <string name="admin_profile_company_address_desc">Registered business address</string>
+    <string name="admin_profile_company_phone">Company Phone</string>
+    <string name="admin_profile_company_phone_desc">Primary contact number</string>
+    <string name="admin_profile_company_email">Company Email</string>
+    <string name="admin_profile_company_email_desc">Official business email</string>
+    <string name="admin_profile_company_gst">GST Number</string>
+    <string name="admin_profile_company_gst_desc">Tax identification number</string>
+
+    <!-- Admin Profile — System Control -->
+    <string name="admin_profile_section_system">System Control</string>
+    <string name="admin_profile_system_maintenance">Maintenance Mode</string>
+    <string name="admin_profile_system_maintenance_desc">Disable fleet operations temporarily</string>
+    <string name="admin_profile_system_notifications">Push Notifications</string>
+    <string name="admin_profile_system_notifications_desc">Enable system-wide notifications</string>
+    <string name="admin_profile_system_tracking">GPS Tracking</string>
+    <string name="admin_profile_system_tracking_desc">Enable real-time vehicle tracking</string>
+    <string name="admin_profile_system_auto_assign">Auto-Assign Trips</string>
+    <string name="admin_profile_system_auto_assign_desc">Automatically assign trips to drivers</string>
+
+    <!-- Admin Profile — Security Controls -->
+    <string name="admin_profile_section_security">Security Controls</string>
+    <string name="admin_profile_security_password">Change Password</string>
+    <string name="admin_profile_security_password_desc">Update your admin password</string>
+    <string name="admin_profile_security_sessions">Active Sessions</string>
+    <string name="admin_profile_security_sessions_desc">Manage logged-in devices</string>
+    <string name="admin_profile_security_2fa">Two-Factor Auth</string>
+    <string name="admin_profile_security_2fa_desc">Enhanced account security</string>
+
+    <!-- Admin Profile — Audit Preview -->
+    <string name="admin_profile_section_audit">Recent Activity</string>
+    <string name="admin_profile_audit_empty">No recent audit logs</string>
+    <string name="admin_profile_audit_view_all">View All Activity</string>
+    <string name="admin_profile_audit_action_format">%1$s — %2$s</string>
+
+    <!-- Admin Profile — Company Settings Bottom Sheet -->
+    <string name="admin_company_edit_title">Company Settings</string>
+    <string name="admin_company_edit_subtitle">Update your organization details</string>
+    <string name="admin_company_name_hint">Company Name</string>
+    <string name="admin_company_address_hint">Company Address</string>
+    <string name="admin_company_phone_hint">Company Phone</string>
+    <string name="admin_company_email_hint">Company Email</string>
+    <string name="admin_company_gst_hint">GST Number</string>
+    <string name="admin_company_save">Save Settings</string>
+    <string name="admin_company_save_success">Company settings updated</string>
+    <string name="admin_company_save_error">Failed to update company settings</string>
+
+    <!-- Admin Profile — Content Descriptions -->
+    <string name="cd_admin_edit_profile">Edit admin profile</string>
+    <string name="cd_admin_company_settings">Company settings</string>
+    <string name="cd_admin_system_toggle">System toggle</string>
+    <string name="cd_admin_audit_log">Audit log entry</string>
 
     <!-- ═══════════════════════════════════════════════════════════════
          DRIVER HOME MODULE
@@ -1770,7 +1861,7 @@
     <string name="driver_confirm_no">Cancel</string>
 
     <!-- States -->
-    <string name="driver_home_offline">You\'re offline — some data may not be current</string>
+    <string name="driver_home_offline">You\'re offline \u2014 some data may not be current</string>
     <string name="driver_home_error">Something went wrong loading your dashboard</string>
     <string name="driver_home_retry">Retry</string>
 
