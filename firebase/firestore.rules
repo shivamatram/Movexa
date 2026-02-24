@@ -187,6 +187,14 @@ service cloud.firestore {
     }
 
     // ===============================
+    // DRIVER PERFORMANCE SUMMARIES
+    // ===============================
+    match /driver_summary/{driverId} {
+      allow read: if isLoggedIn();
+      allow write: if isLoggedIn() && (isAdmin() || isManager() || isDriver());
+    }
+
+    // ===============================
     // AUDIT LOGS
     // ===============================
     match /audit_logs/{id} {

@@ -104,9 +104,9 @@ class DriverNavigationViewModel(application: Application) : AndroidViewModel(app
                 return@launch
             }
 
-            // Look up the driver record
-            val driverResult = driverRepository.getDriverByUserId(userId)
-            if (driverResult is ResultState.Success && driverResult.data != null) {
+            // Look up (or auto-create) the driver record
+            val driverResult = driverRepository.getOrCreateDriverByUserId(userId)
+            if (driverResult is ResultState.Success) {
                 val driver = driverResult.data
                 _driverInfo.value = ResultState.Success(driver)
                 driverId = driver.driverId
@@ -115,9 +115,9 @@ class DriverNavigationViewModel(application: Application) : AndroidViewModel(app
 
                 // Find active trip for this driver
                 loadActiveTrip(driver.driverId)
-            } else {
-                _driverInfo.value = ResultState.Error("Driver profile not found.")
-                _errorEvent.emit("Driver profile not found. Contact your manager.")
+            } else if (driverResult is ResultState.Error) {
+                _driverInfo.value = ResultState.Error(driverResult.message)
+                _errorEvent.emit(driverResult.message)
             }
 
             _isLoading.value = false

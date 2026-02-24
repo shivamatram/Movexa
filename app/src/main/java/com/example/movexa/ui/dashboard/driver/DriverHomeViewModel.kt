@@ -191,9 +191,9 @@ class DriverHomeViewModel : BaseViewModel() {
                     _userProfile.value = userResult.data
                 }
 
-                // ── 3. Resolve driver record ────────────────────
-                val driverResult = repository.getDriverByUserId(userId)
-                if (driverResult is ResultState.Success && driverResult.data != null) {
+                // ── 3. Resolve driver record (auto-create if missing)
+                val driverResult = repository.getOrCreateDriverByUserId(userId)
+                if (driverResult is ResultState.Success) {
                     val driver = driverResult.data
                     driverId = driver.driverId
                     companyId = driver.companyId
@@ -201,7 +201,8 @@ class DriverHomeViewModel : BaseViewModel() {
                     _driverProfile.value = driver
                 } else {
                     _screenState.value = ScreenState.Error(
-                        "Driver profile not found. Contact your manager."
+                        (driverResult as? ResultState.Error)?.message
+                            ?: "Failed to initialize driver profile. Please try again."
                     )
                     return@launch
                 }

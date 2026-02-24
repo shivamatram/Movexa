@@ -15,6 +15,8 @@ import com.example.movexa.ui.trips.tabs.ManagerOngoingTabFragment
 import com.example.movexa.ui.trips.tabs.UnassignedTripsTabFragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.tabs.TabLayout
+import com.example.movexa.ui.trips.TripDetailsFragment
+import androidx.navigation.fragment.findNavController
 
 /**
  * Trip Management host for the Manager dashboard.
@@ -39,6 +41,7 @@ class ManagerTripsFragment : BaseFragment<FragmentManagerTripsBinding>(
         UnassignedTripsTabFragment.newInstance().also { fragment ->
             fragment.onAssignClick = { trip -> showSmartAssignmentSheet(trip) }
             fragment.onViewDetailsClick = { trip -> navigateToTripDetails(trip) }
+            fragment.onCancelClick = { trip -> showCancelConfirmation(trip) }
         }
     }
 
@@ -136,11 +139,13 @@ class ManagerTripsFragment : BaseFragment<FragmentManagerTripsBinding>(
 
         val transaction = childFragmentManager.beginTransaction()
 
-        currentTab?.let { transaction.hide(it) }
+        // hide every tab that may have been added already to avoid overlapping
+        listOf(unassignedTab, ongoingTab, completedTab).forEach { frag ->
+            if (frag.isAdded) transaction.hide(frag)
+        }
 
-        val existing = childFragmentManager.findFragmentByTag(tag)
-        if (existing != null) {
-            transaction.show(existing)
+        if (fragment.isAdded) {
+            transaction.show(fragment)
         } else {
             transaction.add(R.id.tripTabContainer, fragment, tag)
         }
@@ -216,8 +221,13 @@ class ManagerTripsFragment : BaseFragment<FragmentManagerTripsBinding>(
     // ── Navigation ──────────────────────────────────────────────
 
     private fun navigateToTripDetails(trip: Trip) {
-        // Navigate to TripDetailsFragment via NavController or direct fragment transaction
-        // TODO: Wire up actual navigation when nav graph is updated
+        val bundle = android.os.Bundle().apply {
+            putString(TripDetailsFragment.ARG_TRIP_ID, trip.tripId)
+        }
+        findNavController().navigate(
+            R.id.action_managerTripsFragment_to_tripDetailsFragment,
+            bundle
+        )
     }
 
     // ── Constants ───────────────────────────────────────────────

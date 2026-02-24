@@ -1,8 +1,10 @@
 package com.example.movexa.data.repository
 
+import com.example.movexa.data.model.Driver
 import com.example.movexa.data.model.ResultState
 import com.example.movexa.data.model.User
 import com.example.movexa.data.model.UserRole
+import com.example.movexa.data.model.enums.VerificationStatus
 import com.example.movexa.data.remote.FirebaseProvider
 import com.google.firebase.auth.FirebaseAuthException
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
@@ -84,7 +86,25 @@ class AuthRepository : BaseRepository() {
                 .set(user.toMap())
                 .await()
 
-            // Step 4: Sign out — signup does NOT create session
+            // Step 4: If driver role, create a Driver document in drivers collection
+            if (role == UserRole.DRIVER) {
+                val driverDocRef = firestore
+                    .collection(FirebaseProvider.Collections.DRIVERS)
+                    .document()
+                val driverId = driverDocRef.id
+
+                val driver = Driver(
+                    driverId = driverId,
+                    userId = uid,
+                    verificationStatus = VerificationStatus.PENDING,
+                    createdAt = System.currentTimeMillis(),
+                    updatedAt = System.currentTimeMillis()
+                )
+
+                driverDocRef.set(driver.toMap()).await()
+            }
+
+            // Step 5: Sign out — signup does NOT create session
             auth.signOut()
         }
     }

@@ -6,6 +6,7 @@ import com.example.movexa.data.model.User
 import com.example.movexa.data.model.Vehicle
 import com.example.movexa.data.model.enums.VerificationStatus
 import com.example.movexa.data.remote.FirebaseProvider
+import com.example.movexa.data.repository.impl.DriverRepositoryImpl
 import com.google.firebase.auth.EmailAuthProvider
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
@@ -33,6 +34,7 @@ class DriverProfileRepository : BaseRepository() {
     private val auth = FirebaseProvider.auth
     private val firestore = FirebaseProvider.firestore
     private val storage = FirebaseProvider.storage
+    private val driverRepository = DriverRepositoryImpl()
 
     // ─── Fetch User Profile ─────────────────────────────────────
 
@@ -64,31 +66,13 @@ class DriverProfileRepository : BaseRepository() {
 
     /**
      * Fetch the driver record linked to a user ID.
-     *
-     * Queries drivers collection where userId == [userId].
+     * Auto-creates a driver record if one doesn't exist yet.
      *
      * @param userId The user's UID to find corresponding driver record
      * @return ResultState<Driver> — the driver's complete data
      */
-    suspend fun fetchDriverProfile(userId: String): ResultState<Driver> {
-        return firebaseSafeCall {
-            val querySnapshot = firestore.collection(FirebaseProvider.Collections.DRIVERS)
-                .whereEqualTo("userId", userId)
-                .limit(1)
-                .get()
-                .await()
-
-            if (querySnapshot.isEmpty) {
-                throw IllegalStateException("Driver profile not found.")
-            }
-
-            val doc = querySnapshot.documents.first()
-            val data = doc.data
-                ?: throw IllegalStateException("Driver profile data is empty.")
-
-            Driver.fromMap(data)
-        }
-    }
+    suspend fun fetchDriverProfile(userId: String): ResultState<Driver> =
+        driverRepository.getOrCreateDriverByUserId(userId)
 
     // ─── Fetch Assigned Vehicle ─────────────────────────────────
 

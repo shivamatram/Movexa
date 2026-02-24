@@ -116,18 +116,11 @@ class DriverTripsViewModel : BaseViewModel() {
      */
     private suspend fun resolveDriverId(userId: String) {
         try {
-            when (val result = driverRepository.getDriverByUserId(userId)) {
+            when (val result = driverRepository.getOrCreateDriverByUserId(userId)) {
                 is ResultState.Success -> {
                     val driver = result.data
-                    if (driver != null) {
-                        currentDriverId = driver.driverId
-                        observeDriverTrips(driver.driverId)
-                    } else {
-                        val error = ResultState.Error("Driver profile not found")
-                        _newRequests.value = error
-                        _ongoingTrips.value = error
-                        _historyTrips.value = error
-                    }
+                    currentDriverId = driver.driverId
+                    observeDriverTrips(driver.driverId)
                 }
                 is ResultState.Error -> {
                     _newRequests.value = ResultState.Error(result.message)

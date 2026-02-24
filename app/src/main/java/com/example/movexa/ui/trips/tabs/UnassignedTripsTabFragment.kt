@@ -34,6 +34,9 @@ class UnassignedTripsTabFragment : BaseFragment<FragmentTripTabBinding>(
     /** Callback for when view details is clicked. */
     var onViewDetailsClick: ((Trip) -> Unit)? = null
 
+    /** Callback for when cancel is requested via menu. */
+    var onCancelClick: ((Trip) -> Unit)? = null
+
     // ── Lifecycle ───────────────────────────────────────────────
 
     override fun initViews() {
@@ -67,6 +70,11 @@ class UnassignedTripsTabFragment : BaseFragment<FragmentTripTabBinding>(
         // Primary action → Assign driver
         adapter.onPrimaryClick = { trip ->
             onAssignClick?.invoke(trip)
+        }
+
+        // Secondary action → Cancel trip
+        adapter.onSecondaryClick = { trip ->
+            onCancelClick?.invoke(trip)
         }
 
         // View details

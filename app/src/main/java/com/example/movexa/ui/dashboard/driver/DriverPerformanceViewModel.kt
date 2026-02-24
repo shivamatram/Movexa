@@ -118,14 +118,15 @@ class DriverPerformanceViewModel : BaseViewModel() {
                     return@launch
                 }
 
-                // ── 2. Look up driver record ────────────────────
-                val driverResult = driverRepository.getDriverByUserId(userId)
-                if (driverResult is ResultState.Success && driverResult.data != null) {
+                // ── 2. Look up (or auto-create) driver record ───
+                val driverResult = driverRepository.getOrCreateDriverByUserId(userId)
+                if (driverResult is ResultState.Success) {
                     driverId = driverResult.data.driverId
                     companyId = driverResult.data.companyId
                 } else {
                     _screenState.value = ScreenState.Error(
-                        "Driver profile not found. Contact your manager."
+                        (driverResult as? ResultState.Error)?.message
+                            ?: "Failed to load driver profile."
                     )
                     return@launch
                 }

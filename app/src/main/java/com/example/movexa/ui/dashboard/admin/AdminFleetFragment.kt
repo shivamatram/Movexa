@@ -72,13 +72,16 @@ class AdminFleetFragment : BaseFragment<FragmentAdminFleetBinding>(
 
         val transaction = childFragmentManager.beginTransaction()
 
-        // Hide current fragment
-        currentTab?.let { transaction.hide(it) }
+        // hide all tabs that have been added so far; safer than relying on currentTab
+        listOf(vehiclesTab, driversTab, managersTab).forEach { frag ->
+            if (frag.isAdded) {
+                transaction.hide(frag)
+            }
+        }
 
-        // Show or add new fragment
-        val existing = childFragmentManager.findFragmentByTag(tag)
-        if (existing != null) {
-            transaction.show(existing)
+        // Show or add the requested fragment
+        if (fragment.isAdded) {
+            transaction.show(fragment)
         } else {
             transaction.add(R.id.fleetTabContainer, fragment, tag)
         }

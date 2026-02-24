@@ -165,19 +165,23 @@ object HapticManager {
      * Single vibration pulse.
      */
     private fun vibrate(context: Context, durationMs: Long, amplitude: Int) {
-        val vibrator = getVibrator(context)
-        if (!vibrator.hasVibrator()) return
+        try {
+            val vibrator = getVibrator(context)
+            if (!vibrator.hasVibrator()) return
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val effect = if (vibrator.hasAmplitudeControl()) {
-                VibrationEffect.createOneShot(durationMs, amplitude)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                val effect = if (vibrator.hasAmplitudeControl()) {
+                    VibrationEffect.createOneShot(durationMs, amplitude)
+                } else {
+                    VibrationEffect.createOneShot(durationMs, VibrationEffect.DEFAULT_AMPLITUDE)
+                }
+                vibrator.vibrate(effect)
             } else {
-                VibrationEffect.createOneShot(durationMs, VibrationEffect.DEFAULT_AMPLITUDE)
+                @Suppress("DEPRECATION")
+                vibrator.vibrate(durationMs)
             }
-            vibrator.vibrate(effect)
-        } else {
-            @Suppress("DEPRECATION")
-            vibrator.vibrate(durationMs)
+        } catch (_: SecurityException) {
+            // VIBRATE permission not granted — silently skip
         }
     }
 
@@ -185,19 +189,23 @@ object HapticManager {
      * Patterned vibration with per-segment amplitudes.
      */
     private fun vibratePattern(context: Context, timings: LongArray, amplitudes: IntArray) {
-        val vibrator = getVibrator(context)
-        if (!vibrator.hasVibrator()) return
+        try {
+            val vibrator = getVibrator(context)
+            if (!vibrator.hasVibrator()) return
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val effect = if (vibrator.hasAmplitudeControl()) {
-                VibrationEffect.createWaveform(timings, amplitudes, -1)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                val effect = if (vibrator.hasAmplitudeControl()) {
+                    VibrationEffect.createWaveform(timings, amplitudes, -1)
+                } else {
+                    VibrationEffect.createWaveform(timings, -1)
+                }
+                vibrator.vibrate(effect)
             } else {
-                VibrationEffect.createWaveform(timings, -1)
+                @Suppress("DEPRECATION")
+                vibrator.vibrate(timings, -1)
             }
-            vibrator.vibrate(effect)
-        } else {
-            @Suppress("DEPRECATION")
-            vibrator.vibrate(timings, -1)
+        } catch (_: SecurityException) {
+            // VIBRATE permission not granted — silently skip
         }
     }
 }

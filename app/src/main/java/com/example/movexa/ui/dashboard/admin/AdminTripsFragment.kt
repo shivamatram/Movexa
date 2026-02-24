@@ -25,6 +25,7 @@ import com.google.android.material.tabs.TabLayout
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import androidx.navigation.fragment.findNavController
 
 /**
  * Admin Trip Operations fragment.
@@ -640,17 +641,14 @@ class AdminTripsFragment : BaseFragment<FragmentAdminTripsBinding>(
     // ═══════════════════════════════════════════════════════════
 
     private fun navigateToTripDetails(trip: Trip) {
-        val detailsFragment = TripDetailsFragment.newInstance(trip.tripId)
-        parentFragmentManager.beginTransaction()
-            .setCustomAnimations(
-                R.anim.slide_in_right,
-                R.anim.slide_out_left,
-                R.anim.slide_in_left,
-                R.anim.slide_out_right
-            )
-            .replace(R.id.navHostFragment, detailsFragment)
-            .addToBackStack(null)
-            .commit()
+        val bundle = android.os.Bundle().apply {
+            putString(TripDetailsFragment.ARG_TRIP_ID, trip.tripId)
+        }
+        // use navigation component; destination defined in nav_admin.xml
+        findNavController().navigate(
+            R.id.action_adminTripsFragment_to_tripDetailsFragment,
+            bundle
+        )
     }
 
     // ═══════════════════════════════════════════════════════════

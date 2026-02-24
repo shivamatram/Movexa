@@ -3,6 +3,7 @@ package com.example.movexa.data.repository.impl
 import com.example.movexa.data.model.Driver
 import com.example.movexa.data.model.ResultState
 import com.example.movexa.data.model.enums.VerificationStatus
+import com.example.movexa.data.remote.FirebaseProvider
 import com.example.movexa.data.remote.toModelList
 import com.example.movexa.data.repository.BaseFirestoreRepository
 import com.example.movexa.data.repository.contracts.DriverRepository
@@ -47,6 +48,34 @@ class DriverRepositoryImpl : BaseFirestoreRepository<Driver>(), DriverRepository
 
     override suspend fun getDriverByUserId(userId: String): ResultState<Driver?> =
         getFirstByField("userId", userId)
+
+    override suspend fun getOrCreateDriverByUserId(userId: String): ResultState<Driver> =
+        firebaseSafeCall {
+            // Try to find existing driver document
+            val snapshot = collectionRef
+                .whereEqualTo("userId", userId)
+                .limit(1)
+                .get()
+                .await()
+
+            val existingDoc = snapshot.documents.firstOrNull()
+            if (existingDoc != null && existingDoc.data != null) {
+                Driver.fromMap(existingDoc.data!!)
+            } else {
+                // Auto-create driver document for this user
+                val docRef = collectionRef.document()
+                val driverId = docRef.id
+                val driver = Driver(
+                    driverId = driverId,
+                    userId = userId,
+                    verificationStatus = VerificationStatus.PENDING,
+                    createdAt = System.currentTimeMillis(),
+                    updatedAt = System.currentTimeMillis()
+                )
+                docRef.set(driver.toMap()).await()
+                driver
+            }
+        }
 
     override suspend fun getAllDrivers(): ResultState<List<Driver>> = getAll()
 
@@ -172,6 +201,11 @@ class DriverRepositoryImpl : BaseFirestoreRepository<Driver>(), DriverRepository
 
     override fun observeDriver(driverId: String): Flow<ResultState<Driver?>> =
         observeDocument(driverId)
+
+    override fun observeAllDrivers(): Flow<ResultState<List<Driver>>> =
+        observeCollection { ref ->
+            ref.orderBy("createdAt", Query.Direction.DESCENDING)
+        }
 
     override fun observeCompanyDrivers(companyId: String): Flow<ResultState<List<Driver>>> =
         observeCollection { ref ->

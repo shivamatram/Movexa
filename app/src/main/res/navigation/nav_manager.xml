@@ -27,7 +27,24 @@
         android:id="@+id/managerTripsFragment"
         android:name="com.example.movexa.ui.dashboard.manager.ManagerTripsFragment"
         android:label="Trips"
-        tools:layout="@layout/fragment_manager_trips" />
+        tools:layout="@layout/fragment_manager_trips">
+        <action
+            android:id="@+id/action_managerTripsFragment_to_tripDetailsFragment"
+            app:destination="@id/tripDetailsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/tripDetailsFragment"
+        android:name="com.example.movexa.ui.trips.TripDetailsFragment"
+        android:label="Trip Details">
+        <argument
+            android:name="trip_id"
+            app:argType="string" />
+    </fragment>
 
     <fragment
         android:id="@+id/managerTrackingFragment"

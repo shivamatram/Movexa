@@ -150,6 +150,11 @@ class VehicleRepositoryImpl : BaseFirestoreRepository<Vehicle>(), VehicleReposit
     override fun observeVehicle(vehicleId: String): Flow<ResultState<Vehicle?>> =
         observeDocument(vehicleId)
 
+    override fun observeAllVehicles(): Flow<ResultState<List<Vehicle>>> =
+        observeCollection { ref ->
+            ref.orderBy("createdAt", Query.Direction.DESCENDING)
+        }
+
     override fun observeFleet(companyId: String): Flow<ResultState<List<Vehicle>>> =
         observeCollection { ref ->
             ref.whereEqualTo("companyId", companyId)

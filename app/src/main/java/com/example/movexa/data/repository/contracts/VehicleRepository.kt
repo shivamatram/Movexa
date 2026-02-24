@@ -47,6 +47,7 @@ interface VehicleRepository {
 
     // ── REAL-TIME ───────────────────────────────────────────────────────────
     fun observeVehicle(vehicleId: String): Flow<ResultState<Vehicle?>>
+    fun observeAllVehicles(): Flow<ResultState<List<Vehicle>>>
     fun observeFleet(companyId: String): Flow<ResultState<List<Vehicle>>>
     fun observeAvailableVehicles(companyId: String): Flow<ResultState<List<Vehicle>>>
 }

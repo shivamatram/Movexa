@@ -53,12 +53,21 @@ abstract class BaseRepository {
     /**
      * Execute a Firebase operation safely.
      * Adds Firebase-specific error handling on top of safeCall.
+     * Uses [parseErrorMessage] to convert technical exceptions into
+     * user-friendly messages.
      */
     protected suspend fun <T> firebaseSafeCall(
         block: suspend () -> T
     ): ResultState<T> {
-        return safeCall(ioDispatcher) {
-            block()
+        return withContext(ioDispatcher) {
+            try {
+                ResultState.Success(block())
+            } catch (e: Exception) {
+                ResultState.Error(
+                    message = parseErrorMessage(e),
+                    exception = e
+                )
+            }
         }
     }
 
@@ -66,20 +75,31 @@ abstract class BaseRepository {
      * Parse error messages for user-friendly display.
      */
     protected open fun parseErrorMessage(exception: Throwable): String {
+        val msg = exception.message ?: ""
         return when {
-            exception.message?.contains("PERMISSION_DENIED") == true ->
+            // ── Firebase Storage errors ──────────────────────
+            msg.contains("Object does not exist at location", ignoreCase = true) ->
+                "The requested file was not found. It may not have been uploaded yet."
+            msg.contains("does not exist", ignoreCase = true)
+                    && msg.contains("bucket", ignoreCase = true) ->
+                "Storage is not configured. Please contact support."
+            msg.contains("StorageException", ignoreCase = true) ->
+                "A file storage error occurred. Please try again."
+
+            // ── Firestore / Auth errors ─────────────────────
+            msg.contains("PERMISSION_DENIED") ->
                 "You don't have permission to perform this action."
-            exception.message?.contains("NOT_FOUND") == true ->
+            msg.contains("NOT_FOUND") ->
                 "The requested resource was not found."
-            exception.message?.contains("ALREADY_EXISTS") == true ->
+            msg.contains("ALREADY_EXISTS") ->
                 "This resource already exists."
-            exception.message?.contains("UNAUTHENTICATED") == true ->
+            msg.contains("UNAUTHENTICATED") ->
                 "Please sign in to continue."
-            exception.message?.contains("UNAVAILABLE") == true ->
+            msg.contains("UNAVAILABLE") ->
                 "Service is temporarily unavailable. Please try again later."
-            exception.message?.contains("network") == true ->
+            msg.contains("network", ignoreCase = true) ->
                 "Network error. Please check your connection."
-            else -> exception.message ?: "An unexpected error occurred."
+            else -> msg.ifBlank { "An unexpected error occurred." }
         }
     }
 }

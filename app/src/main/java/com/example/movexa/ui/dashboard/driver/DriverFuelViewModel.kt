@@ -132,11 +132,13 @@ class DriverFuelViewModel : BaseViewModel() {
                 return@launchWithLoading
             }
 
-            // 2. Resolve driver profile
-            val driverResult = driverRepository.getDriverByUserId(userId)
-            if (driverResult !is ResultState.Success || driverResult.data == null) {
-                _screenState.value = ScreenState.Error("Driver profile not found")
-                emitError("Driver profile not found. Contact your manager.")
+            // 2. Resolve driver profile (auto-create if missing)
+            val driverResult = driverRepository.getOrCreateDriverByUserId(userId)
+            if (driverResult !is ResultState.Success) {
+                val errorMsg = (driverResult as? ResultState.Error)?.message
+                    ?: "Failed to load driver profile."
+                _screenState.value = ScreenState.Error(errorMsg)
+                emitError(errorMsg)
                 return@launchWithLoading
             }
 

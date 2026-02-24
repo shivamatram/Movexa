@@ -92,6 +92,12 @@ class DriverHomeRepository : BaseRepository() {
         driverRepository.getDriverByUserId(userId)
 
     /**
+     * Get the driver record, auto-creating one if it doesn't exist.
+     */
+    suspend fun getOrCreateDriverByUserId(userId: String): ResultState<Driver> =
+        driverRepository.getOrCreateDriverByUserId(userId)
+
+    /**
      * Observe the driver document in real-time.
      */
     fun observeDriver(driverId: String): Flow<ResultState<Driver?>> =

@@ -85,16 +85,14 @@ class DriverListViewModel : BaseViewModel() {
 
     /**
      * Start observing drivers. Call from fragment's initViews().
+     * Fetches all drivers regardless of companyId so both admin and manager
+     * can see pending driver accounts for verification.
      */
     fun loadDrivers() {
         viewModelScope.launch {
-            val companyId = SessionManager.getInstance().getCachedUserId()
-            if (companyId.isNullOrBlank()) {
-                _drivers.value = ResultState.Error("No company ID found. Please log in again.")
-                return@launch
-            }
-            currentCompanyId = companyId
-            observeCompanyDrivers(companyId)
+            // Cache userId for vehicle-assignment queries (getAvailableVehicles)
+            currentCompanyId = SessionManager.getInstance().getCachedUserId()
+            observeAllDrivers()
         }
     }
 
@@ -102,17 +100,16 @@ class DriverListViewModel : BaseViewModel() {
      * Refresh driver data (pull-to-refresh).
      */
     fun refreshDrivers() {
-        val companyId = currentCompanyId ?: return
         _allDrivers.value = ResultState.Loading
         _drivers.value = ResultState.Loading
-        observeCompanyDrivers(companyId)
+        observeAllDrivers()
     }
 
     // ── Real-Time Observation ───────────────────────────────────
 
-    private fun observeCompanyDrivers(companyId: String) {
+    private fun observeAllDrivers() {
         viewModelScope.launch {
-            driverRepository.observeCompanyDrivers(companyId)
+            driverRepository.observeAllDrivers()
                 .catch { e ->
                     _drivers.value = ResultState.Error(
                         message = e.message ?: "Failed to load drivers",
@@ -445,12 +442,12 @@ class DriverListViewModel : BaseViewModel() {
 
     /**
      * Get available vehicles for the assignment bottom sheet.
+     * Queries all vehicles without companyId filter since vehicle documents may have empty companyId.
      */
     fun getAvailableVehicles(callback: (List<AssignmentBottomSheet.AssignmentOption>) -> Unit) {
-        val companyId = currentCompanyId ?: return
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(Dispatchers.Main) {
             try {
-                when (val result = vehicleRepository.getAvailableVehicles(companyId)) {
+                when (val result = vehicleRepository.getAllVehicles()) {
                     is ResultState.Success -> {
                         val options = result.data
                             .filter { it.assignedDriverId.isNullOrBlank() }

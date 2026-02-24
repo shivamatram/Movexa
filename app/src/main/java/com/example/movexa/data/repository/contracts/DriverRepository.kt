@@ -18,6 +18,7 @@ interface DriverRepository {
     // ── READ ────────────────────────────────────────────────────────────────
     suspend fun getDriverById(driverId: String): ResultState<Driver?>
     suspend fun getDriverByUserId(userId: String): ResultState<Driver?>
+    suspend fun getOrCreateDriverByUserId(userId: String): ResultState<Driver>
     suspend fun getAllDrivers(): ResultState<List<Driver>>
     suspend fun getDriversByCompany(companyId: String): ResultState<List<Driver>>
     suspend fun getDriversByVerificationStatus(
@@ -54,6 +55,7 @@ interface DriverRepository {
 
     // ── REAL-TIME ───────────────────────────────────────────────────────────
     fun observeDriver(driverId: String): Flow<ResultState<Driver?>>
+    fun observeAllDrivers(): Flow<ResultState<List<Driver>>>
     fun observeCompanyDrivers(companyId: String): Flow<ResultState<List<Driver>>>
     fun observeDriverByUserId(userId: String): Flow<ResultState<Driver?>>
 }
