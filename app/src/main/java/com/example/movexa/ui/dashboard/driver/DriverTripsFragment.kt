@@ -48,26 +48,23 @@ class DriverTripsFragment : BaseFragment<FragmentDriverTripsBinding>(
         defaultViewModelProviderFactory
     }
 
-    // ── Tab Fragments ───────────────────────────────────────────
-    private val newRequestsTab by lazy {
-        NewRequestsTabFragment.newInstance().also { fragment ->
-            fragment.onAcceptClick = { trip -> showAcceptConfirmation(trip) }
-            fragment.onRejectClick = { trip -> showRejectConfirmation(trip) }
-            fragment.onViewDetailsClick = { trip -> navigateToTripDetails(trip) }
-        }
-    }
-
-    private val ongoingTab by lazy {
-        DriverOngoingTabFragment.newInstance().also { fragment ->
-            fragment.onStartClick = { trip -> showStartConfirmation(trip) }
-            fragment.onCompleteClick = { trip -> showCompleteConfirmation(trip) }
-            fragment.onViewDetailsClick = { trip -> navigateToTripDetails(trip) }
-        }
-    }
-
-    private val historyTab by lazy {
-        HistoryTabFragment.newInstance().also { fragment ->
-            fragment.onViewDetailsClick = { trip -> navigateToTripDetails(trip) }
+    // ── Tab Fragments (created on demand) ─────────────────────────
+    private fun createFragmentForTag(tag: String): Fragment {
+        return when (tag) {
+            TAG_NEW_REQUESTS -> NewRequestsTabFragment.newInstance().also { fragment ->
+                fragment.onAcceptClick = { trip -> showAcceptConfirmation(trip) }
+                fragment.onRejectClick = { trip -> showRejectConfirmation(trip) }
+                fragment.onViewDetailsClick = { trip -> navigateToTripDetails(trip) }
+            }
+            TAG_ONGOING -> DriverOngoingTabFragment.newInstance().also { fragment ->
+                fragment.onStartClick = { trip -> showStartConfirmation(trip) }
+                fragment.onCompleteClick = { trip -> showCompleteConfirmation(trip) }
+                fragment.onViewDetailsClick = { trip -> navigateToTripDetails(trip) }
+            }
+            TAG_HISTORY -> HistoryTabFragment.newInstance().also { fragment ->
+                fragment.onViewDetailsClick = { trip -> navigateToTripDetails(trip) }
+            }
+            else -> throw IllegalArgumentException("Unknown tab $tag")
         }
     }
 
@@ -96,9 +93,9 @@ class DriverTripsFragment : BaseFragment<FragmentDriverTripsBinding>(
         viewModel.selectedTabIndex = index
         entry.savedStateHandle.set(KEY_SELECTED_TAB, index)
         when (index) {
-            1 -> switchToTab(ongoingTab, TAG_ONGOING)
-            2 -> switchToTab(historyTab, TAG_HISTORY)
-            else -> switchToTab(newRequestsTab, TAG_NEW_REQUESTS)
+            1 -> switchToTab(TAG_ONGOING)
+            2 -> switchToTab(TAG_HISTORY)
+            else -> switchToTab(TAG_NEW_REQUESTS)
         }
 
         viewModel.loadTrips()
@@ -119,9 +116,9 @@ class DriverTripsFragment : BaseFragment<FragmentDriverTripsBinding>(
                 findNavController().getBackStackEntry(R.id.driverTripsFragment)
                     .savedStateHandle.set(KEY_SELECTED_TAB, tab.position)
                 when (tab.position) {
-                    0 -> switchToTab(newRequestsTab, TAG_NEW_REQUESTS)
-                    1 -> switchToTab(ongoingTab, TAG_ONGOING)
-                    2 -> switchToTab(historyTab, TAG_HISTORY)
+                    0 -> switchToTab(TAG_NEW_REQUESTS)
+                    1 -> switchToTab(TAG_ONGOING)
+                    2 -> switchToTab(TAG_HISTORY)
                 }
             }
             override fun onTabUnselected(tab: TabLayout.Tab) {}
@@ -162,16 +159,39 @@ class DriverTripsFragment : BaseFragment<FragmentDriverTripsBinding>(
 
     // ── Tab Switching ───────────────────────────────────────────
 
-    private fun switchToTab(fragment: Fragment, tag: String) {
+    private fun attachCallbacksToFragment(fragment: Fragment) {
+        when (fragment) {
+            is NewRequestsTabFragment -> {
+                fragment.onAcceptClick = { trip -> showAcceptConfirmation(trip) }
+                fragment.onRejectClick = { trip -> showRejectConfirmation(trip) }
+                fragment.onViewDetailsClick = { trip -> navigateToTripDetails(trip) }
+            }
+            is DriverOngoingTabFragment -> {
+                fragment.onStartClick = { trip -> showStartConfirmation(trip) }
+                fragment.onCompleteClick = { trip -> showCompleteConfirmation(trip) }
+                fragment.onViewDetailsClick = { trip -> navigateToTripDetails(trip) }
+            }
+            is HistoryTabFragment -> {
+                fragment.onViewDetailsClick = { trip -> navigateToTripDetails(trip) }
+            }
+        }
+    }
+
+    private fun switchToTab(tag: String) {
+        // obtain the fragment instance – reuse existing if manager already holds one
+        val existing = childFragmentManager.findFragmentByTag(tag)
+        val fragment = existing ?: createFragmentForTag(tag)
+
+        // when reusing, we must reattach callbacks lost on parent recreation
+        if (existing != null) attachCallbacksToFragment(fragment)
+
         if (currentTab === fragment) return
 
         val transaction = childFragmentManager.beginTransaction()
-
         currentTab?.let { transaction.hide(it) }
 
-        val existing = childFragmentManager.findFragmentByTag(tag)
         if (existing != null) {
-            transaction.show(existing)
+            transaction.show(fragment)
         } else {
             transaction.add(R.id.tripTabContainer, fragment, tag)
         }
