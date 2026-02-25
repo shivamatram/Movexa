@@ -239,6 +239,14 @@ class DriverCardView(context: Context) : LinearLayout(context) {
                 if (!driver.assignedVehicleId.isNullOrBlank()) {
                     add(0, MENU_REMOVE_ASSIGNMENT, 5, R.string.fleet_remove_assignment)
                 }
+            } else {
+                // manager view: allow assignment actions even though layoutActions hidden
+                if (driver.verificationStatus.isApproved() && !driver.blocked) {
+                    add(0, MENU_ASSIGN_VEHICLE, 0, R.string.fleet_assign_vehicle)
+                }
+                if (!driver.assignedVehicleId.isNullOrBlank()) {
+                    add(0, MENU_REMOVE_ASSIGNMENT, 1, R.string.fleet_remove_assignment)
+                }
             }
         }
         popup.setOnMenuItemClickListener { item ->
