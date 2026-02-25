@@ -17,6 +17,8 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.tabs.TabLayout
 import com.example.movexa.ui.trips.TripDetailsFragment
 import androidx.navigation.fragment.findNavController
+import android.view.View
+import android.os.Bundle
 
 /**
  * Trip Management host for the Manager dashboard.
@@ -32,6 +34,12 @@ import androidx.navigation.fragment.findNavController
 class ManagerTripsFragment : BaseFragment<FragmentManagerTripsBinding>(
     FragmentManagerTripsBinding::inflate
 ) {
+
+    companion object {
+        private const val TAG_UNASSIGNED = "tab_unassigned"
+        private const val TAG_ONGOING = "tab_ongoing"
+        private const val TAG_COMPLETED = "tab_completed"
+    }
 
     // ── ViewModel ───────────────────────────────────────────────
     private val viewModel: ManagerTripsViewModel by viewModels()
@@ -60,27 +68,42 @@ class ManagerTripsFragment : BaseFragment<FragmentManagerTripsBinding>(
 
     private var currentTab: Fragment? = null
 
+    // ── State tracking moved to ViewModel ───────────────────────
+    // (avoids losing selection when fragment/view recreated)
+
     // ── Lifecycle ───────────────────────────────────────────────
 
     override fun initViews() {
-        // Add tabs
+        // Add tabs (safe to call multiple times)
         binding.tabLayout.apply {
             addTab(newTab().setText(R.string.tab_unassigned))
             addTab(newTab().setText(R.string.tab_ongoing))
             addTab(newTab().setText(R.string.tab_completed))
         }
 
-        // Show initial tab
-        switchToTab(unassignedTab, TAG_UNASSIGNED)
 
         // Start loading
         viewModel.loadTrips()
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: android.os.Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        // observe the selected tab index from viewmodel
+        collectLatestFlow(viewModel.selectedTab) { idx ->
+            when (idx) {
+                0 -> switchToTab(unassignedTab, TAG_UNASSIGNED)
+                1 -> switchToTab(ongoingTab, TAG_ONGOING)
+                2 -> switchToTab(completedTab, TAG_COMPLETED)
+            }
+            binding.tabLayout.getTabAt(idx)?.select()
+        }
     }
 
     override fun setupListeners() {
         // ── Tab Selection ───────────────────────────────────────
         binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
+                viewModel.setSelectedTab(tab.position)
                 when (tab.position) {
                     0 -> switchToTab(unassignedTab, TAG_UNASSIGNED)
                     1 -> switchToTab(ongoingTab, TAG_ONGOING)
@@ -221,6 +244,7 @@ class ManagerTripsFragment : BaseFragment<FragmentManagerTripsBinding>(
     // ── Navigation ──────────────────────────────────────────────
 
     private fun navigateToTripDetails(trip: Trip) {
+
         val bundle = android.os.Bundle().apply {
             putString(TripDetailsFragment.ARG_TRIP_ID, trip.tripId)
         }
@@ -230,11 +254,5 @@ class ManagerTripsFragment : BaseFragment<FragmentManagerTripsBinding>(
         )
     }
 
-    // ── Constants ───────────────────────────────────────────────
 
-    companion object {
-        private const val TAG_UNASSIGNED = "tab_unassigned"
-        private const val TAG_ONGOING = "tab_ongoing"
-        private const val TAG_COMPLETED = "tab_completed"
-    }
 }

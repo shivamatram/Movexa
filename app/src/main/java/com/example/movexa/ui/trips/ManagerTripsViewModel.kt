@@ -89,6 +89,14 @@ class ManagerTripsViewModel : BaseViewModel() {
     private val _totalCount = MutableStateFlow(0)
     val totalCount: StateFlow<Int> = _totalCount.asStateFlow()
 
+    // ── UI state ───────────────────────────────────────────────
+    /** Selected tab index in the manager trips screen (0/1/2). */
+    private val _selectedTab = MutableStateFlow(0)
+    val selectedTab: StateFlow<Int> = _selectedTab.asStateFlow()
+    fun setSelectedTab(index: Int) {
+        _selectedTab.value = index
+    }
+
     /** Eligible vehicles for smart assignment. */
     private val _eligibleOptions =
         MutableStateFlow<ResultState<List<SmartAssignOptionAdapter.EligibleOption>>>(ResultState.Idle)
