@@ -12,6 +12,7 @@ data class User(
     val fullName: String = "",
     val phone: String = "",
     val role: UserRole = UserRole.DRIVER,
+    val companyId: String = "",          // which company this user belongs to
     val profileImageUrl: String? = null,
     val isActive: Boolean = true,
     val isVerified: Boolean = true,
@@ -55,6 +56,7 @@ data class User(
             "fullName" to fullName,
             "phone" to phone,
             "role" to role.name,
+            "companyId" to companyId,
             "profileImageUrl" to profileImageUrl,
             "isActive" to isActive,
             "isVerified" to isVerified,
@@ -76,6 +78,7 @@ data class User(
                 fullName = map["fullName"] as? String ?: "",
                 phone = map["phone"] as? String ?: "",
                 role = UserRole.fromString(map["role"] as? String),
+                companyId = map["companyId"] as? String ?: "",
                 profileImageUrl = map["profileImageUrl"] as? String,
                 isActive = map["isActive"] as? Boolean ?: true,
                 isVerified = map["isVerified"] as? Boolean ?: true,

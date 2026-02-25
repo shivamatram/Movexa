@@ -236,6 +236,20 @@
     <string name="mechanic_section_repairs">Repairs</string>
     <string name="mechanic_section_parts">Parts</string>
 
+    <!-- Mechanic Dashboard -->
+    <string name="mechanic_pending_cost">Total Pending Cost</string>
+    <string name="mechanic_maintenance_queue">Maintenance Queue</string>
+    <string name="mechanic_queue_count_format">%1$d tasks</string>
+    <string name="mechanic_no_pending_tasks">No Pending Tasks</string>
+    <string name="mechanic_no_pending_tasks_subtitle">All vehicles are up to date with their maintenance schedule.</string>
+    <string name="mechanic_urgency_critical">CRITICAL</string>
+    <string name="mechanic_urgency_overdue">OVERDUE</string>
+    <string name="mechanic_urgency_due_soon">DUE SOON</string>
+    <string name="mechanic_urgency_scheduled">SCHEDULED</string>
+
+    <!-- Fleet Status Widget -->
+    <string name="fleet_total_format">%1$d Vehicles</string>
+
     <!-- Validation Errors -->
     <string name="error_field_required">This field is required</string>
     <string name="error_invalid_email">Please enter a valid email address</string>

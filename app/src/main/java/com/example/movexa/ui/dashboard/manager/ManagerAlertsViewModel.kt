@@ -175,7 +175,7 @@ class ManagerAlertsViewModel : BaseViewModel() {
      */
     fun loadAlerts() {
         viewModelScope.launch {
-            val companyId = SessionManager.getInstance().getCachedUserId()
+            val companyId = SessionManager.getInstance().getCachedCompanyId()
             if (companyId.isNullOrBlank()) {
                 val error = ResultState.Error("No company ID found. Please log in again.")
                 _allAlerts.value = error

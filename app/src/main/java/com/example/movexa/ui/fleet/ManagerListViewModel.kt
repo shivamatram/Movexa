@@ -59,7 +59,7 @@ class ManagerListViewModel : BaseViewModel() {
      */
     fun loadManagers() {
         viewModelScope.launch {
-            val companyId = SessionManager.getInstance().getCachedUserId()
+            val companyId = SessionManager.getInstance().getCachedCompanyId()
             if (companyId.isNullOrBlank()) {
                 _managers.value = ResultState.Error("No company ID found. Please log in again.")
                 return@launch

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Fleet Legend Item — dot + count + label -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <!-- Color dot -->
+    <View
+        android:id="@+id/viewLegendDot"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:background="@drawable/bg_circle_dot"
+        android:layout_marginBottom="@dimen/spacing_xxs" />
+
+    <!-- Count -->
+    <TextView
+        android:id="@+id/tvLegendCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_subtitle"
+        android:textColor="@color/text_primary"
+        android:fontFamily="sans-serif-medium"
+        tools:text="12" />
+
+    <!-- Label -->
+    <TextView
+        android:id="@+id/tvLegendLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_overline"
+        android:textColor="@color/text_hint"
+        tools:text="Moving" />
+
+</LinearLayout>

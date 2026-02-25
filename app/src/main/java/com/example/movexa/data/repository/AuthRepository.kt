@@ -54,7 +54,8 @@ class AuthRepository : BaseRepository() {
         email: String,
         phone: String,
         password: String,
-        role: UserRole
+        role: UserRole,
+        companyId: String? = null // optional override, if null use session or uid
     ): ResultState<Unit> {
         return firebaseSafeCall {
             // Step 1: Create Firebase Auth account
@@ -68,12 +69,19 @@ class AuthRepository : BaseRepository() {
             // Driver accounts require verification; all other roles are auto-verified
             val isVerified = role != UserRole.DRIVER
 
+            // determine company ownership: explicit param, else currently
+            // authenticated user's company, else default to new uid
+            val assignedCompany = companyId
+                ?: FirebaseProvider.auth.currentUser?.uid
+                ?: uid
+
             val user = User(
                 uid = uid,
                 email = email,
                 fullName = fullName,
                 phone = phone,
                 role = role,
+                companyId = assignedCompany,
                 isActive = true,
                 isVerified = isVerified,
                 createdAt = System.currentTimeMillis(),
@@ -152,7 +160,17 @@ class AuthRepository : BaseRepository() {
             val userData = documentSnapshot.data
                 ?: throw IllegalStateException("User profile data is empty.")
 
-            val user = User.fromMap(userData)
+            var user = User.fromMap(userData)
+
+            // Backfill companyId for legacy accounts
+            if (user.companyId.isBlank()) {
+                // assume the user's own UID serves as company ID
+                user = user.copy(companyId = uid)
+                // write back to Firestore asynchronously (not blocking login)
+                firestore.collection(FirebaseProvider.Collections.USERS)
+                    .document(uid)
+                    .update("companyId", uid)
+            }
 
             // Step 5: Check active flag
             if (!user.isActive) {

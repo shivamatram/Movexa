@@ -116,7 +116,8 @@ class ManagerTripsViewModel : BaseViewModel() {
      */
     fun loadTrips() {
         viewModelScope.launch {
-            val companyId = SessionManager.getInstance().getCachedUserId()
+            // use explicit companyId rather than user uid
+            val companyId = SessionManager.getInstance().getCachedCompanyId()
             if (companyId.isNullOrBlank()) {
                 val error = ResultState.Error("No company ID found. Please log in again.")
                 _unassignedTrips.value = error
@@ -147,8 +148,15 @@ class ManagerTripsViewModel : BaseViewModel() {
         viewModelScope.launch {
             tripRepository.observeActiveTrips(companyId)
                 .catch { e ->
+                    // simplify error message; hide long index URL
+                    val original = e.message ?: "Failed to load trips"
+                    val msg = if (original.contains("requires an index", true)) {
+                        "Unable to load some trips – missing Firestore index. Please contact support."
+                    } else {
+                        original
+                    }
                     val error = ResultState.Error(
-                        message = e.message ?: "Failed to load trips",
+                        message = msg,
                         exception = e
                     )
                     _unassignedTrips.value = error
@@ -316,40 +324,40 @@ class ManagerTripsViewModel : BaseViewModel() {
 
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                // Step 1: Get all available vehicles
+                // Step 1: Fetch all available vehicles scoped to this company
                 val vehicleResult = vehicleRepository.getAvailableVehicles(companyId)
                 if (vehicleResult !is ResultState.Success) {
                     _eligibleOptions.value = ResultState.Error("Failed to load vehicles")
                     return@launch
                 }
 
-                val availableVehicles = vehicleResult.data.filter { vehicle ->
+                // Step 2: Apply eligibility rules:
+                //   1. status == AVAILABLE
+                //   2. has an assigned driver
+                //   3. documents are valid
+                val candidateVehicles = vehicleResult.data.filter { vehicle ->
                     vehicle.status == VehicleStatus.AVAILABLE &&
                     !vehicle.assignedDriverId.isNullOrBlank() &&
                     vehicle.documentsValid
                 }
 
-                if (availableVehicles.isEmpty()) {
+                if (candidateVehicles.isEmpty()) {
                     _eligibleOptions.value = ResultState.Success(emptyList())
                     return@launch
                 }
 
-                // Step 2: Verify each assigned driver is eligible
+                // Step 3: Verify each assigned driver passes eligibility:
+                //   4. Driver.verificationStatus.isApproved()
+                //   5. Driver.blocked == false
                 val eligibleOptions = mutableListOf<SmartAssignOptionAdapter.EligibleOption>()
 
-                for (vehicle in availableVehicles) {
+                for (vehicle in candidateVehicles) {
                     val driverId = vehicle.assignedDriverId ?: continue
                     val driverResult = driverRepository.getDriverById(driverId)
                     if (driverResult !is ResultState.Success) continue
 
                     val driver = driverResult.data ?: continue
-
-                    // Check driver eligibility
-                    if (driver.blocked) continue
-                    if (!driver.verificationStatus.isApproved()) continue
-
-                    // Resolve driver name
-                    val driverName = resolveDriverName(driver)
+                    if (driver.blocked || !driver.verificationStatus.isApproved()) continue
 
                     eligibleOptions.add(
                         SmartAssignOptionAdapter.EligibleOption(
@@ -357,14 +365,14 @@ class ManagerTripsViewModel : BaseViewModel() {
                             driverId = driver.driverId,
                             vehicleNumber = vehicle.number,
                             vehicleTypeCapacity = "${vehicle.type.displayName} • ${vehicle.capacity}T",
-                            driverName = driverName,
+                            driverName = resolveDriverName(driver),
                             tripCount = driver.totalTrips,
                             proximity = "" // Placeholder — GPS integration future
                         )
                     )
                 }
 
-                // Sort by trip count (most experienced first)
+                // Sort by experience (most trips first)
                 val sorted = eligibleOptions.sortedByDescending { it.tripCount }
                 _eligibleOptions.value = ResultState.Success(sorted)
 

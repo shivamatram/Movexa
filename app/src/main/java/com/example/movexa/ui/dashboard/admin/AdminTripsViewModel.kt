@@ -143,7 +143,8 @@ class AdminTripsViewModel : BaseViewModel() {
      */
     fun initialize() {
         viewModelScope.launch {
-            val userId = SessionManager.getInstance().getCachedUserId()
+            // use company id where appropriate (admin's uid by default)
+            val userId = SessionManager.getInstance().getCachedCompanyId() ?: SessionManager.getInstance().getCachedUserId()
             if (userId.isNullOrBlank()) {
                 val error = ResultState.Error("Session expired. Please log in again.")
                 _ongoingTrips.value = error
@@ -178,9 +179,13 @@ class AdminTripsViewModel : BaseViewModel() {
         ongoingObservationJob = viewModelScope.launch {
             repository.observeOngoingTrips(id)
                 .catch { e ->
-                    _ongoingTrips.value = ResultState.Error(
-                        e.message ?: "Failed to observe trips", e
-                    )
+                    val original = e.message ?: "Failed to load trips"
+                    val msg = if (original.contains("requires an index", ignoreCase = true)) {
+                        "Failed to load trips. Please try again later."
+                    } else {
+                        original
+                    }
+                    _ongoingTrips.value = ResultState.Error(msg, e)
                 }
                 .collect { result ->
                     _ongoingTrips.value = result

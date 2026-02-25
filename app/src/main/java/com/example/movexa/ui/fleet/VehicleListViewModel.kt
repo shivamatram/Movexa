@@ -74,7 +74,7 @@ class VehicleListViewModel : BaseViewModel() {
      */
     fun loadVehicles() {
         viewModelScope.launch {
-            currentCompanyId = SessionManager.getInstance().getCachedUserId()
+            currentCompanyId = SessionManager.getInstance().getCachedCompanyId()
             observeAllVehicles()
         }
     }

@@ -90,8 +90,8 @@ class DriverListViewModel : BaseViewModel() {
      */
     fun loadDrivers() {
         viewModelScope.launch {
-            // Cache userId for vehicle-assignment queries (getAvailableVehicles)
-            currentCompanyId = SessionManager.getInstance().getCachedUserId()
+            // Cache companyId (may differ from user uid) for vehicle-assignment queries
+            currentCompanyId = SessionManager.getInstance().getCachedCompanyId()
             observeAllDrivers()
         }
     }

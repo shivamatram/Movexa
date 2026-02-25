@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Fleet Status Widget — segmented bar + legend -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <!-- Total label -->
+    <TextView
+        android:id="@+id/tvFleetTotal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_caption"
+        android:textColor="@color/text_secondary"
+        android:layout_marginBottom="@dimen/spacing_small"
+        tools:text="42 Vehicles" />
+
+    <!-- Segmented Bar (custom drawn) -->
+    <com.example.movexa.ui.dashboard.common.SegmentedBarView
+        android:id="@+id/segmentBar"
+        android:layout_width="match_parent"
+        android:layout_height="12dp"
+        android:layout_marginBottom="@dimen/spacing_medium" />
+
+    <!-- Legend Row -->
+    <LinearLayout
+        android:id="@+id/legendContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:baselineAligned="false">
+
+        <view
+            class="com.example.movexa.ui.dashboard.common.FleetStatusWidget$LegendItem"
+            android:id="@+id/legendMoving"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <view
+            class="com.example.movexa.ui.dashboard.common.FleetStatusWidget$LegendItem"
+            android:id="@+id/legendIdle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <view
+            class="com.example.movexa.ui.dashboard.common.FleetStatusWidget$LegendItem"
+            android:id="@+id/legendService"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <view
+            class="com.example.movexa.ui.dashboard.common.FleetStatusWidget$LegendItem"
+            android:id="@+id/legendOffline"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+</LinearLayout>

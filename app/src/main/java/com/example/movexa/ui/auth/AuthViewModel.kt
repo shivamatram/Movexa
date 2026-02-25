@@ -68,18 +68,25 @@ class AuthViewModel : BaseViewModel() {
         email: String,
         phone: String,
         password: String,
-        role: UserRole
+        role: UserRole,
+        companyId: String? = null
     ) {
         viewModelScope.launch(Dispatchers.IO) {
             _signupState.value = ResultState.Loading
             setLoading(true)
+
+            // If caller didn't specify company, use the current user's company (if any)
+            val companyToUse = companyId ?: run {
+                sessionManager.getCachedCompanyId() ?: ""
+            }
 
             val result = authRepository.signUp(
                 fullName = fullName.trim(),
                 email = email.trim().lowercase(),
                 phone = phone.trim(),
                 password = password,
-                role = role
+                role = role,
+                companyId = companyToUse.ifBlank { null }
             )
 
             _signupState.value = result

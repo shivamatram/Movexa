@@ -53,6 +53,7 @@ class SessionManager private constructor(
         val EMAIL = stringPreferencesKey("session_email")
         val NAME = stringPreferencesKey("session_name")
         val ROLE = stringPreferencesKey("session_role")
+        val COMPANY_ID = stringPreferencesKey("session_company_id")
         val IS_LOGGED_IN = booleanPreferencesKey("session_is_logged_in")
         val IS_VERIFIED = booleanPreferencesKey("session_is_verified")
     }
@@ -92,6 +93,13 @@ class SessionManager private constructor(
      */
     val uidFlow: Flow<String?> = dataStore.data.map { prefs ->
         prefs[Keys.UID]
+    }
+
+    /**
+     * Observe company ID reactively from DataStore.
+     */
+    val companyIdFlow: Flow<String?> = dataStore.data.map { prefs ->
+        prefs[Keys.COMPANY_ID]
     }
 
     // ─── Session Operations ─────────────────────────────────────
@@ -155,6 +163,7 @@ class SessionManager private constructor(
             prefs[Keys.EMAIL] = user.email
             prefs[Keys.NAME] = user.fullName
             prefs[Keys.ROLE] = user.role.name
+            prefs[Keys.COMPANY_ID] = user.companyId
             prefs[Keys.IS_LOGGED_IN] = true
             prefs[Keys.IS_VERIFIED] = user.isVerified
         }
@@ -199,6 +208,13 @@ class SessionManager private constructor(
      */
     suspend fun getCachedUserId(): String? {
         return dataStore.data.first()[Keys.UID]
+    }
+
+    /**
+     * Retrieve the cached company id from DataStore (may differ from uid).
+     */
+    suspend fun getCachedCompanyId(): String? {
+        return dataStore.data.first()[Keys.COMPANY_ID]
     }
 
     /**

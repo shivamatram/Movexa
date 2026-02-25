@@ -54,13 +54,18 @@ class AdminTripsRepository : BaseRepository() {
         val listener = tripsRef
             .whereEqualTo("companyId", companyId)
             .whereIn("status", TripStatus.activeStatuses().map { it.name })
-            .orderBy("createdAt", Query.Direction.DESCENDING)
             .addSnapshotListener { snapshot, error ->
                 if (error != null) {
-                    trySend(ResultState.Error(error.message ?: "Failed to observe trips", error))
+                    val msg = if ((error.message ?: "").contains("requires an index", ignoreCase = true)) {
+                        "Failed to load trips. Please try again later."
+                    } else {
+                        error.message ?: "Failed to load trips"
+                    }
+                    trySend(ResultState.Error(msg, error))
                     return@addSnapshotListener
                 }
-                val trips = snapshot?.toModelList(Trip.Companion::fromMap) ?: emptyList()
+                val trips = (snapshot?.toModelList(Trip.Companion::fromMap) ?: emptyList())
+                    .sortedByDescending { it.createdAt }
                 trySend(ResultState.Success(trips))
             }
         awaitClose { listener.remove() }
