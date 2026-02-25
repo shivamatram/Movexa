@@ -129,6 +129,22 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!-- Role Info Banner -->
+        <TextView
+            android:id="@+id/tvRoleInfo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:drawablePadding="@dimen/spacing_small"
+            android:text="@string/signup_role_info"
+            android:textColor="?attr/colorOnSurfaceVariant"
+            android:textSize="12sp"
+            android:visibility="visible"
+            app:drawableStartCompat="@drawable/ic_info"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tilRole" />
+
         <!-- Password -->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilPassword"
@@ -140,7 +156,7 @@
             app:endIconMode="password_toggle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tilRole">
+            app:layout_constraintTop_toBottomOf="@id/tvRoleInfo">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etPassword"

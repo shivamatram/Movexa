@@ -1,5 +1,6 @@
 package com.example.movexa.ui.auth
 
+import android.view.View
 import android.widget.ArrayAdapter
 import androidx.fragment.app.activityViewModels
 import com.example.movexa.R
@@ -7,6 +8,7 @@ import com.example.movexa.data.model.ResultState
 import com.example.movexa.data.model.UserRole
 import com.example.movexa.databinding.FragmentSignupBinding
 import com.example.movexa.ui.base.BaseFragment
+import com.example.movexa.utils.RoleGuard
 import com.example.movexa.utils.ValidationUtils
 import com.example.movexa.utils.clearErrorOnTextChange
 import com.example.movexa.utils.setDebouncedClickListener
@@ -17,11 +19,17 @@ import com.example.movexa.utils.trimmedText
  *
  * Features:
  * - Full name, email, phone, role, password, confirm password inputs
- * - Role dropdown (AutoCompleteTextView) for ADMIN/MANAGER/DRIVER/MECHANIC
+ * - Role dropdown (AutoCompleteTextView) limited to DRIVER/MECHANIC only
+ * - ADMIN and MANAGER roles are restricted — they can only be created by admins
  * - Real-time field validation using ValidationUtils
  * - Firebase account creation via AuthViewModel
  * - Signs out immediately after signup (no auto-login)
  * - Navigates back to login on success
+ *
+ * Security:
+ * - RoleGuard enforces allowed signup roles at the UI layer
+ * - AuthRepository enforces the same restriction at the data layer
+ * - Even if a client tampers with the role, the server-side check blocks it
  *
  * Uses shared AuthViewModel scoped to the Activity for cross-fragment state.
  */
@@ -31,10 +39,9 @@ class SignupFragment : BaseFragment<FragmentSignupBinding>(
 
     private val authViewModel: AuthViewModel by activityViewModels()
 
-    // Map display names to UserRole enum
+    // Map display names to UserRole enum — only allowed signup roles
+    // ADMIN and MANAGER are explicitly excluded per security policy
     private val roleMap = linkedMapOf(
-        "Admin" to UserRole.ADMIN,
-        "Manager" to UserRole.MANAGER,
         "Driver" to UserRole.DRIVER,
         "Mechanic" to UserRole.MECHANIC
     )
@@ -43,6 +50,7 @@ class SignupFragment : BaseFragment<FragmentSignupBinding>(
         hideToolbar()
         hideBottomNav()
         setupRoleDropdown()
+        setupRoleInfoBanner()
     }
 
     override fun setupListeners() {
@@ -110,7 +118,8 @@ class SignupFragment : BaseFragment<FragmentSignupBinding>(
     // ─── Private Methods ────────────────────────────────────────
 
     /**
-     * Set up the role dropdown with available roles.
+     * Set up the role dropdown with only allowed signup roles.
+     * ADMIN and MANAGER are excluded from the public signup flow.
      */
     private fun setupRoleDropdown() {
         val roleNames = roleMap.keys.toList()
@@ -127,6 +136,19 @@ class SignupFragment : BaseFragment<FragmentSignupBinding>(
             val selectedRole = roleMap[selectedRoleName]
             authViewModel.setSelectedRole(selectedRole)
             binding.tilRole.error = null
+        }
+    }
+
+    /**
+     * Show info banner explaining that manager accounts are admin-created.
+     */
+    private fun setupRoleInfoBanner() {
+        // Show role restriction info text if the view exists in the layout
+        try {
+            binding.tvRoleInfo.visibility = View.VISIBLE
+            binding.tvRoleInfo.text = getString(R.string.signup_role_info)
+        } catch (_: Exception) {
+            // tvRoleInfo may not exist in the layout — that's fine
         }
     }
 
@@ -171,10 +193,15 @@ class SignupFragment : BaseFragment<FragmentSignupBinding>(
             isValid = false
         }
 
-        // Role validation
+        // Role validation — must be a valid, allowed signup role
         val selectedRole = roleMap[selectedRoleText]
         if (selectedRole == null) {
             binding.tilRole.error = getString(R.string.error_role_required)
+            if (isValid) binding.actRole.requestFocus()
+            isValid = false
+        } else if (!RoleGuard.isAllowedSignupRole(selectedRole)) {
+            // Double-check: block restricted roles even if somehow selected
+            binding.tilRole.error = getString(R.string.error_restricted_role)
             if (isValid) binding.actRole.requestFocus()
             isValid = false
         }

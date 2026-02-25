@@ -6,6 +6,7 @@ import com.example.movexa.data.model.User
 import com.example.movexa.data.model.UserRole
 import com.example.movexa.data.model.enums.VerificationStatus
 import com.example.movexa.data.remote.FirebaseProvider
+import com.example.movexa.utils.RoleGuard
 import com.google.firebase.auth.FirebaseAuthException
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthInvalidUserException
@@ -57,6 +58,11 @@ class AuthRepository : BaseRepository() {
         role: UserRole,
         companyId: String? = null // optional override, if null use session or uid
     ): ResultState<Unit> {
+        // Security: Block restricted roles at repository layer (defense-in-depth)
+        if (!RoleGuard.isAllowedSignupRole(role)) {
+            return ResultState.Error(RoleGuard.ERROR_RESTRICTED_ROLE)
+        }
+
         return firebaseSafeCall {
             // Step 1: Create Firebase Auth account
             val authResult = auth.createUserWithEmailAndPassword(email, password).await()

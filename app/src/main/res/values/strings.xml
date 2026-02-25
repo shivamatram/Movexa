@@ -1970,4 +1970,66 @@
     <string name="cd_driver_upload_license">Upload driving license</string>
     <string name="cd_driver_upload_idproof">Upload ID proof document</string>
     <string name="cd_driver_document_status">Document verification status</string>
+
+    <!-- ════════════════════════════════════════════════════════════
+         Manager Module — Strings
+         ════════════════════════════════════════════════════════════ -->
+
+    <!-- Signup Role Restriction -->
+    <string name="signup_role_info">Admin and Manager accounts are created by company administrators only.</string>
+    <string name="error_restricted_role">This role cannot be selected during signup. Contact your administrator.</string>
+
+    <!-- Manager Creation Bottom Sheet -->
+    <string name="create_manager_title">Create Manager Account</string>
+    <string name="create_manager_subtitle">Create a new manager for your company. They will receive a password reset email.</string>
+    <string name="manager_full_name_hint">Full Name</string>
+    <string name="manager_email_hint">Email Address</string>
+    <string name="manager_phone_hint">Phone Number</string>
+    <string name="manager_temp_password_hint">Temporary Password</string>
+    <string name="manager_send_reset_email">Send password reset email</string>
+    <string name="create_manager_button">Create Manager</string>
+    <string name="creating_manager">Creating manager account…</string>
+    <string name="manager_created_success">Manager account created successfully!</string>
+    <string name="manager_created_reset_email">Manager created. Password reset email sent.</string>
+
+    <!-- Manager Creation States -->
+    <string name="state_validating">Validating details…</string>
+    <string name="state_creating_auth">Creating authentication account…</string>
+    <string name="state_writing_profile">Writing manager profile…</string>
+    <string name="state_sending_reset_email">Sending password reset email…</string>
+
+    <!-- Manager Creation Errors -->
+    <string name="error_admin_only">Only administrators can create manager accounts.</string>
+    <string name="error_email_already_exists">An account with this email already exists.</string>
+    <string name="error_manager_creation_failed">Failed to create manager. Please try again.</string>
+    <string name="error_company_id_missing">Company ID not found. Please re-login.</string>
+
+    <!-- Manager List -->
+    <string name="managers_title">Managers</string>
+    <string name="managers_empty">No managers found</string>
+    <string name="managers_empty_search">No managers match your search</string>
+    <string name="managers_search_hint">Search managers…</string>
+    <string name="manager_count">%d manager(s)</string>
+    <string name="manager_active">Active</string>
+    <string name="manager_inactive">Inactive</string>
+    <string name="manager_created_on">Created %s</string>
+
+    <!-- Manager Deactivation -->
+    <string name="deactivate_manager_title">Deactivate Manager</string>
+    <string name="deactivate_manager_message">Are you sure you want to deactivate %s? They will no longer be able to sign in.</string>
+    <string name="deactivate_manager_confirm">Deactivate</string>
+    <string name="manager_deactivated">Manager deactivated successfully</string>
+
+    <!-- Manager Reactivation -->
+    <string name="reactivate_manager_title">Reactivate Manager</string>
+    <string name="reactivate_manager_message">Are you sure you want to reactivate %s? They will be able to sign in again.</string>
+    <string name="reactivate_manager_confirm">Reactivate</string>
+    <string name="manager_reactivated">Manager reactivated successfully</string>
+
+    <!-- Manager Actions -->
+    <string name="add_manager">Add Manager</string>
+    <string name="cd_add_manager">Add a new manager</string>
+    <string name="cd_manager_actions">Manager actions menu</string>
+    <string name="cd_manager_status">Manager status indicator</string>
+
 </resources>

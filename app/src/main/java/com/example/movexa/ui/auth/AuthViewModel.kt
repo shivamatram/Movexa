@@ -7,6 +7,7 @@ import com.example.movexa.data.model.UserRole
 import com.example.movexa.data.repository.AuthRepository
 import com.example.movexa.data.session.SessionManager
 import com.example.movexa.ui.base.BaseViewModel
+import com.example.movexa.utils.RoleGuard
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -72,6 +73,13 @@ class AuthViewModel : BaseViewModel() {
         companyId: String? = null
     ) {
         viewModelScope.launch(Dispatchers.IO) {
+            // Security: Block restricted roles at ViewModel layer
+            if (!RoleGuard.isAllowedSignupRole(role)) {
+                _signupState.value = ResultState.Error(RoleGuard.ERROR_RESTRICTED_ROLE)
+                emitError(RoleGuard.ERROR_RESTRICTED_ROLE)
+                return@launch
+            }
+
             _signupState.value = ResultState.Loading
             setLoading(true)
 
