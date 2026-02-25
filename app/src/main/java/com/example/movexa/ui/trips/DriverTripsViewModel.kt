@@ -81,6 +81,9 @@ class DriverTripsViewModel : BaseViewModel() {
     private val _historyCount = MutableStateFlow(0)
     val historyCount: StateFlow<Int> = _historyCount.asStateFlow()
 
+    /** Persist which tab the driver was on (0=new,1=ongoing,2=history). */
+    var selectedTabIndex: Int = 0
+
     /** Cached vehicle name lookup. */
     private val vehicleNameCache = mutableMapOf<String, String>()
 

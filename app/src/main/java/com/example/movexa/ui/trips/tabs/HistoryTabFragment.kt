@@ -4,6 +4,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.movexa.R
 import com.example.movexa.data.model.ResultState
@@ -23,7 +24,9 @@ class HistoryTabFragment : BaseFragment<FragmentTripTabBinding>(
     FragmentTripTabBinding::inflate
 ) {
 
-    private val viewModel: DriverTripsViewModel by viewModels({ requireParentFragment() })
+    private val viewModel: DriverTripsViewModel by navGraphViewModels(R.id.nav_driver) {
+        defaultViewModelProviderFactory
+    }
 
     private lateinit var adapter: TripListAdapter
 

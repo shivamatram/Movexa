@@ -3,6 +3,7 @@ package com.example.movexa.ui.dashboard.driver
 import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.navGraphViewModels
 import com.example.movexa.R
 import com.example.movexa.data.model.ResultState
 import com.example.movexa.data.model.Trip
@@ -29,8 +30,23 @@ class DriverTripsFragment : BaseFragment<FragmentDriverTripsBinding>(
     FragmentDriverTripsBinding::inflate
 ) {
 
+    // tracks last selected tab so we can restore after returning
+    // stored in viewModel.selectedTabIndex as well
+    private var savedTabIndex: Int = 0
+
+    companion object {
+        private const val TAG_NEW_REQUESTS = "tab_new_requests"
+        private const val TAG_ONGOING = "tab_ongoing"
+        private const val TAG_HISTORY = "tab_history"
+        private const val KEY_SELECTED_TAB = "key_selected_tab"
+    }
+
     // ── ViewModel ───────────────────────────────────────────────
-    private val viewModel: DriverTripsViewModel by viewModels()
+    // scope the viewmodel to the driver nav graph so it survives
+    // navigation to TripDetailsFragment and back
+    private val viewModel: DriverTripsViewModel by navGraphViewModels(R.id.nav_driver) {
+        defaultViewModelProviderFactory
+    }
 
     // ── Tab Fragments ───────────────────────────────────────────
     private val newRequestsTab by lazy {
@@ -59,6 +75,11 @@ class DriverTripsFragment : BaseFragment<FragmentDriverTripsBinding>(
 
     // ── Lifecycle ───────────────────────────────────────────────
 
+    override fun onCreate(savedInstanceState: android.os.Bundle?) {
+        super.onCreate(savedInstanceState)
+        savedTabIndex = savedInstanceState?.getInt(KEY_SELECTED_TAB, 0) ?: 0
+    }
+
     override fun initViews() {
         binding.tabLayout.apply {
             addTab(newTab().setText(R.string.tab_new_requests))
@@ -66,14 +87,37 @@ class DriverTripsFragment : BaseFragment<FragmentDriverTripsBinding>(
             addTab(newTab().setText(R.string.tab_history))
         }
 
-        switchToTab(newRequestsTab, TAG_NEW_REQUESTS)
+        // restore selected tab from nav backstack saved state (most reliable)
+        val entry = findNavController().getBackStackEntry(R.id.driverTripsFragment)
+        val savedFromHandle = entry.savedStateHandle.get<Int>(KEY_SELECTED_TAB)
+        val index = savedFromHandle
+            ?: viewModel.selectedTabIndex.takeIf { it in 0..2 }
+            ?: savedTabIndex
+        viewModel.selectedTabIndex = index
+        entry.savedStateHandle.set(KEY_SELECTED_TAB, index)
+        when (index) {
+            1 -> switchToTab(ongoingTab, TAG_ONGOING)
+            2 -> switchToTab(historyTab, TAG_HISTORY)
+            else -> switchToTab(newRequestsTab, TAG_NEW_REQUESTS)
+        }
 
         viewModel.loadTrips()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        // re-select the previously chosen tab in case view rebuilt
+        val idx = viewModel.selectedTabIndex.coerceIn(0, 2)
+        binding.tabLayout.getTabAt(idx)?.select()
     }
 
     override fun setupListeners() {
         binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
+                viewModel.selectedTabIndex = tab.position
+                // persist also to nav backstack entry
+                findNavController().getBackStackEntry(R.id.driverTripsFragment)
+                    .savedStateHandle.set(KEY_SELECTED_TAB, tab.position)
                 when (tab.position) {
                     0 -> switchToTab(newRequestsTab, TAG_NEW_REQUESTS)
                     1 -> switchToTab(ongoingTab, TAG_ONGOING)
@@ -205,11 +249,9 @@ class DriverTripsFragment : BaseFragment<FragmentDriverTripsBinding>(
         )
     }
 
-    // ── Constants ───────────────────────────────────────────────
-
-    companion object {
-        private const val TAG_NEW_REQUESTS = "tab_new_requests"
-        private const val TAG_ONGOING = "tab_ongoing"
-        private const val TAG_HISTORY = "tab_history"
+    override fun onSaveInstanceState(outState: android.os.Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt(KEY_SELECTED_TAB, binding.tabLayout.selectedTabPosition)
     }
+
 }

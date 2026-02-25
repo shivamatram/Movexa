@@ -4,6 +4,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.navigation.fragment.findNavController
 import com.example.movexa.R
@@ -24,7 +25,9 @@ class NewRequestsTabFragment : BaseFragment<FragmentTripTabBinding>(
     FragmentTripTabBinding::inflate
 ) {
 
-    private val viewModel: DriverTripsViewModel by viewModels({ requireParentFragment() })
+    private val viewModel: DriverTripsViewModel by navGraphViewModels(R.id.nav_driver) {
+        defaultViewModelProviderFactory
+    }
 
     private lateinit var adapter: TripListAdapter
 
