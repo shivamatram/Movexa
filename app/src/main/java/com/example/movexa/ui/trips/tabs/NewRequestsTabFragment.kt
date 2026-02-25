@@ -5,6 +5,7 @@ import android.text.TextWatcher
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.navigation.fragment.findNavController
 import com.example.movexa.R
 import com.example.movexa.data.model.ResultState
 import com.example.movexa.data.model.Trip
@@ -73,11 +74,24 @@ class NewRequestsTabFragment : BaseFragment<FragmentTripTabBinding>(
         }
 
         adapter.onViewDetailsClick = { trip ->
-            onViewDetailsClick?.invoke(trip)
+            // navigate directly rather than relying on parent callback
+            val bundle = android.os.Bundle().apply {
+                putString(com.example.movexa.ui.trips.TripDetailsFragment.ARG_TRIP_ID, trip.tripId)
+            }
+            findNavController().navigate(
+                R.id.action_driverTripsFragment_to_tripDetailsFragment,
+                bundle
+            )
         }
 
         adapter.onCardClick = { trip ->
-            onViewDetailsClick?.invoke(trip)
+            val bundle = android.os.Bundle().apply {
+                putString(com.example.movexa.ui.trips.TripDetailsFragment.ARG_TRIP_ID, trip.tripId)
+            }
+            findNavController().navigate(
+                R.id.action_driverTripsFragment_to_tripDetailsFragment,
+                bundle
+            )
         }
     }
 

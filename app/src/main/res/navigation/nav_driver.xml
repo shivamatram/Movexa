@@ -21,7 +21,19 @@
         android:id="@+id/driverTripsFragment"
         android:name="com.example.movexa.ui.dashboard.driver.DriverTripsFragment"
         android:label="Trips"
-        tools:layout="@layout/fragment_driver_trips" />
+        tools:layout="@layout/fragment_driver_trips">
+        <!-- allow navigation to details screen -->
+        <action
+            android:id="@+id/action_driverTripsFragment_to_tripDetailsFragment"
+            app:destination="@id/tripDetailsFragment" />
+    </fragment>
+
+    <!-- reuse common trip details fragment via include -->
+    <fragment
+        android:id="@+id/tripDetailsFragment"
+        android:name="com.example.movexa.ui.trips.TripDetailsFragment"
+        android:label="Trip Details"
+        tools:layout="@layout/fragment_trip_details" />
 
     <fragment
         android:id="@+id/driverNavigationFragment"

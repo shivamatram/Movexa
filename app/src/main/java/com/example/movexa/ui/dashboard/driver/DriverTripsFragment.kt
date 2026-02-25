@@ -15,6 +15,7 @@ import com.example.movexa.ui.trips.tabs.HistoryTabFragment
 import com.example.movexa.ui.trips.tabs.NewRequestsTabFragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.tabs.TabLayout
+import androidx.navigation.fragment.findNavController
 
 /**
  * Trips host for the Driver dashboard.
@@ -194,7 +195,14 @@ class DriverTripsFragment : BaseFragment<FragmentDriverTripsBinding>(
     // ── Navigation ──────────────────────────────────────────────
 
     private fun navigateToTripDetails(trip: Trip) {
-        // TODO: Wire up actual navigation when nav graph is updated
+        // use same navigation action as manager/admin screens
+        val bundle = android.os.Bundle().apply {
+            putString(com.example.movexa.ui.trips.TripDetailsFragment.ARG_TRIP_ID, trip.tripId)
+        }
+        findNavController().navigate(
+            R.id.action_driverTripsFragment_to_tripDetailsFragment,
+            bundle
+        )
     }
 
     // ── Constants ───────────────────────────────────────────────
