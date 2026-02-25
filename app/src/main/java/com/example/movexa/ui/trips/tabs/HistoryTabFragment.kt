@@ -63,9 +63,8 @@ class HistoryTabFragment : BaseFragment<FragmentTripTabBinding>(
             onViewDetailsClick?.invoke(trip)
         }
 
-        adapter.onCardClick = { trip ->
-            onViewDetailsClick?.invoke(trip)
-        }
+        // disable card click navigation
+        adapter.onCardClick = null
     }
 
     override fun observeData() {

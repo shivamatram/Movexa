@@ -85,15 +85,7 @@ class DriverOngoingTabFragment : BaseFragment<FragmentTripTabBinding>(
             )
         }
 
-        adapter.onCardClick = { trip ->
-            val bundle = android.os.Bundle().apply {
-                putString(com.example.movexa.ui.trips.TripDetailsFragment.ARG_TRIP_ID, trip.tripId)
-            }
-            findNavController().navigate(
-                R.id.action_driverTripsFragment_to_tripDetailsFragment,
-                bundle
-            )
-        }
+        adapter.onCardClick = null
     }
 
     override fun observeData() {
