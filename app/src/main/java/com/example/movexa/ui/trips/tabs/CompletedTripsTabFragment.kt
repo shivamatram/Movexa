@@ -61,9 +61,8 @@ class CompletedTripsTabFragment : BaseFragment<FragmentTripTabBinding>(
             onViewDetailsClick?.invoke(trip)
         }
 
-        adapter.onCardClick = { trip ->
-            onViewDetailsClick?.invoke(trip)
-        }
+        // clicking card should do nothing for completed trips
+        adapter.onCardClick = { /* no-op */ }
     }
 
     override fun observeData() {

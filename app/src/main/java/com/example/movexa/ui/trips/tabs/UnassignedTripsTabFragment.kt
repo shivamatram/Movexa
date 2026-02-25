@@ -82,9 +82,8 @@ class UnassignedTripsTabFragment : BaseFragment<FragmentTripTabBinding>(
             onViewDetailsClick?.invoke(trip)
         }
 
-        adapter.onCardClick = { trip ->
-            onViewDetailsClick?.invoke(trip)
-        }
+        // card tap intentionally left blank for manager – details accessed via menu or buttons
+        adapter.onCardClick = { /* no-op */ }
     }
 
     override fun observeData() {

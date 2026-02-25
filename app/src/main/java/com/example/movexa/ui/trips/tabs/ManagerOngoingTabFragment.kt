@@ -69,9 +69,8 @@ class ManagerOngoingTabFragment : BaseFragment<FragmentTripTabBinding>(
             onViewDetailsClick?.invoke(trip)
         }
 
-        adapter.onCardClick = { trip ->
-            onViewDetailsClick?.invoke(trip)
-        }
+        // disable card tap on manager ongoing trips
+        adapter.onCardClick = { /* no-op */ }
     }
 
     override fun observeData() {
