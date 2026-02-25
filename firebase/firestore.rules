@@ -78,8 +78,16 @@ service cloud.firestore {
       allow update: if isLoggedIn() && (
           isAdmin() ||
           isManager() ||
-          (isDriver() && resource.data.driverId == request.auth.uid)
+          (isDriver() && (
+              // legacy trips mistakenly stored auth UID instead of driver doc ID
+              resource.data.driverId == request.auth.uid ||
+              (
+                resource.data.driverId != '' &&
+                get(/databases/$(database)/documents/drivers/$(resource.data.driverId)).data.userId == request.auth.uid
+              )
+          ))
       );
+
       allow delete: if isAdmin();
     }
 
@@ -98,7 +106,13 @@ service cloud.firestore {
     match /fuel_logs/{fuelId} {
       allow read: if isLoggedIn();
       allow create: if isLoggedIn() && isDriver();
-      allow update: if isLoggedIn() && isDriver() && resource.data.driverId == request.auth.uid;
+      allow update: if isLoggedIn() && isDriver() && (
+          resource.data.driverId == request.auth.uid ||
+          (
+            resource.data.driverId != '' &&
+            get(/databases/$(database)/documents/drivers/$(resource.data.driverId)).data.userId == request.auth.uid
+          )
+      );
       allow delete: if isLoggedIn() && isAdmin();
     }
 

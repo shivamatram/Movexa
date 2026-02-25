@@ -155,6 +155,11 @@ class TripRepositoryImpl : BaseFirestoreRepository<Trip>(), TripRepository {
         mapOf("status" to status.name)
     )
 
+    override suspend fun updateTripFields(
+        tripId: String,
+        fields: Map<String, Any?>
+    ): ResultState<Unit> = updateFields(tripId, fields)
+
     override suspend fun assignDriver(
         tripId: String,
         driverId: String

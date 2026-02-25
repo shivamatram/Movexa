@@ -237,8 +237,28 @@ class DriverTripsViewModel : BaseViewModel() {
                 val userId = currentUserId ?: ""
                 val now = System.currentTimeMillis()
 
-                // Update trip status
-                when (val result = tripRepository.updateTripStatus(tripId, TripStatus.ACCEPTED)) {
+                // When the driver-side bug overwrote `driverId` with the auth UID,
+                // future updates will fail the new security rule. Detect that
+                // situation, look up the correct document ID and include it in the
+                // update. This also permanently fixes the bad trip document.
+                val updateMap = mutableMapOf<String, Any>(
+                    "status" to TripStatus.ACCEPTED.name
+                )
+
+                val tripResult = tripRepository.getTripById(tripId)
+                val trip = (tripResult as? ResultState.Success)?.data
+                if (trip != null) {
+                    // if stored driverId equals the user UID, resolve correct ID
+                    if (trip.driverId == userId) {
+                        val drvRes = driverRepository.getOrCreateDriverByUserId(userId)
+                        val correctId = (drvRes as? ResultState.Success)?.data?.driverId
+                        if (!correctId.isNullOrBlank() && correctId != trip.driverId) {
+                            updateMap["driverId"] = correctId
+                        }
+                    }
+                }
+
+                when (val result = tripRepository.updateTripFields(tripId, updateMap)) {
                     is ResultState.Error -> {
                         _operationResult.value = ResultState.Error(
                             result.message, result.exception

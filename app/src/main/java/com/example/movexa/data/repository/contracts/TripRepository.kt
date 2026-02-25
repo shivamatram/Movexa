@@ -44,6 +44,12 @@ interface TripRepository {
     // ── UPDATE ──────────────────────────────────────────────────────────────
     suspend fun updateTrip(trip: Trip): ResultState<Unit>
     suspend fun updateTripStatus(tripId: String, status: TripStatus): ResultState<Unit>
+
+    /**
+     * Update arbitrary fields on a trip document. Useful for custom status transitions
+     * that must also modify driverId, vehicleId, etc., to satisfy security rules.
+     */
+    suspend fun updateTripFields(tripId: String, fields: Map<String, Any?>): ResultState<Unit>
     suspend fun assignDriver(tripId: String, driverId: String): ResultState<Unit>
     suspend fun startTrip(tripId: String): ResultState<Unit>
     suspend fun completeTrip(
